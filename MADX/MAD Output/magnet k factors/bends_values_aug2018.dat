@@ -1,0 +1,15 @@
+!Jan 2017 after rolling again ECMAG
+!After re-matching to Feb 2018 TIEN
+new_shift =     0.0;
+xshift =    -0.0;
+tiein_shift =    -0.0;
+v936_shift=0.;
+ecmag_srot =    -0.00004966 ;
+ecmag_angle =    -0.05720001 ;
+v901_angle =     0.11341001 ;
+v906_angle =    -0.06713342 ;
+v907_angle =     0.06671241 ;
+h910_angle =    -0.10965087 ;
+v936_angle = 0.0236555009209 ;
+h936a_angle = 6.51128915869e-06 ;
+h936b_angle = -0.000445502484491 ;
