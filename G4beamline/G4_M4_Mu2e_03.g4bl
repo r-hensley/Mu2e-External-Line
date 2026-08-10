@@ -1,0 +1,694 @@
+# G2   
+# Simulates M4 line for the Mu2e Experiment
+# SUMMARY: M4 line
+    
+# Created by: D. Stratakis 
+# Updated: June 28, 2019
+
+# COLORS:  100 red, 010 green, 111 white, 110 yellow, 001 blue, 101 magenta, 011 cyan
+
+# VERSION HISTORY
+
+# v01: First version based on Elianas August 2018 file
+# v02: Corrected AC dipole length 1041 -> 863.6 mm (06/19/19)
+#      AC dipole B-fields can now be modeled with sin functions and time is the variable (06/19/19) 
+#      Created a killzone with a radius of 100 mm (06/20/19)
+#      Changed the order of the AC Dipoles. Put the L first and the H second  (06/28/2019)
+#      Added "timing effect" for individual AC dipoles (06/28/2019)
+# v03: Added first four trims (02/25/22)
+ 
+######################### SWITCHES
+
+ param RunAll=1             #If RunAll=1, run from source to end
+ 
+######################### DEFINE PHYSICS MODEL
+ 
+  randomseed time
+
+  param Qfac=1.1           # 10% uncertainty in magnetic apertures
+  
+  param zbegin=0.0
+
+  start initialZ=$zbegin  y=0.000   x=0.00   z=0.00    radiusCut=300
+  param steppingFormat=N,GLOBAL,CL,STEP,VOL,PROCESS,P,KE,POLAR,B
+  param fieldVoxels=400,400,400 
+  
+  param maxStep=20
+
+# physics QGSP_BERT doStochastics=1 spinTracking=1 synchrotronRadiation=1 # disable=Decay
+  physics QGSP_BERT 
+
+# trackcuts keep=pi+,mu+,pi-,proton,neutron,anti_proton,e+,e- maxTime=10000
+  trackcuts keep=proton maxTime=10000
+
+  particlecolor proton=1,1,1  # white 
+  particlecolor e+=1,0,0      # red
+  particlecolor gamma=0,0,1   # blue
+  particlecolor e-=1,0.5,0    # orange
+
+######################### DEFINE INPUT BEAM
+
+# Energy factor for rest (f=1.0 for 3094 magic)
+  param Momentum=8888.8972/1000                 # GeV/c
+  param f=$Momentum/3.1
+
+  param nparticles=1e04
+# param nparticles=1e08
+
+# beam gauss nEvents=$nparticles  particle=proton meanP=8890.0 meanT=0.0 beamZ=5000
+
+  beam ascii filename=particles_M4_ECMAG_U_gauss.txt nEvents=$nparticles beamZ=$zbegin
+
+# beam ascii filename=particles_M4_ACDipole_Begin_U_1000k.txt nEvents=$nparticles beamZ=134000
+                                                                                 
+######################### DEFINE QUADRUPOLES
+
+# kappas 
+     
+  param KQ901=-0.42453629 
+  param KQ902=0.29829156 
+  param KQ903=-0.34480458 
+  param KQ904=0.23218224 
+  param KQ905=0.02901079 
+
+  param KQ906=-0.30506828 
+  param KQ907=0.19849465 
+  param KQ908=-0.29697389 
+  param KQ909=-0.16436618 
+  param KQ910=0.28613340 
+
+  param KQ911=-0.22970061 
+  param KQ912=0.24420452 
+  param KQ913=0.42907805 
+  param KQ914=-0.36300169 
+  param KQM=0.31547716 
+
+  param KQ924=-0.14892540 
+  param KQ925=-0.07473105 
+  param KQ926=0.22542903 
+  param KQ927=-0.06760599 
+  param KQ928=-0.20817260 
+
+  param KQ929=0.18883950 
+  param KQ930=0.21739971 
+  param KQ931=-0.26442935 
+  param KQ932=-0.15561070 
+  param KQ933=0.31335842 
+
+  param KQ934=-0.40926990 
+  param KQ935=0.35723654 
+  param KQ936=-0.30986332 
+  param KQff1=0.20708558 
+  param KQff2=-0.31590717 
+  param KQff3=0.18677610 
+  param KQ940=-0.23134602 
+
+# gradients [T/m] from kappas
+
+  param constant=0.2998
+
+  param GQ901=$KQ901*$Momentum/$constant
+  param GQ902=$KQ902*$Momentum/$constant
+  param GQ903=$KQ903*$Momentum/$constant
+  param GQ904=$KQ904*$Momentum/$constant
+  param GQ905=$KQ905*$Momentum/$constant 
+  param GQ906=$KQ906*$Momentum/$constant
+  param GQ907=$KQ907*$Momentum/$constant
+  param GQ908=$KQ908*$Momentum/$constant 
+  param GQ909=$KQ909*$Momentum/$constant
+  param GQ910=$KQ910*$Momentum/$constant
+  param GQ911=$KQ911*$Momentum/$constant
+  param GQ912=$KQ912*$Momentum/$constant
+  param GQ913=$KQ913*$Momentum/$constant
+  param GQ914=$KQ914*$Momentum/$constant
+  param GQM=$KQM*$Momentum/$constant
+
+  param GQ924=$KQ924*$Momentum/$constant
+  param GQ925=$KQ925*$Momentum/$constant 
+  param GQ926=$KQ926*$Momentum/$constant
+  param GQ927=$KQ927*$Momentum/$constant
+  param GQ928=$KQ928*$Momentum/$constant 
+  param GQ929=$KQ929*$Momentum/$constant
+  param GQ930=$KQ930*$Momentum/$constant
+  param GQ931=$KQ931*$Momentum/$constant
+  param GQ932=$KQ932*$Momentum/$constant
+  param GQ933=$KQ933*$Momentum/$constant
+  param GQ934=$KQ934*$Momentum/$constant
+  param GQ935=$KQ935*$Momentum/$constant
+  param GQ936=$KQ936*$Momentum/$constant
+
+  param GQff1=$KQff1*$Momentum/$constant
+  param GQff2=$KQff2*$Momentum/$constant
+  param GQff3=$KQff3*$Momentum/$constant
+  param GQ940=$KQ940*$Momentum/$constant
+
+# quad lengths - effective (from Eliana)
+   
+  param lSQA=457.20
+  param lSQB=640.08
+  param lSQC=701.04
+  param lSQD=828.04
+  param lSQE=1311.70
+  param lBNL24=660.4
+
+  param lLQC=772.16
+  param lLQD=870.00
+  
+# apertures
+
+# Large star
+  param LpoleTipRadius=$Qfac*41.7 
+  param LcoilRadius=$Qfac*67.0 
+  param LcoilHalfWidth=$Qfac*14.0
+  param LironRadius=2*172.1
+# Small star
+  param SpoleTipRadius=$Qfac*35.7 
+  param ScoilRadius=$Qfac*51.0 
+  param ScoilHalfWidth=$Qfac*13.2
+  param SironRadius=2*172.1
+
+# kill particles at apertures? (sw=1, YES)
+  param sw=1  
+# quad material
+  material Iron2 Fe,1.0 density=1.0 keep=proton,e+,e- 
+  
+  genericquad SQA openAperture=0 ironRadius=$LironRadius poleTipRadius=$LpoleTipRadius coilRadius=$LcoilRadius coilHalfWidth=$LcoilHalfWidth ironColor=0,0,1 fringe=0\
+  ironMaterial=Iron2 kill=$sw  fieldLength=$lSQA ironLength=$lSQA                                                                          
+
+  genericquad SQAs openAperture=0  ironRadius=$SironRadius poleTipRadius=$SpoleTipRadius coilRadius=$ScoilRadius coilHalfWidth=$ScoilHalfWidth ironColor=0,0,1 fringe=0\
+  ironMaterial=Iron2 kill=$sw fieldLength=$lSQA ironLength=$lSQA
+
+  genericquad SQB openAperture=0  ironRadius=$LironRadius poleTipRadius=$LpoleTipRadius coilRadius=$LcoilRadius coilHalfWidth=$LcoilHalfWidth ironColor=0,1,1 \
+  ironMaterial=Iron2 kill=$sw fieldLength=$lSQB ironLength=$lSQB 
+
+  genericquad SQC openAperture=0 ironRadius=$LironRadius poleTipRadius=$LpoleTipRadius coilRadius=$LcoilRadius coilHalfWidth=$LcoilHalfWidth ironColor=0,1,0 fringe=0\
+  ironMaterial=Iron2 kill=$sw  fieldLength=$lSQC ironLength=$lSQC  #maxStep=1  
+
+  genericquad SQD openAperture=0 ironRadius=$LironRadius ironRadius=$LironRadius poleTipRadius=$LpoleTipRadius coilRadius=$LcoilRadius coilHalfWidth=$LcoilHalfWidth ironColor=1,0,1 fringe=0 \
+  ironMaterial=Iron2 kill=$sw fieldLength=$lSQD ironLength=$lSQD  #maxStep=1
+  
+  genericquad SQE openAperture=0 ironRadius=$LironRadius ironRadius=$LironRadius poleTipRadius=$LpoleTipRadius coilRadius=$LcoilRadius coilHalfWidth=$LcoilHalfWidth ironColor=1,0,1 fringe=0 \
+  ironMaterial=Iron2 kill=$sw fieldLength=$lSQE ironLength=$lSQE  #maxStep=1
+                                       	                                                                      
+  genericquad LQC openAperture=0 ironRadius=$LironRadius apertureRadius=$Qfac*84.00 ironColor=1,0,0 fringe=0 \
+  ironMaterial=Iron2 kill=$sw fieldLength=$lLQC ironLength=$lLQC 
+
+  genericquad LQD openAperture=0 ironRadius=$LironRadius apertureRadius=$Qfac*84.00 ironColor=1,0,0 fringe=0 \
+  ironMaterial=Iron2 kill=$sw fieldLength=$lLQD ironLength=$lLQD 
+                                                                    
+######################### DEFINE DIPOLES
+
+# dipole lengths from Eliana
+   
+  param L_ECMAG=2169.92
+  param L_EDWA=3048.00
+  param L_SDFW=3048.00
+  param L_MDC=1524.00
+  param L_CDA=1219.20
+  
+  genericbend ECMAG openAperture=0 ironWidth=260.0 fieldWidth=$Qfac*130.0 ironColor=1,1,1 kill=$sw  \
+  ironHeight=100.00 fieldHeight=$Qfac*55.0  fieldLength=$L_ECMAG ironLength=$L_ECMAG # maxStep=5 # fringe=0                                    
+
+  genericbend  EDWA openAperture=0   ironWidth=344.0 fieldWidth=$Qfac*120.0 ironColor=1,1,1 kill=$sw  \
+  ironHeight=188.0 fieldHeight=$Qfac*50.0 ironLength=$L_EDWA fieldLength=$L_EDWA  # maxStep=5 # fringe=0 
+
+  genericbend  MDC2  openAperture=0 ironWidth=536.0 fieldWidth=$Qfac*140.0 ironColor=1,1,0 kill=$sw \
+  ironHeight=216.00 fieldHeight=$Qfac*58.0 fieldLength=$L_MDC ironLength=$L_MDC # maxStep=5 #fringe=0 
+ 
+  genericbend  SDFW openAperture=0   ironWidth=344.0 fieldWidth=$Qfac*145.0 ironColor=1,1,1 kill=$sw  \
+  ironHeight=188.0 fieldHeight=$Qfac*100.0 ironLength=$L_SDFW fieldLength=$L_SDFW # maxStep=5 # fringe=0 
+
+  genericbend  CDA  openAperture=0 ironWidth=536.0 fieldWidth=$Qfac*152.0 ironColor=1,1,0 kill=$sw \
+  ironHeight=216.00 fieldHeight=$Qfac*76.0 fieldLength=$L_CDA ironLength=$L_CDA # maxStep=5 #fringe=0 
+
+
+# AC dipoles (details at Prebys et al Proceedings of IPAC2012, WEPPD081 paper)
+
+# param deltaTheta=0.0
+# param theta0=0.000145296567                             #  This is the angle corresponding to the center of
+                                                          #  of the beam hitting the edge of the first collimator (rad)
+# param BRho=29.65014298                                  # BRho of 8 GeV beam
+# param ACLength=6.*1.041
+# param ACBField=-1*$deltaTheta*$theta0*$BRho/$ACLength   # field required in AC dipole to achieve bend angle
+                                                         
+# param By_AC929A=$ACBField
+# param By_AC929B=$ACBField
+# param By_AC929C=$ACBField
+# param By_AC929D=$ACBField
+# param By_AC929E=$ACBField
+# param By_AC929F=$ACBField
+
+# genericbend  ACCELL ironWidth=320.0 fieldWidth=90.0  kill=0 ironColor=0,0,1 \ 
+# ironHeight=165. fieldHeight=18. fieldLength=1041.4 ironLength=1041.4 # maxStep=1.
+
+
+# AC dipoles (correct way by Diktys)
+# Note that the peak B-fields are determined by a different program
+
+  param ACLength=863.6        # AC dipole length (mm)
+  param pi=3.141592654
+  param degrad=$pi/180
+  
+  param FL=294990             % LOW frequency (Hz)
+  param FH=4424000            # HIGH frequency (Hz)
+
+  param B0L=122.9839/1e04     # peak B-field of LOW freq.  (T)
+  param B0H=15.3730/1e04      # peak B-field of HIGH freq. (T)
+
+  param time=60              # time window (ns)
+
+  param BL1=$B0L*sin(2*$pi*$FL*($time-4)/1e09)
+  param BL2=$B0L*sin(2*$pi*$FL*($time)/1e09)
+  param BL3=$B0L*sin(2*$pi*$FL*($time+4)/1e09)
+
+  param BH1=-$B0H*sin(2*$pi*$FH*($time-4)/1e09)
+  param BH2=-$B0H*sin(2*$pi*$FH*($time)/1e09)
+  param BH3=-$B0H*sin(2*$pi*$FH*($time+4)/1e09)
+
+  genericbend  ACCELL ironWidth=320.0 fieldWidth=90.0  kill=$sw ironColor=0,0,1 \ 
+  ironHeight=165. fieldHeight=18. fieldLength=$ACLength ironLength=$ACLength # maxStep=1.
+
+######################### DEFINE TRIMS
+
+# TRIMS
+
+  
+  param L_NDA=165.1
+  param L_NDB=466.0
+
+# trim currents used in the experiment
+# currents are in Amps and B-field is in Tesla
+
+  param I_HT900=0
+  param I_HT901=0
+  param I_HT905=0
+  param I_HT906=0
+ 
+  fieldexpr HT900 width=300.0 length=$L_NDA height=300.00 By=$I_HT900*0.0020299/0.1651 
+  fieldexpr HT901 width=300.0 length=$L_NDB height=300.00 By=$I_HT901*0.1*0.019605/0.466
+  fieldexpr HT905 width=300.0 length=$L_NDB height=300.00 By=$I_HT905*0.1*0.019605/0.466
+  fieldexpr HT906 width=300.0 length=$L_NDB height=300.00 By=$I_HT901*0.1*0.019605/0.466
+
+######################### DEFINE COLLIMATORS
+
+# Define the collimator jaws and set them in groups
+### define a collimator jaw
+
+  param gapC_TAIL=6.0              # half gap of upstream collimator
+  param gapC_US=4.758150345        # half gap of upstream collimator
+  param gapC_DS=3.979110093        # half gap of downstream collimator
+ 
+  param lJaw=1066.8
+  param hJaw=100.0
+  param wJaw=50.0
+  box colJaw height=$hJaw width=$wJaw length=$lJaw material=W kill=$sw
+
+  group TAILCOLLIMATOR
+  param xPos=$gapC_TAIL+($wJaw/2) 
+  place colJaw  front=1 z=0 x=$xPos rename=rightJawTAIL material=STAINLESS-STEEL 
+  place colJaw  front=1 z=0 x=-$xPos rename=leftJawTAIL material=STAINLESS-STEEL 
+  endgroup
+  
+# upstream tail cleaning collimator
+  group USCOLLIMATOR
+  param xPos=$gapC_US+($wJaw/2) 
+  place colJaw  front=1 z=0 x=$xPos rename=rightJawUS material=STAINLESS-STEEL 
+  place colJaw  front=1 z=0 x=-$xPos rename=leftJawUS material=STAINLESS-STEEL 
+  endgroup
+
+  group DSCOLLIMATOR
+  param xPos=$gapC_DS+($wJaw/2) 
+  place colJaw  front=1 z=0 x=$xPos rename=rightJawDS
+  place colJaw  front=1 z=0 x=-$xPos rename=leftJawDS
+  endgroup
+
+######################### DEFINE VIRTUAL SCREENS
+
+  param VDRad=150.0
+  virtualdetector VD    radius=$VDRad    length=1  color=1,1,1 format=asciiExtended coordinates=centerline
+  
+  particlefilter killall kill=proton radius=$VDRad length=1  nWait=1 referenceWait=1 color=invisible 
+
+######################### DEFINE KILLING ZONE
+
+  param killR=100.0     # mm kill zone radius
+  param killL=35000.0   # mm kill zone length
+  param killOp=0.8      # mm kill zone opacity
+
+  tubs killTube innerRadius=$killR outerRadius=$killR+1 length=$killL material=Vacuum color=0.5,0.5,0.5,$killOp kill=1
+  tubs KillCap radius=$killR length=1 color=0.5,0.5,0.5,$killOp material=Vacuum kill=1
+  
+##########################################################################################################
+############################################  PLACE ELEMENTS  ############################################
+##########################################################################################################
+
+# Create kill zone
+
+# place killTube front=1 z=133176.3-1
+# place KillCap  front=1 z=133176.3-1
+# place KillCap  front=1 z=$killL-1
+
+  if $RunAll==1
+  
+# M4 LINE
+
+  place ECMAG          front=1      rotation=Y1.6386,Z90.0      z=0.00 By=-0.2721*$f                          # ECMAG            
+  cornerarc centerRadius=37928.2473 radiusCut=300.0             z=0.00 angle=3.2773  rotation=Z90.0  
+
+  place VD             front=1 rename=VD_Diagnostic_001         z=2400.0
+
+# place VD             front=1     rename=particles_M4_PWC900   z=2500.64
+# place PWC            front=1                                  z=2500.64                                      # PWC900
+
+  place HT900          front=1                                  z=2732.81                                      # HT900 (NDA)  
+
+# place GateValve      front=1                                  z=3933.00                                      # BV900 see Jim's email Feb 14, 2018
+
+  place VD             front=1 rename=VD_Diagnostic_002         z=4000.0
+
+  place SQA            front=1     gradient=$GQ901              z=4278.75                                      # Q901     
+
+  place VD             front=1 rename=VD_Diagnostic_003         z=5000.0
+
+  place EDWA           front=1     rotation=Y-3.2489,Z90.0      z=5274.255 By=0.38402*$f                      # V901     
+  cornerarc centerRadius=26890.3453 radiusCut=300.0             z=5274.255 angle=-6.49791  rotation=Z90.0 
+
+  place VD             front=1 rename=VD_Diagnostic_004         z=8400.0
+  place VD             front=1 rename=VD_Diagnostic_005         z=8800.0
+
+  place HT901          front=1                                  z=8874.22                                      # HT901 (NDB)  
+
+  place SQD            front=1     gradient=$GQ902              z=9771.60                                      # Q902  
+
+  place VD             front=1 rename=VD_Diagnostic_006         z=10800.0
+# place VD             front=1     rename=particles_M4_IC902    z=10963.549
+# place IonChamber     front=1                                  z=10963.549                                    # IC902
+  place VD             front=1 rename=VD_Diagnostic_007         z=11800.0
+
+  place SQD            front=1     gradient=$GQ903              z=11971.36                                     # Q903 
+
+  place VD             front=1 rename=VD_Diagnostic_008         z=13700.0
+
+  place SQD            front=1     gradient=$GQ904              z=13920.91                                     # Q904 
+
+  place VD             front=1 rename=VD_Diagnostic_009         z=14900.0
+# place VD             front=1     rename=particles_M4_PWC904   z=15404.1055
+# place PWC            front=1                                  z=15404.1055                                   # PWC904
+
+  place VD             front=1 rename=VD_Diagnostic_010         z=16900.0
+
+  place SQA            front=1     gradient=$GQ905              z=18186.14                                     # Q905
+
+  place VD             front=1 rename=VD_Diagnostic_011         z=19200.0
+
+  place HT905          front=1                                  z=19720.37                                     # HT905 (NDB) 
+
+  place SQC            front=1     gradient=$GQ906              z=20552.63                                     # Q906
+
+  place VD             front=1 rename=VD_Diagnostic_012         z=21700.0
+
+  place MDC2           front=1     rotation=Y1.9232,Z90.0       z=21845.795 By=-0.4546*$f                      # V906              
+  cornerarc centerRadius=22706.4828 radiusCut=300.0             z=21845.795 angle=3.8464   rotation=Z90.0    
+
+  place VD             front=1 rename=VD_Diagnostic_013         z=24200.0
+
+  place HT906          front=1                                  z=25440.75                                     # HT906 (NDB) 
+
+  place VD             front=1 rename=VD_Diagnostic_014         z=26200.0
+
+  place SQD            front=1     gradient=$GQ907              z=26273.29                                     # Q907
+
+  place VD             front=1 rename=VD_Diagnostic_015         z=27500.0
+  
+  place MDC2           front=1     rotation=Y-1.9111,Z90.0      z=27971.755 By=0.4517*$f                       # V907                 
+  cornerarc centerRadius=22848.70252 radiusCut=300.0            z=27971.755 angle=-3.8223  rotation=Z90.0  
+
+  place VD             front=1 rename=VD_Diagnostic_016         z=29600.0
+
+  place VD             front=1 rename=VD_Diagnostic_017         z=30900.0
+
+  place TAILCOLLIMATOR front=1                                  z=31005.21157                                  # COL907
+
+  place VD             front=1 rename=VD_Diagnostic_018         z=32800.0
+  place VD             front=1 rename=VD_Diagnostic_019         z=34800.0
+
+  place SQA            front=1     gradient=$GQ908              z=35147.3                                      # Q908 
+
+  place VD             front=1 rename=VD_Diagnostic_020         z=35900.0
+  place VD             front=1 rename=VD_Diagnostic_021         z=37000.0
+
+  place SQA            front=1     gradient=$GQ909              z=37576.51                                     # Q909 
+
+  place VD             front=1 rename=VD_Diagnostic_022         z=38300.0
+  place VD             front=1 rename=VD_Diagnostic_023         z=39500.0
+  place VD             front=1 rename=VD_Diagnostic_024         z=41000.0
+
+  place SQC            front=1     gradient=$GQ910              z=41144.437                                    # Q910
+
+  place VD             front=1 rename=VD_Diagnostic_025         z=42100.0
+
+  place SDFW           front=1     rotation=Y3.1412             z=42928.3504 By=-0.37129*$f                    # H910     
+  cornerarc centerRadius=27811.4680 radiusCut=300.0             z=42928.3504 angle=6.2825   
+
+  place VD             front=1 rename=VD_Diagnostic_026         z=46100.0
+
+  place SQC            front=1     gradient=$GQ911              z=46377.11451                                  # Q911
+
+  place VD             front=1 rename=VD_Diagnostic_027         z=47200.0
+  place VD             front=1 rename=VD_Diagnostic_028         z=47800.0
+
+  place SDFW           front=1     rotation=Y3.1412             z=47821.92035 By=-0.37129*$f                   # H911     
+  cornerarc centerRadius=27811.4680 radiusCut=300.0             z=47821.92035 angle=6.2825   
+
+  place VD             front=1 rename=VD_Diagnostic_029         z=50900.0
+  place VD             front=1 rename=VD_Diagnostic_030         z=51400.0
+
+  place SQA            front=1     gradient=$GQ912              z=51442.18533                                  # Q912
+
+  place VD             front=1 rename=VD_Diagnostic_031         z=52100.0
+  place VD             front=1 rename=VD_Diagnostic_032         z=52450.0
+
+  place SDFW           front=1     rotation=Y3.9012             z=52472.05907 By=-0.4611*$f                    # H912     
+  cornerarc centerRadius=22399.4455 radiusCut=300.0             z=52472.05907 angle=7.8024  
+
+  place VD             front=1 rename=VD_Diagnostic_033         z=55600.0
+  place VD             front=1 rename=VD_Diagnostic_034         z=56050.0
+
+  place SQD            front=1     gradient=$GQ913              z=56092.7328                                   # Q913 
+
+  place VD             front=1 rename=VD_Diagnostic_035         z=57000.0
+
+  place SQD            front=1     gradient=$GQ914              z=57386.4828                                   # Q914 
+
+  place VD             front=1 rename=VD_Diagnostic_036         z=58300.0
+  place VD             front=1 rename=VD_Diagnostic_037         z=60100.0
+
+  place SQD            front=1     gradient=$GQ914              z=60629.9288                                   # Q915 
+
+  place VD             front=1 rename=VD_Diagnostic_038         z=61500.0
+
+  place SQD            front=1     gradient=$GQ913              z=61923.6786                                   # Q916 
+
+  place VD             front=1 rename=VD_Diagnostic_039         z=63250.0
+
+  place SDFW           front=1     rotation=Y3.9012             z=63324.3923  By=-0.4611*$f                    # H916     
+  cornerarc centerRadius=22399.4455 radiusCut=300.0             z=63324.3923  angle=7.8024  
+
+  place VD             front=1 rename=VD_Diagnostic_040         z=66500.0
+
+  place SQA            front=1     gradient=$GQ912              z=66945.06                                     # Q917 
+
+  place VD             front=1 rename=VD_Diagnostic_041         z=67900.0
+
+  place SDFW           front=1     rotation=Y3.1412             z=67974.53104 By=-0.37129*$f                   # H917     
+  cornerarc centerRadius=27811.4680 radiusCut=300.0             z=67974.53104 angle=6.2825   
+
+  place VD             front=1 rename=VD_Diagnostic_042         z=71500.0
+
+  place SQC            front=1     gradient=$GQ911              z=71766.29                                     # Q918 
+
+  place VD             front=1 rename=VD_Diagnostic_043         z=72700.0
+
+  place SDFW           front=1     rotation=Y3.1412             z=72868.101 By=-0.37129*$f                     # H918     
+  cornerarc centerRadius=27811.4680 radiusCut=300.0             z=72868.101 angle=6.2825  
+
+  place VD             front=1 rename=VD_Diagnostic_044         z=76000.0
+
+  place SQA            front=1     gradient=$GQM                z=77659.607                                    # Q919 
+
+  place VD             front=1 rename=VD_Diagnostic_045         z=78400.0
+  place VD             front=1 rename=VD_Diagnostic_046         z=81400.0
+
+  place SQA            front=1     gradient=-$GQM               z=82714.4759                                   # Q920
+
+  place VD             front=1 rename=VD_Diagnostic_047         z=84000.0
+  place VD             front=1 rename=VD_Diagnostic_048         z=87000.0
+
+  place SQA            front=1     gradient=$GQM                z=87968.9990                                   # Q921
+
+  place VD             front=1 rename=VD_Diagnostic_049         z=90000.0
+  place VD             front=1 rename=VD_Diagnostic_050         z=93000.0
+
+  place SQA            front=1     gradient=-$GQM               z=93300.0700                                   # Q922
+
+  place VD             front=1 rename=VD_Diagnostic_051         z=95000.0
+  place VD             front=1 rename=VD_Diagnostic_052         z=97500.0
+
+  place SQA            front=1     gradient=$GQM                z=98626.295                                    # Q923
+
+  place VD             front=1 rename=VD_Diagnostic_053         z=100000.0
+  place VD             front=1 rename=VD_Diagnostic_054         z=103000.0
+
+  place SQA            front=1     gradient=$GQ924              z=105010.07                                    # Q924
+
+  place USCOLLIMATOR front=1                                    z=105733.87537                                 # COL924
+
+  place VD             front=1 rename=VD_Diagnostic_055         z=107000.0
+  place VD             front=1 rename=VD_Diagnostic_056         z=109000.0
+
+  place SQA            front=1     gradient=$GQ925              z=110336.29                                    # Q925
+
+  place VD             front=1 rename=VD_Diagnostic_057         z=112000.0
+
+  place SQA            front=1     gradient=$GQ926              z=113297.54                                    # Q926
+
+  place VD             front=1 rename=VD_Diagnostic_058         z=114500.0
+  place VD             front=1 rename=VD_Diagnostic_059         z=117000.0
+
+  place SQA            front=1     gradient=$GQ927              z=117822.45                                    # Q927
+
+  place VD             front=1 rename=VD_Diagnostic_060         z=120000.0
+  place VD             front=1 rename=VD_Diagnostic_061         z=123500.0
+  place VD             front=1 rename=VD_Diagnostic_062         z=126500.0
+  
+  place SQB            front=1     gradient=$GQ928              z=126577.59                                    # Q928
+
+  place VD             front=1 rename=VD_Diagnostic_063         z=129000.0
+  place VD             front=1 rename=VD_Diagnostic_064         z=132000.0
+
+  place SQA            front=1     gradient=$GQ929              z=132719.06                                    # Q929
+
+  else
+
+  place VD             front=1 rename=VD_Diagnostic_065         z=133980.0
+
+  place ACCELL      front=1 rename=AC929A              z=134054.09395 By=$BL1 rotation=Y-0.00 x=0.00     # AC929A
+  place ACCELL      front=1 rename=AC929B              z=135095.49395 By=$BL2 rotation=Y-0.00 x=0.00     # AC929B
+  place ACCELL      front=1 rename=AC929C              z=136136.89395 By=$BL3 rotation=Y-0.00 x=0.00     # AC929C
+
+  place ACCELL      front=1 rename=AC929D              z=137178.29395 By=$BH1 rotation=Y-0.00 x=0.00     # AC929D
+  place ACCELL      front=1 rename=AC929E              z=138219.69395 By=$BH2 rotation=Y-0.00 x=0.00     # AC929E
+  place ACCELL      front=1 rename=AC929F              z=139261.09395 By=$BH3 rotation=Y-0.00 x=0.00     # AC929F
+
+  place VD             front=1 rename=VD_Diagnostic_066         z=140350.0
+  place VD             front=1 rename=VD_Diagnostic_067         z=140700.0
+
+  
+  place VD             front=1 rename=VD_Diagnostic_068         z=141000.0
+
+  place SQA            front=1     gradient=$GQ930              z=141180.3239                                  # Q930
+
+  place VD             front=1 rename=VD_Diagnostic_069         z=144000.0
+
+  place SQA            front=1     gradient=$GQ931              z=146155.98                                    # Q931
+
+  place VD             front=1 rename=VD_Diagnostic_070         z=147000.0
+  place VD             front=1 rename=VD_Diagnostic_071         z=151000.0
+  place VD             front=1 rename=VD_Diagnostic_072         z=155000.0
+  place VD             front=1 rename=VD_Diagnostic_073         z=159000.0
+
+  place VD             front=1 rename=VD_DSCollimator           z=159760.0
+
+  place DSCOLLIMATOR   front=1                                  z=159797.18995                                 # COL931
+
+  place VD             front=1 rename=VD_Diagnostic_074         z=162000.0
+
+  place SQA            front=1     gradient=$GQ932              z=162332.60                                    # Q932
+
+  place VD             front=1 rename=VD_Diagnostic_075         z=165000.0
+  place VD             front=1 rename=VD_Diagnostic_076         z=168000.0
+
+  place SQB            front=1     gradient=$GQ933              z=169489.91                                    # Q933
+
+  place VD             front=1 rename=VD_Diagnostic_077         z=171000.0
+  place VD             front=1 rename=VD_Diagnostic_078         z=174000.0
+  place VD             front=1 rename=VD_Diagnostic_079         z=177000.0
+  place VD             front=1 rename=VD_Diagnostic_080         z=180000.0
+  place VD             front=1 rename=VD_Diagnostic_081         z=183000.0
+
+  place SQB            front=1     gradient=$GQ934              z=183380.76                                    # Q934
+
+  place VD             front=1 rename=VD_Diagnostic_082         z=185000.0
+
+  place SQE            front=1     gradient=$GQ935              z=185739.1379                                  # Q935
+
+  place VD             front=1 rename=VD_Diagnostic_083         z=187500.0
+
+  place SQB            front=1     gradient=$GQ936              z=187847.907                                   # Q936
+
+  place VD             front=1 rename=VD_Diagnostic_084         z=189000.0
+  place VD             front=1 rename=VD_Diagnostic_085         z=192000.0
+  place VD             front=1 rename=VD_Diagnostic_086         z=195000.0
+  place VD             front=1 rename=VD_Diagnostic_087         z=198000.0
+  place VD             front=1 rename=VD_Diagnostic_088         z=201000.0
+  place VD             front=1 rename=VD_Diagnostic_089         z=203000.0
+
+  place CDA            front=1     rotation=Y-0.6776,Z90.0      z=203113.7447 By=0.2002*$f                     # V936     
+  cornerarc centerRadius=51539.92347 radiusCut=300.0             z=203113.7447 angle=-1.3553  rotation=Z90.0 
+  
+  place VD             front=1 rename=VD_Diagnostic_090         z=205000.0
+
+  place LQC            front=1     gradient=$GQff1              z=205431.5214                                  # Q937
+
+  place VD             front=1 rename=VD_Diagnostic_091         z=207000.0
+
+  place LQD            front=1     gradient=$GQff2              z=208564.160                                   # Q938
+
+  place VD             front=1 rename=VD_Diagnostic_092         z=209500.0
+  place VD             front=1 rename=VD_Diagnostic_093         z=211000.0
+  place VD             front=1 rename=VD_Diagnostic_094         z=213000.0
+
+  place LQC            front=1     gradient=$GQff3              z=213442.2224                                  # Q939
+
+  place VD             front=1 rename=VD_Diagnostic_095         z=215000.0
+  place VD             front=1 rename=VD_Diagnostic_096         z=217000.0
+  place VD             front=1 rename=VD_Diagnostic_097         z=219000.0
+
+  place SQA            front=1     gradient=$GQ940              z=219359.785                                   # Q940
+
+  place VD             front=1 rename=VD_Diagnostic_098         z=221000.0
+  place VD             front=1 rename=VD_Diagnostic_099         z=223000.0
+
+  place LQC            front=1     gradient=$GQff3              z=224962.3876                                  # Q941
+
+  place VD             front=1 rename=VD_Diagnostic_100         z=226000.0
+  place VD             front=1 rename=VD_Diagnostic_101         z=227000.0
+  place VD             front=1 rename=VD_Diagnostic_102         z=229000.0
+
+  place LQD            front=1     gradient=$GQff2              z=229742.6086                                  # Q942
+
+  place VD             front=1 rename=VD_Diagnostic_103         z=231000.0
+  place VD             front=1 rename=VD_Diagnostic_104         z=232500.0
+
+  place LQC            front=1     gradient=$GQff1              z=232973.0800                                  # Q943
+
+  place VD             front=1 rename=VD_Diagnostic_105         z=234000.0
+
+  place CDA            front=1     rotation=Y-0.6776,Z90.0      z=234843.8254 By=0.2002*$f                     # V943     
+  cornerarc centerRadius=51539.9234 radiusCut=300.0             z=234843.8254 angle=-1.3553  rotation=Z90.0 
+
+  place VD             front=1 rename=VD_Diagnostic_106         z=237000.0
+  place VD             front=1 rename=VD_Diagnostic_107         z=238500.0
+  place VD             front=1 rename=VD_Diagnostic_108         z=240000.0
+  place VD             front=1 rename=VD_Diagnostic_109         z=242000.0
+  place VD             front=1 rename=VD_Diagnostic_110         z=244839.2                                     # Target
+
+
+
+
+  place killall        front=1        z=245000
+    
+# profile file=profile_muon_M4M5.txt  zloop=0:63000:500 coordinates=c  particle=proton
+
+  endif
+  exit  
