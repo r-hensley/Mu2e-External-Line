@@ -1,0 +1,62 @@
+#Magnet definitions used in the Mu2e M4 beam line
+
+genericbend  ACCELL fieldWidth=90. fieldHeight=18. fieldLength=1000. ironLength=1041.4 ironWidth=320. ironHeight=165. kill=0 ironColor=0,0,1 maxStep=5.
+
+param fieldLengthCR=1219.2
+param ironLengthCR=1519
+
+ genericbend  C-MAG fieldWidth=101.16 fieldHeight=101.16 fieldLength=2000. ironWidth=675.22 ironHeight=630.875    \
+  ironColor=0,0,1 fringe=0      kill=0    \
+  ironLength=2000.000000 maxStep=5.
+
+
+ genericbend  6-4-120 fieldWidth=101.16 fieldHeight=101.16 fieldLength=3048 ironWidth=675.22 ironHeight=630.875    \
+  ironColor=1,0,1 fringe=0      kill=0    \
+  ironLength=3048.000000 maxStep=5.
+
+ genericbend  6-3-120 fieldWidth=101.16 fieldHeight=101.16 fieldLength=3048 ironWidth=675.22 ironHeight=630.875    \
+  ironColor=0,0,1 fringe=0       kill=0    \
+  ironLength=3048.000000 maxStep=5.
+
+  genericbend  EDWA fieldWidth=179.4378923 fieldHeight=60.706 fieldLength=3048 ironWidth=508.5456923 ironHeight=431.8    \
+  ironColor=0,0,1 fringe=0      kill=0    \
+  ironLength=3048.000000 maxStep=1.
+
+ genericbend  MDC fieldWidth=138.1506 fieldHeight=57.7088 fieldLength=1524.0 ironWidth=641.35 ironHeight=361.95    \
+  ironColor=0,0,1 fringe=0      kill=0    \
+  ironLength=1524.000000 maxStep=1.
+
+genericbend       CR  fieldWidth=82.55 fieldHeight=82.55  fieldLength=$fieldLengthCR ironWidth=539 ironHeight=245  ironLength=$ironLengthCR \
+    kill=0 ironColor=1,1,1 kill=0 openAperture=1 maxStep=5.
+
+genericquad  SQA  openAperture=1  ironRadius=285.75  coilHalfWidth=10.09 \
+    coilRadius=104.2 poleTipRadius=44.5 ironColor=1,0,0 fringe=0 kill=0  \
+    fieldLength=457.200000 ironLength=457.200000                      
+
+genericquad SQB  openAperture=1 ironRadius=285.75  coilHalfWidth=10.09 \
+    coilRadius=104.2 poleTipRadius=44.5 ironColor=1,0,0 fringe=0 kill=0  \
+    fieldLength=640.080000 ironLength=640.080000                     
+
+genericquad SQC  openAperture=1  ironRadius=285.75  coilHalfWidth=10.09 \
+    coilRadius=104.2 poleTipRadius=44.5 ironColor=1,0,0 fringe=0 kill=0  \
+    fieldLength=701.040000 ironLength=701.040000                      
+
+genericquad SQD   openAperture=1  ironRadius=285.75  coilHalfWidth=10.09 \
+    coilRadius=104.2 poleTipRadius=44.5 ironColor=1,0,0 fringe=0 kill=0  \
+    fieldLength=828.040000 ironLength=828.040000                        
+
+genericquad SQE  openAperture=1  ironRadius=285.75  coilHalfWidth=10.09 \
+    coilRadius=104.2 poleTipRadius=44.5 ironColor=1,0,0 fringe=0 kill=0  \
+    fieldLength=1311.700000 ironLength=1311.700000                      
+
+genericquad LQC  openAperture=1     ironRadius=629.8163265  ironColor=1,0,0 fringe=0     coilRadius=181.9469388 \
+    coilHalfWidth=20.99387755   kill=0     poleTipRadius=85.725  fieldLength=772.160000 ironLength=772.160000                      
+
+genericquad LQSQA  openAperture=1     ironRadius=629.8163265  ironColor=1,0,0 fringe=0     coilRadius=181.9469388 \
+    coilHalfWidth=20.99387755   kill=0     poleTipRadius=85.725   fieldLength=457.200000 ironLength=457.200000                      
+genericquad LQSQB  openAperture=1     ironRadius=629.8163265  ironColor=1,0,0 fringe=0     coilRadius=181.9469388 \
+    coilHalfWidth=20.99387755   kill=0     poleTipRadius=85.725  fieldLength=640.080000 ironLength=640.080000                      
+
+genericquad        LQD openAperture=1     ironRadius=629.8163265  ironColor=1,0,0 fringe=0     coilRadius=181.9469388 \
+    coilHalfWidth=20.99387755   kill=0     poleTipRadius=85.725  fieldLength=870.000000 ironLength=870.000000                       
+

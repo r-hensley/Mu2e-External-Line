@@ -1,0 +1,92 @@
+G4beamline Process ID 16080
+
+*************************************************************
+ g4beamline version: 2.16                    (10-Jan-2014-11:13)
+                      Copyright : Tom Roberts, Muons, Inc.
+                        License : Gnu Public License
+                            WWW : http://g4beamline.muonsinc.com
+*************************************************************
+ Geant4 version Name: geant4-09-06-patch-02    (17-May-2013)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+param        grid          0
+param        viewer        OIX
+geometry                   nPoints=100 printGeometry=0 visual=0
+                           tolerance=0.002
+param        grid          0  (already defined)
+param        deltaTheta    1.8
+param        downstream    1
+param        kw            W
+param        verbose       0
+param        grid          0  (already defined)
+param        Num_Events    7000
+param        First_Event   1
+param        deltaTheta    1.8  (already defined)
+param        gapC_TAIL     6.0
+param        gapC_US       4.758150345
+param        gapC_DS       3.979110093
+param        verbose       0  (already defined)
+param        full          1
+param        upstream      0
+param        downstream    1  (already defined)
+param        beamDirectory VirtualDetector
+param        beamNtuple    tracklist
+param        reference     0
+param        coljaw        W
+param        eventTimeLimit 1.
+param        use_FCOL      0.
+param        HOME          .
+param        full          0
+param        beamFile      ./mu2e_downstream.root
+param        maxStep       100.
+G4PhysListFactory::GetReferencePhysList <QGSP_BERT>  EMoption= 0
+<<< Geant4 Physics List simulation engine: QGSP_BERT 4.0
+
+<<< Reference Physics List QGSP_BERT is built
+
+*** RegisterPhysics(new G4RadioactiveDecayPhysics()) ***
+physics      QGSP_BERT     disable= inactivate= deactivate= doStochastics=1
+                           fluct=1 minRangeCut=1 list=0 gammaToMuPair=0
+                           spinTracking=0 synchrotronRadiation=0
+                           synchrotronRadiationMuon=0 maxTime=1e+06
+trackcuts                  kill= keep= killSecondaries=0 kineticEnergyCut=5000
+                           kineticEnergyMax=1.798e+308 maxTime=1e+06
+                           keepPrimaries=0 steppingVerbose=0
+particlecolor              reference=1,1,1
+param        histoFile     mu2e-0-1-W-1.8-7000.root
+param        beamDirectory VirtualDetector  (already defined)
+param        beamNtuple    tracklist  (already defined)
+beam    ROOT   nEvents=7000 firstEvent=-1 lastEvent=2147483647 beamZ=-3700000000000000000000.0 maxR=1000000.0 renumber=0 weight=1.000000 
+		filename=./mu2e_downstream.root directory=VirtualDetector name=tracklist 
+		
+param        theta0        0.000145296567
+param        BRho          29.65014298
+param        ACLength      6.246
+param        ACBField      -0.001241517
+param        By_AC929A     -0.001241517
+param        By_AC929B     -0.001241517
+param        By_AC929C     -0.001241517
+param        By_AC929D     -0.001241517
+param        By_AC929E     -0.001241517
+param        By_AC929F     -0.001241517
+**************************************************************************
+*** G4Exception: printError
+***    severity: Warning
+***   issued by: 
+*** description: Cannot open file './mu2e_magnets.g4bl'
+**************************************************************************
+**************************************************************************
+*** G4Exception: Input Errors
+***    severity: Fatal Exception
+***   issued by: main
+*** description: There were 1 errors in the input
+**************************************************************************
+g4beamline: attempting to close up after fatal G4Exception...
+
+Exceptions: 1 Fatal, 0 Events Aborted, 0 Stuck Tracks (stopped), 1 Warnings
+      1 times: Input Errors
+      1 times: printError
+g4beamline: simulation aborted

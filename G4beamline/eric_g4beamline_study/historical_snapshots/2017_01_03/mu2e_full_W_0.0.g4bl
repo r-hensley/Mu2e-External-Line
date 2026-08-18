@@ -1,0 +1,351 @@
+# File to analyze mu2e beamline.  Calls optics file generated automatically
+# from the MADX optics file
+# setup for downstream run, tungsten collimator jaws
+###############################
+# special settings for batch mode
+param -unset grid=0               # set to 1 for grid mode
+param -unset deltaTheta=0.0   
+param -unset downstream=0
+#param -unset gapC_TAIL=100.0      # turn off tail collimator
+#param -unset gapC_US=100.0        # turn off upstream collimator
+param -unset kw=W                  # keyword put in output file
+param -unset verbose=0             # full tracking
+#param coljaw=STAINLESS-STEEL
+###############################
+# From here on, it's generic
+
+param -unset grid=0
+param -unset Num_Events=7000
+param -unset First_Event=1
+param -unset deltaTheta=0.0
+param -unset gapC_TAIL=6.0              # half gap of upstream collimator
+param -unset gapC_US=4.758150345        # half gap of upstream collimator
+param -unset gapC_DS=3.979110093        # half gap of downstream collimator
+param -unset verbose=0
+param -unset full=1
+param -unset upstream=0
+param -unset downstream=0
+param -unset beamDirectory=VirtualDetector
+param -unset beamNtuple=tracklist
+param -unset reference=0
+param -unset coljaw=W
+param eventTimeLimit=1.
+param -unset use_FCOL=0.
+
+
+
+if $grid==1
+  param HOME=/grid/data/mu2e/personal/prebys
+else
+  param HOME=.
+endif
+
+#logic's a little weird here to make setting upstream or downstream
+# override full
+if $upstream==1
+  if $downstream==0
+    param full=0
+  endif
+else
+  if $downstream==1
+    param full=0
+  endif
+endif
+
+if $full==1
+  param upstream=1
+  param downstream=1
+endif
+
+
+if $upstream==1
+  param -unset beamFile=$HOME/exttracks_rot_e30_e40_1800000.root
+else
+  param -unset beamFile=$HOME/mu2e_downstream.root
+endif
+
+# Some physics parameters
+param maxStep=100.
+physics QGSP_BERT     
+trackcuts kineticEnergyCut=5000.  #too low to ever make it to the end of the line
+
+trackcolor reference=1,1,1                                                                                                    
+
+randomseed Time
+param histoFile=mu2e-$upstream-$downstream-$kw-$deltaTheta-$Num_Events.root
+param -unset beamDirectory=VirtualDetector
+param -unset beamNtuple=tracklist
+
+beam root filename=$beamFile directory=$beamDirectory  nEvents=$Num_Events name=$beamNtuple
+if $reference==1
+  reference beamZ=0. referenceMomentum=8888.897288 particle=proton
+endif
+
+#  These are some parameters needed by the beam and collimator definitions
+param theta0=0.000145296567   #  This is the angle corresponding to the center of
+                           #  of the beam hitting the edge of the first collimator
+
+param BRho=29.65014298   # BRho of 8 GeV beam
+param ACLength=6.*1.041
+param ACBField=-1*$deltaTheta*$theta0*$BRho/$ACLength  # field required in AC dipole to
+                                                       # achieve bend angle
+#this will override the default setting for the AC dipole
+param By_AC929A=$ACBField
+param By_AC929B=$ACBField
+param By_AC929C=$ACBField
+param By_AC929D=$ACBField
+param By_AC929E=$ACBField
+param By_AC929F=$ACBField
+
+
+# Include the magnet definitions
+include $HOME/mu2e_magnets.g4bl
+
+# beam pipe definition. 3.5" stainless stell
+ param beamPipeRadius=1.75*25.4 # 3.5" beampipe
+ param fatBeamPipeRadius=3*24.3 # 6" beampipe
+ param beamPipeThickness=1.5
+tubs BEAMPIPE innerRadius=$beamPipeRadius-$beamPipeThickness outerRadius=$beamPipeRadius length=1000. material=STAINLESS-STEEL
+tubs FATBEAMPIPE innerRadius=$fatBeamPipeRadius-$beamPipeThickness outerRadius=$fatBeamPipeRadius length=1000. material=STAINLESS-STEEL
+
+#Define the collimator jaws and set them in groups
+### define a collimator jaw
+param lJaw=1000.
+param hJaw=100.
+param wJaw=50.
+box colJaw height=$hJaw width=$wJaw length=$lJaw material=$coljaw
+
+group TAILCOLLIMATOR
+  param xPos=$gapC_TAIL+($wJaw/2) 
+  place colJaw  front=1 z=0 x=$xPos rename=rightJawTAIL material=STAINLESS-STEEL 
+  place colJaw  front=1 z=0 x=-$xPos rename=leftJawTAIL material=STAINLESS-STEEL 
+endgroup
+  
+# upstream tail cleaning collimator
+group USCOLLIMATOR
+  param xPos=$gapC_US+($wJaw/2) 
+  place colJaw  front=1 z=0 x=$xPos rename=rightJawUS material=STAINLESS-STEEL 
+  place colJaw  front=1 z=0 x=-$xPos rename=leftJawUS material=STAINLESS-STEEL 
+endgroup
+
+group DSCOLLIMATOR
+  param xPos=$gapC_DS+($wJaw/2) 
+  place colJaw  front=1 z=0 x=$xPos rename=rightJawDS
+  place colJaw  front=1 z=0 x=-$xPos rename=leftJawDS
+endgroup
+
+# For now, just make dummy FCOL and PCOL out of BEAMPIPE
+
+param zFCOL=195000.
+
+if $use_FCOL==1
+  tubs F_COL innerRadius=5. outerRadius=100. length=1000. material=STAINLESS-STEEL
+else
+  tubs F_COL innerRadius=$beamPipeRadius-$beamPipeThickness outerRadius=$beamPipeRadius length=1000. material=STAINLESS-STEEL
+endif  
+
+tubs P_COL innerRadius=$beamPipeRadius-$beamPipeThickness outerRadius=$beamPipeRadius length=1000. material=STAINLESS-STEEL
+
+
+particlefilter      EOL kill=proton radius=100.000000                                                                           
+
+# These may change!!!
+param zTAILCOLLIMATOR=31000.   # position of upstream tail collimator (not in MAD file  yet)
+param zACDIPOLE=134003.855
+param zFocus=245000.  # Approximate position of focal point
+
+#location of Y cleaning collimator
+#param zC_Y=41.795238*1000.
+#param zC_X=94.213441*1000.
+
+# The optics file has been automatically split into separate files at 
+# coordinate transformations (cornerarcs)
+
+if $upstream==1
+
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg0  #Q901 to V901
+
+  param startBP=$Start_mu2e_upstream_g4bl
+  param endBP=$Start_V901
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+  
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg1  #V901 to V906
+
+  param startBP=$End_V901
+  param endBP=$Start_V906
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg2  #V906 to V907
+
+  param startBP=$End_V906
+  param endBP=$Start_V907
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg3  #V907 to H910
+
+# Break up the beam pipe to put the tail collimator here by hand.
+  param startBP=$End_V907
+  param endBP=$zTAILCOLLIMATOR
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+#  place tail collimator
+  place TAILCOLLIMATOR z=$zTAILCOLLIMATOR front=1
+
+
+  param startBP=$zTAILCOLLIMATOR+1000.
+  param endBP=$Start_H910
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg4 #H910 to H911
+
+  param startBP=$End_H910
+  param endBP=$Start_H911
+
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg5  #H911 to H912
+
+  param startBP=$End_H911
+  param endBP=$Start_H912
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg6  #H912 to H916
+
+  param startBP=$End_H912
+  param endBP=$Start_H916
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg7  #H916 to H917
+
+  param startBP=$End_H916
+  param endBP=$Start_H917
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg8  #H917 to H918
+
+  param startBP=$End_H917
+  param endBP=$Start_H918
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  include $HOME/MAD_Eliana/mu2e_upstream.g4bl_seg9  #H918 to Q928, inc. COL924A
+
+# Upstream collimator not there for the moment
+
+  param startBP=$End_H918
+  param endBP=$Start_COL924A
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  param startBP=$Start_COL924A+1000.
+  param endBP=$End_Q929
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+#end with a fat beam pipe
+  param startBP=$End_Q929
+  param endBP=$zACDIPOLE
+  place FATBEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+  
+endif
+
+if $downstream==1
+  include $HOME/MAD_Eliana/mu2e_downstream.g4bl_seg0 #AC921A to V936, inc. COL931
+
+  param startBP=$End_AC929F 
+  param endBP=$Start_Q930
+  place FATBEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  param startBP=$Start_Q930
+  param endBP=$Start_COL931A
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  param startBP=$Start_COL931A+1000. 
+  param endBP=$Start_FCOL-1100.
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  param startBP=$End_FCOL
+  param endBP=$Start_V936
+  place BEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+
+  include $HOME/MAD_Eliana/mu2e_downstream.g4bl_seg1 #V936 to V943
+
+# Need to break it up at Q940, which is and SQ
+  param startBP=$End_V936
+  param endBP=$Start_Q940
+  place FATBEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  param startBP=$End_Q940  
+  param endBP=$Start_V943
+  place FATBEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+  include $HOME/MAD_Eliana/mu2e_downstream.g4bl_seg2 #V943 to PCOL
+
+  param startBP=$End_V943
+#  param endBP=$Start_HT943
+#  place FATBEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+#
+#  param startBP=$End_HT943
+  param endBP=$End_mu2e_downstream_g4bl
+  place FATBEAMPIPE front=1 z=$startBP length=$endBP-$startBP
+
+endif 
+
+
+
+
+if $upstream==1
+  param zStart=0
+else
+  param zStart=$Start_mu2e_downstream_g4bl
+endif
+
+if $downstream==1
+  param zEnd=$zFocus
+# Pad the end a bit to force tracking
+  param lPad=$zEnd-$End_mu2e_downstream_g4bl
+  place FATBEAMPIPE front=1 z=$End_mu2e_downstream_g4bl length=$lPad
+else
+  param zEnd=$End_mu2e_upstream_g4bl  
+endif
+
+# define some ntuples
+if $upstream==1
+ zntuple z=2201.
+
+ zntuple z=$zTAILCOLLIMATOR-1
+ zntuple z=$zTAILCOLLIMATOR+1002
+ 
+ zntuple z=$Start_COL924A-1
+ zntuple z=$Start_COL924A+1002
+ 
+ 
+endif
+
+zntuple z=$zACDIPOLE         # face of AC dipols
+zntuple z=3000+$zACDIPOLE    # middle of AC dipole
+
+if $downstream==1
+  zntuple z=$zACDIPOLE+6000    # End of AC dipople
+  zntuple z=$Start_COL931A-1
+  zntuple z=$Start_COL931A+1002.
+
+  zntuple z=$End_FCOL-800
+
+  zntuple z=$zFocus
+endif
+
+ntuple DST detectors=* required=Z245000
+
+if $verbose==1
+  trace nTrace=1000 oneNTuple=1 primaryOnly=1 
+  param profileFile=mu2e-$upstream-$downstream-$kw-$deltaTheta-$Num_Events.txt
+  profile  zloop=$zStart:$zEnd:100 particle=proton file=$profileFile
+endif
+
+
+exit                                                                                                                    # 
+END OF FILE
+
+

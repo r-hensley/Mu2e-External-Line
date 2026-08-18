@@ -1,0 +1,6 @@
+# Large recovered inputs and reference outputs are retained locally but are not
+# committed. Their sizes and SHA-256 hashes are recorded under provenance/.
+/data/large_inputs/*
+!/data/large_inputs/README.md
+/reference_results/large_outputs/*
+!/reference_results/large_outputs/README.md

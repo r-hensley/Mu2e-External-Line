@@ -1,0 +1,75 @@
+!
+!Fit to new survey+Twiss from Steve (March 21, 2016)
+beam,    sequence=M4line, particle="proton", energy=8.93828;
+roton=1;
+ECMAG_srot =-0.00004982;!March 21 2016 
+call, file="m4.def";
+call, file="values.dat";
+call, file="line_shifted_new.seq";
+
+!Steve March 21
+newstart: beta0, betx=12.22350,
+                 alfx=1.88239, 
+                 bety=5.61627, 
+                 alfy=-0.61825,
+                 dx=0.02765,dpx=0.00346,
+                 dy=-0.12410,
+                 dpy=-0.07144;
+
+use, sequence= M4line;
+select, flag=twiss, clear;
+set,    format="12.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,x,y,keyword,l,angle,k1l;
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss_new.tfs";
+
+! Plot beta and alpha
+PLOT,interpolate=true,colour=100,HAXIS=S, VAXIS1=BETX,BETY;
+PLOT,interpolate=true,colour=100,HAXIS=S, VAXIS1=ALFX,ALFY;
+PLOT,interpolate=true,colour=100,HAXIS=S, VAXIS1=MUX,MUY;
+
+
+set,    format="14.8f";
+!Steve, March 21 2016
+survey,file="survey_new.tfs",Z0=30446.932608,
+                         X0=30071.579367,
+                         Y0=222.115867,
+                         theta0=2.090464,
+                         phi0=0.056064;
+!stop;
+!Introduce random misalignments
+!set,    format="14.10f";
+!SELECT,FLAG=ERROR, CLEAR;
+!SELECT, flag=ERROR, CLASS=quadrupole;
+!EOPTION,SEED=1,ADD=TRUE;
+!EALIGN, DX:=0.000*TGAUSS(2.5),DY:=0.0000*TGAUSS(2.5),DS:=0.,
+!        DPHI:=0.,DTHETA:=0.,DPSI:=0.0*TGAUSS(2.5);
+!        MREX:=0.,MREY:=0.,
+!        MSCALX:=0.,MSCALY:=0.,
+!        AREX:=0.,AREY:=0.;
+!Introduce relative field errors
+SELECT,FLAG=ERROR, CLEAR;
+SELECT, flag=ERROR, CLASS=quadrupole;
+EOPTION,SEED=1,ADD=TRUE;
+!specify a radius otherwise it complains
+!the value is unrelevant
+EFCOMP,order=1, radius=0.010, dknr:={0, 1e-3*TGAUSS(2.5)};
+set,    format="18.12f";
+SELECT, flag=ERROR, CLASS=quadrupole;
+eprint;!for checking errors
+!To save errors on a file which can be read back
+!by madx
+!ESAVE, file="quads_error.dat";
+
+
+
+select, flag=twiss, clear;
+set,    format="10.4f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,keyword,l,angle,k1l;
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss_errors.tfs";
+
+! Plot beta and alpha
+PLOT,interpolate=true,colour=100,HAXIS=S, VAXIS1=BETX,BETY;
+PLOT,interpolate=true,colour=100,HAXIS=S, VAXIS1=ALFX,ALFY;
+PLOT,interpolate=true,colour=100,HAXIS=S, VAXIS1=MUX,MUY;
+
+stop;

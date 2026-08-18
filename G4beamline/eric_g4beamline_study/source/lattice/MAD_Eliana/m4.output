@@ -1,0 +1,7 @@
+call, file="m4.madx";
+use, sequence=M4line;
+twiss;
+twiss, betx=12.2235, alfx=1.88239, bety=5.61627, alfy=-0.61825, dx=0.02765, dpx=0.00346, dy=-0.1241, dpy=-0.07144;
+twiss, betx=12.2235, alfx=1.88239, bety=5.61627, alfy=-0.61825, dx=0.02765, dpx=0.00346, dy=-0.1241, dpy=-0.07144;
+twiss, betx=12.2235, alfx=1.88239, bety=5.61627, alfy=-0.61825, dx=0.02765, dpx=0.00346, dy=-0.1241, dpy=-0.07144;
+twiss, betx=12.2235, alfx=1.88239, bety=5.61627, alfy=-0.61825, dx=0.02765, dpx=0.00346, dy=-0.1241, dpy=-0.07144;

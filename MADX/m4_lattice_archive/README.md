@@ -13,7 +13,7 @@ operationally approved.
 | `2015_Oct/` | Later 2015 production-target iteration, including its original ZIP |
 | `2016_Mar_11/` | Production sequence plus a diagnostic sequence; the production driver is missing `quads_final.dat` |
 | `2016_Apr/` | Runnable production-target survey/Twiss-fitted iteration |
-| `2016_May-Nov_Storage/` | Mixed-date production working directory with historical diagnostic-line source files and a documented runnable repair; see `!NOTE.md` |
+| `2016_May-Nov_Storage/` | Mixed-date production working directory with historical diagnostic-line source files, a related recovered Prebys G4Beamline package, and a documented runnable repair; see its `README.md` and `!NOTE.md` |
 | `2017_Jan-May/` | Surviving mixed working set using 2017-era files and two shared August 2018 definitions; see `!WARNING.txt` |
 | `2018_Aug/` | Complete August 2018 production-target reference package, including its original ZIP |
 | `2022_Nov_Diagnostic_Absorber/` | Received November 2022 diagnostic Twiss table, a local source reconstruction, regenerated Twiss output, and two explicitly estimated surveys; see `!NOTE.md` |
@@ -56,6 +56,10 @@ operationally approved.
   copy, not a received lattice. It adds the historically supported 0.76831 m
   `ABSDRIFT` and 1.829 m absorber pair and runs normally with MAD-X 5.08.00;
   the received `diag_line.madx` remains unchanged.
+- The recovered Prebys `MAD_Eliana` G4Beamline working package belongs to the
+  same May-November 2016 `storage` family. Its `m4.def` is identical here, and
+  its `values.dat` is identical to `values_May_2016.dat`; its sequence and
+  driver are related but distinct variants.
 
 From this directory, verify the archived content with:
 

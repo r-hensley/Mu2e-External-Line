@@ -1,0 +1,4287 @@
+
+  +++++++++++++++++++++++++++++++++++++++++++
+  +    MAD-X 5.02.00  (64 bit, Darwin)      +
+  +           Production Version            +
+  + Code Modification Date: 2014.03.05      +
+  + Execution Time Stamp: 22.08.16 17.26.15 +
+  +++++++++++++++++++++++++++++++++++++++++++
+!
+
+!Fit to new survey+Twiss from Steve (March 21, 2016)
+
+beam,    sequence=M4line, particle="proton", energy=8.93828;
+
+roton=1;
+
+ECMAG_srot =-0.00004982;!March 21 2016 
+
+call, file="m4.def";
+
+!Original AC929A+B (3+3 m new type) temporarily replaced by 6 K04 (6*1.0414 m)
+
+!to get kickers in the ces0
+
+!
+
+!CDA correctors (with coils+connections) are 1.5875 m long
+
+!therefore one should keep free at least (1.5875-1.2192)/2 = 0.18415 at
+
+!each end. For this it would be good to shift PCOL by +0.1 or 0.2 m
+
+!Same for VDPA where the free spaces must be (1.0668-0.762)/2 = 0.1524 m
+
+!
+
+!VDPA have been suppressed!
+
+!Some Trim type changed according to Jim mail (May 13 2015)
+
+!Add collimator after Q907 (Eric mail from May 15 2015)
+
+!Q925 from L=0.2286 to L=0.41402
+
+!Q926 from L=0.2286 to L=0.32004
+
+!Now Q925 and Q926 back to 0.2286
+
+
+
+
+
+
+
+MSTART        : MARKER , L=  0.00000000 ;
+
+!g-2
+
+v901_angle=0.11341001;!g-2
+
+
+
+
+
+IC: instrument, L=0.15875;!6.25"
+
+PWC:  instrument, L=0.15875;!6.25"
+
+ecmag_tilt=1.58103264;!90.5865 deg
+
+ecmag_ANGLE=-.05720000;
+
+ECMAG_srot =-0.00004982;
+
+++++++ info: ecmag_srot redefined
+!ecmag_tilt=0;
+
+!ECMAG         : RBEND, L=  2.20000000, ANGLE=-.05720000, K1=  0.00000000, K2=  0.00000000, TILT=  1.58103264 ;
+
+ECMAG         : RBEND, L=  2.20000000, ANGLE:=ecmag_angle, K1=  0.00000000, K2=  0.00000000, TILT:=  ecmag_tilt ;!<- actual
+
+!ECMAG         : DRIFT, L=  2.20000000;
+
+!ECMAG         : RBEND, L=  2.20000000, ANGLE=-.05720000, K1=  0.00000000, K2=  0.00000000, TILT:=  pi/2;;!<- TEST
+
+HT900_kick=0;
+
+HT900         : HKICKER, L=  0.30480000, KICK:=HT900_kick;
+
+Q901          : QUADRUPOLE, L=  0.22860000, K1:=kq901;!-.35574140 ;
+
+IQ901         : MARKER , L=  0.00000000 ;
+
+V901          : RBEND, L=  3.04800000, ANGLE:=v901_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+
+ht901_kick=0;
+
+HT901         : HKICKER, L=  0.58420000, KICK:=ht901_kick ;
+
+Q902          : QUADRUPOLE, L=  0.41402000, K1:=kq902;!0.19347540 ;
+
+IQ902         : MARKER , L=  0.00000000 ;
+
+Q903          : QUADRUPOLE, L=  0.41402000, K1:=kq903;!-.40823224 ;
+
+IQ903         : MARKER , L=  0.00000000 ;
+
+Q904          : QUADRUPOLE, L=  0.41402, K1:=kq904;! L=0.35052
+
+IQ904         : MARKER , L=  0.00000000 ;
+
+Q905          : QUADRUPOLE, L=  0.228600, K1:=kq905;!0.13255192 ;! L=0.41402000
+
+IQ905         : MARKER , L=  0.00000000 ;
+
+HT905_kick=0;
+
+HT905         : HKICKER, L=  0.58420000, KICK:=HT905_kick;
+
+Q906          : QUADRUPOLE, L=  0.35052,  K1:=kq906;!Q906          : QUADRUPOLE, L=  0.22860000, K1:=kq906;!-.20224869 ;
+
+IQ906         : MARKER , L=  0.00000000 ;
+
+MV906         : MARKER , L=  0.00000000 ;
+
+V906          : RBEND, L=  1.52400000, ANGLE:=v906_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+
+IQ907         : MARKER , L=  0.00000000 ;
+
+HT906         : HKICKER, L=  0.58420000, KICK=0 ;
+
+Q907          : QUADRUPOLE, L=  0.41402000, K1:=kq907;!K1:=kq908a;!0.05826110 ;
+
+V907          : RBEND, L=  1.52400000, ANGLE:=v907_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+
+!!!!!!!!!!!!!
+
+MWTexas  : MONITOR, L= 0.23495; !9.25"
+
+MWNumi   : MONITOR, L= 0.4064 ; !16"
+
+CDRF_23A      : DRIFT  , L=  0.23850700 ;
+
+COL907A        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+
+COL907B        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+
+
+
+Q908          : QUADRUPOLE, L=  0.2286, K1:=kq908;!-.41054000 ;Q908          : QUADRUPOLE, L=  0.35052000, K1:=kq908;!
+
+IQ908         : MARKER , L=  0.00000000 ;
+
+SWIC          : MONITOR, L= 0.4064 ;! it was 0.38100000 in Carol files, but 12" is 0.4064 m...
+
+Q909          : QUADRUPOLE, L=  0.22860000, K1:=kq909;!=0.28769900 ;
+
+IQ909         : MARKER , L=  0.00000000 ;
+
+VT909_kick=0;
+
+HT909_kick=0;
+
+VT909         : VKICKER, L=  0.30480000, KICK:=VT909_kick ;!it was declared as a hkicker (by mistake?) in all files!
+
+HT909         : HKICKER, L=  0.3048, KICK:=HT909_kick ;
+
+Q910          : QUADRUPOLE, L=  0.35052000, K1:=kq910;
+
+IQ910         : MARKER , L=  0.00000000 ;
+
+!
+
+!from 2013
+
+h_ratio=0.8051952275;
+
+h911_angle:=h910_angle;
+
+h912_angle:=h910_angle/h_ratio;
+
+
+
+H910          : RBEND, L=  3.04800000, ANGLE:=h910_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+
+Q911          : QUADRUPOLE, L=  0.35052000, k1:=k11_18;
+
+IQ911         : MARKER , L=  0.00000000 ;
+
+H911          : RBEND, L=  3.04800000, ANGLE:=h911_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+
+VT911_kick=0;
+
+VT911         : VKICKER, L=  0.30480000, KICK:=VT911_kick ;!
+
+Q912          : QUADRUPOLE, L=  0.22860000, k1:=k12_17;
+
+IQ912         : MARKER , L=  0.00000000 ;
+
+H912          : RBEND, L=  3.04800000, ANGLE:=h912_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+
+Q913          : QUADRUPOLE, L=  0.41402000,  k1:=k13_16;
+
+IQ913         : MARKER , L=  0.00000000 ;
+
+Q914          : QUADRUPOLE, L=  0.41402000,  k1:=k14_15;
+
+IQ914         : MARKER , L=  0.00000000 ;
+
+MOM           : MARKER , L=  0.00000000 ;
+
+MW914M        : MARKER , L=  0.00000000 ;
+
+HT914_kick=0; 
+
+HT914         : HKICKER, L=  0.30480000, KICK:=HT914_kick ;!NEW
+
+VT914_kick=0; 
+
+VT914         : VKICKER, L=  0.30480000, KICK:=VT914_kick;
+
+Q915          : QUADRUPOLE, L=  0.41402000,  k1:=k14_15;
+
+IQ915         : MARKER , L=  0.00000000 ;
+
+Q916          : QUADRUPOLE, L=  0.41402000,  k1:=k13_16;
+
+IQ916         : MARKER , L=  0.00000000 ;
+
+H916          : RBEND, L=  3.04800000, ANGLE:=h912_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+
+Q917          : QUADRUPOLE, L=  0.22860000,  k1:=k12_17;
+
+IQ917         : MARKER , L=  0.00000000 ;
+
+H917          : RBEND, L=  3.04800000, ANGLE:=h911_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+
+Q918          : QUADRUPOLE, L=  0.35052000,  k1:=k11_18;
+
+IQ918         : MARKER , L=  0.00000000 ;
+
+H918          : RBEND, L=  3.04800000, ANGLE:=h910_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+
+!
+
+k_m1 :=-k_p1;
+
+Q919          : QUADRUPOLE, L=  0.22860000, K1:=k_p1;
+
+Q920          : QUADRUPOLE, L=  0.22860000, K1:=-k_p1;
+
+Q921          : QUADRUPOLE, L=  0.22860000, K1:=k_p1;
+
+Q922          : QUADRUPOLE, L=  0.22860000, K1:=-k_p1;
+
+Q923          : QUADRUPOLE, L=  0.22860000, K1:=k_p1;
+
+Q924          : QUADRUPOLE, L=  0.22860000, K1:=k_q924;
+
+Q925          : QUADRUPOLE, L=  0.2286, K1:=k_q925;!L=  0.41402000, K1:=k_q925;! L=  0.2286, K1:=k_q925;
+
+Q926          : QUADRUPOLE, L=  0.2286, K1:=k_q926;!L=  0.32004, K1:=k_q926;! L=  0.2286, K1:=k_q926;
+
+Q927          : QUADRUPOLE, L=  0.22860000, K1:=k_q927;
+
+Q928          : QUADRUPOLE, L=  0.32004, K1:=k_q928;
+
+Q929          : QUADRUPOLE, L=  0.22860000, K1:=k_q929;
+
+HT919_kick=0;
+
+VT919_kick=0;
+
+!HT919         : HKICKER, L=  0.76200000, KICK:=HT919_kick ;
+
+HT919         : HKICKER, L=  0.30480000, KICK:=HT919_kick ;
+
+VT919         : VKICKER, L=  0.30480000, KICK:=VT919_kick ;
+
+COL923A        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+
+COL923B        : RCOLLIMATOR, L= 0.5334;!L=  0.50000000;
+
+COL924A        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+
+COL924B        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+
+ECOL           : RCOLLIMATOR, L=  1.0668;!The E_COL is 42 inches long
+
+COL931A       : RCOLLIMATOR, L= 0.5334;!L=  0.50000000;
+
+COL931B       : RCOLLIMATOR, L= 0.5334;!L=  0.50000000;
+
+VT921_kick=0 ;
+
+VT927_kick=0 ;
+
+HT927a_kick=0 ;
+
+VT927_kick=0 ;
+
+++++++ info: vt927_kick redefined
+VT922_kick=0 ;
+
+HT922_kick=0 ;
+
+HT928_kick=0;
+
+VT923_kick=0.;
+
+VT921        : VKICKER, L=  0.30480000, KICK:=VT921_kick ;
+
+VT923        : VKICKER, L=  0.30480000, KICK:=VT923_kick ;
+
+HT927a  : HKICKER, L=  0.30480000, KICK:=HT927a_kick ;
+
+HT927b  : HKICKER, L=  0.30480000, KICK:=HT927b_kick ;
+
+VT927        : VKICKER, L=  0.30480000, KICK:=VT927_kick ;
+
+VT922         : VKICKER, L=  0.76200000, KICK:=VT922_kick ;
+
+HT922         : HKICKER, L=  0.30480000, KICK:=HT922_kick ;
+
+!HT928         : HKICKER, L=  0.30480000, KICK:=HT928_kick ;
+
+HT928         : HKICKER, L=  0.58420000, KICK:=HT928_kick ;!larger aperture
+
+!AC929A        : HKICKER, L=  3.00000000, KICK=0 ;
+
+!AC929B        : HKICKER, L=  3.00000000, KICK=0 ;
+
+!avoid using them as correctors
+
+!AC929A        : RBEND, L=  3.00000000, angle=0 ;
+
+!AC929B        : RBEND, L=  3.00000000, angle=0 ;
+
+!Replace them by existing kickers
+
+!AC929          : K104;
+
+!AC929: HKICKER, L=1.0414, kick=0.;
+
+K104H: HKICKER, L=0.5207, kick=0.;
+
+!K104H : RBEND, L=0.5207, angle=0 ;
+
+
+
+HT930_kick=0;
+
+VT930_kick=0;
+
+!HT930         : HKICKER, L=  0.30480000, KICK:=HT930_kick ;
+
+HT930         : HKICKER, L=  0.58420000, KICK:=HT930_kick ;
+
+VT930         : VKICKER, L=  0.58420000, KICK:=VT930_kick ;
+
+Q930          : QUADRUPOLE, L=  0.22860000, K1:=k_q930;!0.21739970 ;
+
+Q931          : QUADRUPOLE, L=  0.22860000, K1:=k_q931;!-.26442930 ;
+
+Q932          : QUADRUPOLE, L=  0.2286, k1:=k_q932;!K1=-.33699880 ;!Q932          : QUADRUPOLE, L=  0.32004000,
+
+Q933          : QUADRUPOLE, L=  0.32004000, k1:=k_q933;!K1=-.28552710 ;
+
+VT933_kick=0;
+
+VT933         : VKICKER, L=  0.30480000, KICK:=VT930_kick ;
+
+!hda1_angle=-0.0873;
+
+!hda1_l= hda1_angle*0.5*1.524/sin(hda1_angle*0.5);!=1.52448406
+
+!HDA1  : rbend, l=1.524, angle=-0.0873;
+
+!HDA1  : drift, l=1.524;
+
+HDA1  : rbend, l=1.524, angle=0;
+
+
+
+Q934          : QUADRUPOLE, L=  0.320040, K1:=k_q934;
+
+Q935          : QUADRUPOLE, L=  0.65585000, K1:=k_q935;
+
+
+
+Q936          : QUADRUPOLE, L=  0.320040, K1:=k_q936;
+
+
+
+V936          : RBEND, L=  1.21920000, ANGLE:=v936_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+
+VT936_kick=0;
+
+HT936A_kick=0;
+
+VT936         : VKICKER, L=  0.30480000, KICK:=VT936_kick ;
+
+HT936A        : HKICKER, L=  0.30480000, KICK:=HT936A_kick ;
+
+BEAMSTOP1     : RBEND, L=  1.88087000, ANGLE=0.00000000, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+
+BEAMSTOP2     : RBEND, L=  1.88087000, ANGLE=0.00000000, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+
+shieldw  : drift, l=3.6576+1.0097037-0.1125007;!=4.554803
+
+HT936B_kick=0;
+
+HT936B        : HKICKER, L=  0.304800000, KICK:=HT936B_kick ;
+
+IQ937         : MARKER , L=  0.00000000 ;
+
+IQ938         : MARKER , L=  0.00000000 ;
+
+IQ939         : MARKER , L=  0.00000000 ;
+
+IQ940         : MARKER , L=  0.00000000 ;
+
+
+
+IQ941         : MARKER , L=  0.00000000 ;
+
+IQ942         : MARKER , L=  0.00000000 ;
+
+VT942_kick=0;
+
+VT942         : VKICKER, L=  1.21920000, KICK:=VT942_kick ;
+
+v943_angle:=V936_angle;
+
+V943          : RBEND, L=  1.21920000, ANGLE:=v943_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+
+HT943_kick=0;
+
+HT943         : HKICKER, L=  1.21920000, KICK:=HT943_kick ;
+
+
+
+qmid: marker;
+
+HT945A_kick=0 ;
+
+HT945A        : HKICKER, L=  0.30480000, KICK:=HT945A_kick ;
+
+MID          : marker ;
+
+FCOL          : RCOLLIMATOR, L=  0.50000000;
+
+HT945B_kick=0;
+
+HT945B        : HKICKER, L=  0.76200000, KICK:=HT945B_kick ;
+
+
+
+Q937          : QUADRUPOLE, L=  0.38608000, K1:=kff1;!0.19750810 ;
+
+Q938          : QUADRUPOLE, L=  0.43500000, K1:=kff2;!-.31475950 ;
+
+Q939          : QUADRUPOLE, L=  0.38608000, K1:=kff3;!0.20383210 ;
+
+Q940          : QUADRUPOLE, L=  0.22860000, K1:=kq940;!-.29202100 ;
+
+M0            : MARKER , L=  0.00000000 ;
+
+HT940_kick=0 ;
+
+VT940_kick=0 ;
+
+HT940         : HKICKER, L=  1.21920000, KICK:=HT940_kick ;
+
+VT940         : VKICKER, L=  1.21920000, KICK:=VT940_kick;
+
+Q941          : QUADRUPOLE, L=  0.38608000, K1:=kff3;!0.20383210 ;
+
+Q942          : QUADRUPOLE, L=  0.43500000, K1:=kff2;!-.31475950 ;
+
+HT942_kick=0 ;
+
+HT942         : HKICKER, L=  1.21920000, KICK:=HT942_kick ;
+
+VT951         : VKICKER, L=  1.21920000, KICK:=VT951_kick;
+
+VT941         : VKICKER, L=  1.21920000, KICK:=VT941_kick;
+
+Q943          : QUADRUPOLE, L=  0.38608000, K1:=kff1;!0.19750810 ;
+
+TIEIN         : MARKER , L=  0.00000000 ;
+
+HT952_kick=0 ;
+
+HT952         : HKICKER, L=  1.21920000, KICK:=HT952_kick ;
+
+!PCOL          : RCOLLIMATOR, L=  1.00000000;
+
+PCOL          : RCOLLIMATOR, L= 1.0668; 
+
+B_SWIC        : MONITOR, L=  0.15875000 ;
+
+MU2ESOL      : matrix, l=8.0000,!999999946938,!7.9998d0-2.*1.297971e-01,
+
+/* solenoid as drift
+
+ rm11=1., rm12= 8.0000 , rm13=  0., rm14=  0., rm15= -0., rm16=  0.,
+
+ rm21= -0., rm22=  1.,rm23=  0., rm24=  0., rm25= -0., rm26=  0.,
+
+ rm31= -0, rm32=  0.,rm33=  1., rm34= 8.0000, rm35= -0., rm36=  0.,
+
+ rm41= -0., rm42=  0.,rm43=  0., rm44=  1., rm45= -0., rm46=  0.,
+
+ rm51= -0., rm52=  0.,rm55=  0., rm54=  0., rm55= 1., rm56=  0.,
+
+ rm61= -0., rm62=  0.,rm66=  0., rm64=  0., rm65= -0., rm66=  1.;
+
+*/
+
+!0.5 sigma
+
+!/*
+
+  rm11=  0.981826E+00, rm12=  0.786531E+01, rm13=  0.110716E+00, rm14=  0.998223E+00, rm15= -0.575350E-02, rm16=  0.647539E-02,
+
+  rm21= -0.173467E-01, rm22=  0.864188E+00, rm23=  0.487384E-01, rm24=  0.565766E+00, rm25= -0.891116E-02, rm26=  0.157278E-02,
+
+  rm31= -0.168799E+00, rm32= -0.126173E+01, rm33=  0.972283E+00, rm34=  0.780676E+01, rm35= -0.111716E+00, rm36= -0.357683E-01,
+
+  rm41= -0.652024E-01, rm42= -0.638866E+00, rm43= -0.190356E-01, rm44=  0.838986E+00, rm45= -0.603892E-01, rm46= -0.517476E-01,
+
+  rm51= -0.304131E-03, rm52= -0.146610E-01, rm53=  0.395790E-01, rm54=  0.390866E+00, rm55=  0.100136E+01, rm56=  0.257572E-02,
+
+  rm61=  0.281265E-14, rm62= -0.231578E-14, rm63=  0.112420E-13, rm64=  0.163526E-14, rm65= -0.109890E-13, rm66=  0.100000E+01;
+
+!*/
+
+
+
+M4END: marker;
+
+HT927  : HKICKER, L=  0.30480000, KICK:=HT927a_kick ;
+
+GM2_END      : marker;
+
+MCOL907: marker;
+
+IQ909a: marker;
+
+IQ910a: marker;
+
+H918_old     : marker;
+
+IQ919        : marker;
+
+IQ920        : marker;
+
+IQ921        : marker; 
+
+IQ922        : marker; 
+
+IQ923        : marker;
+
+IQ924        : marker;
+
+MCOL924: marker;
+
+IQ925        : marker; 
+
+IQ926        : marker; 
+
+MM1          : marker; 
+
+IQ927        : marker;
+
+IQ928        : marker;
+
+IQ929        : marker;
+
+MP           : marker;
+
+IQ930        : marker;
+
+MCOL931      : marker;
+
+IQ933        : marker;
+
+IQ934        : marker;
+
+IQ935        : marker;
+
+IQ936        : marker;
+
+V936_in: marker;
+
+IQ943          : marker;
+
+TIEIN2   : marker;
+
+
+
+!diagnostic line definitions
+
+QDA01         : QUADRUPOLE, L=  1.52400000, K1=0.04365608 ;
+
+QDA02         : QUADRUPOLE, L=  1.52400000, K1=-.05675290 ;
+
+absorber  : drift, l=3.3656206;
+
+
+
+!fake vertical corrector for using V901, V906 and V907 as correctors
+
+
+
+V901K: vkicker, l=0.001, kick:=V901K_kick;
+
+V906K: vkicker, l=0.001, kick:=V906K_kick;
+
+V907K: vkicker, l=0.001, kick:=V907K_kick;
+
+V936K: vkicker, l=0.001, kick:=V936K_kick;
+
+!vfake: vkicker, l=0, kick=0;
+
+K104: HKICKER, L=1.0414, kick=0.;
+
+K104H: HKICKER, L=0.5207, kick=0.;
+++++++ info: element redefined: k104h
+call, file="values.dat";
+
+ECMAG_srot =-0.00004982;
+
+++++++ info: ecmag_srot redefined
+
+
+h_ratio=0.8051952275;
+
+++++++ info: h_ratio redefined
+h911_angle:=h910_angle;
+
+++++++ info: h911_angle redefined
+h912_angle:=h910_angle/h_ratio;
+
+++++++ info: h912_angle redefined
+v943_angle:=V936_angle;
+
+++++++ info: v943_angle redefined
+
+
+v901_angle= 0.11341001;
+
+++++++ info: v901_angle redefined
+v906_angle=-0.06847931;
+
+v907_angle= 0.06833029;
+
+h910_angle=-0.10967703;
+
+v936_angle= 0.02357760;
+
+
+
+
+
+kq901 =  -0.4836214200 ;
+
+kq902 =   0.2751809600 ;
+
+kq903 =  -0.2666119100 ;
+
+kq904 =   0.2584893400 ;
+
+kq905 =  -0.4806335700 ;
+
+kq906 =  -0.0165252830 ;
+
+kq907 =   0.1704840500 ;
+
+kq908 =  -0.3886254400 ;
+
+kq909 =  -0.0659364790 ;
+
+kq910 =   0.2754342500 ;
+
+k11_18 =  -0.2348506500 ;
+
+k12_17 =   0.2267062600 ;
+
+k13_16 =   0.4459796200 ;
+
+k14_15 =  -0.3872258600 ;
+
+k_p1 =   0.3209744800 ;
+
+k_q924 =  -0.1489254400 ;
+
+k_q925 =   0.0688419600 ;
+
+k_q926 =   0.0128276100 ;
+
+k_q927 =   0.0569934600 ;
+
+k_q928 =  -0.2298506900 ;
+
+k_q929 =   0.1922464000 ;
+
+k_q930 =   0.2173997100 ;
+
+k_q931 =  -0.2644293500 ;
+
+k_q932 =  -0.1592099518 ;
+
+k_q933 =   0.3255661629 ;
+
+k_q934 =  -0.3934023906 ;
+
+k_q935 =   0.3501591620 ;
+
+k_q936 =  -0.3300318212 ;
+
+kff1 =   0.1975213831 ;
+
+kff2 =  -0.3143414733 ;
+
+kff3 =   0.2036964458 ;
+
+kq940 =  -0.2930022821 ;
+
+call, file="line_shifted_new.seq";
+
+! ECMAG moved by + 0.07356 m 
+
+! ECMAG is still the beginning of the line, while all elements are moved
+
+! upwards by 0.07356 m
+
+!Now the target (end of M4) is at 244.71203134 m, but ... (see below)
+
+! Reinserted MW940, MW941 and MW943
+
+! but replaced by Texas types because of space problems
+
+!therefore following TX becomes Numi
+
+! MW926TX -> MW926Nu
+
+! MW927TX -> MW927Nu
+
+! MW930TX -> MW930Nu
+
+!
+
+! HT915 moved to 914 for space reasons
+
+! For making space for VT911 Q911 moved upstreams by -0.17150086
+
+! and therefore Q918 moved downstream by +0.17150086 to keep the symmetry
+
+!
+
+!Reinsert intrumentation in g-2 line
+
+!
+
+!After ECMAG shift, TIEN was moved longitudinally (s) downwards in order to get the same physical point
+
+!(ie same global coordinates). Between TIEIN and target there is ds=8 m. Here I have
+
+!moved the end of the line (the target) to the new TIEIN + 8 m ie 244.842028657
+
+M4line: sequence, REFER=CENTRE, L= 244.842028657;!244.78559156 -0.07356;!+1.300971e-01;
+
+!M4line: sequence, REFER=CENTRE, L=  244.78559156 -0.07356;
+
+MSTART               : MSTART              , at =     0.0000000000 ;
+
+ECMAG                : ECMAG               , at =     1.1001499736 ;
+
+SROTECMAG : SROTATION , at =     2.2002999473, angle:=ECMAG_srot*roton;
+
+!PWC900U              : IC                  , at =       2.40839995 ;! before shifting, L=0.15875
+
+PWC900               : PWC                 , at =     2.3348399273 ;
+
+HT900                : HT900               , at =     2.6933149773 ;
+
+Q901                 : Q901                , at =     4.2741799273 ;
+
+IQ901                : IQ901               , at =     4.3884799273 ;
+
+Q901                 : Q901                , at =     4.5027799273 ;
+
+V901                 : V901                , at =     6.6793889573 ;
+
+V901K                : V901K               , at =     8.2053879573 ;
+
+HT901                : HT901               , at =     8.9896714773 ;
+
+Q902                 : Q902                , at =     9.8606419873 ;
+
+IQ902                : IQ902               , at =    10.0676519873 ;
+
+Q902                 : Q902                , at =    10.2746619873 ;
+
+IC902                : IC                  , at =    10.75650 + 0.15875/2 - 0.07356 ;
+
+Q903                 : Q903                , at =    12.0603959873 ;
+
+IQ903                : IQ903               , at =    12.2674059873 ;
+
+Q903                 : Q903                , at =    12.4744159873 ;
+
+MW903NU              : MWNumi              , at =    13.4264399773 ;
+
+Q904                 : Q904                , at =    14.0099489873 ;
+
+IQ904                : IQ904               , at =    14.2169589873 ;
+
+Q904                 : Q904                , at =    14.4239689873 ;
+
+PWC904               : PWC                 , at =    16.34182 + 0.15875/2 - 0.07356 ;
+
+Q905                 : Q905                , at =    18.1824669873 ;
+
+IQ905                : IQ905               , at =    18.2967669873 ;
+
+Q905                 : Q905                , at =    18.4110669873 ;
+
+HT905                : HT905               , at =    19.8358204773 ;
+
+Q906                 : Q906                , at =    20.6099149873 ;
+
+IQ906                : IQ906               , at =    20.7851749873 ;
+
+Q906                 : Q906                , at =    20.9604349873 ;
+
+V906                 : V906                , at =    22.4895278973 ;
+
+V906K                : V906K               , at =    23.2535258973 ;
+
+MW906NU              : MWNumi              , at =    23.6131587973 ;
+
+HT906                : HT906               , at =    25.5570534773 ;
+
+Q907                 : Q907                , at =    26.3631777973 ;
+
+IQ907                : IQ907               , at =    26.5701877973 ;
+
+Q907                 : Q907                , at =    26.7771977973 ;
+
+V907                 : V907                , at =    28.6160676973 ;
+
+V907K                : V907K               , at =    29.3800676973 ;
+
+GM2_END              : GM2_END             , at =    29.8782115773 ;
+
+COL907A              : COL907A             , at =    31.1481119773 ;
+
+MCOL907              : MCOL907             , at =    31.4148119773 ;
+
+COL907B              : COL907B             , at =    31.6815119773 ;
+
+Q908                 : Q908                , at =    35.1378687973 ;
+
+IQ908                : IQ908               , at =    35.2521687973 ;
+
+Q908                 : Q908                , at =    35.3664687973 ;
+
+MW908TX              : MWTexas             , at =    36.7869399773 ;
+
+Q909                 : Q909                , at =    37.5670197973 ;
+
+IQ909                : IQ909               , at =    37.6813197973 ;
+
+Q909                 : Q909                , at =    37.7956197973 ;
+
+IQ909A               : IQ909A              , at =    37.9099197973 ;
+
+VT909                : VT909               , at =    38.9629867973 ;
+
+HT909                : HT909               , at =    39.8519867973 ;
+
+Q910                 : Q910                , at =    41.1958977973 ;
+
+IQ910                : IQ910               , at =    41.3711577973 ;
+
+Q910                 : Q910                , at =    41.5464177973 ;
+
+IQ910A               : IQ910A              , at =    41.7216777973 ;
+
+xshift=-0.0155;
+
+MW910TX              : MWTexas             , at =    42.5264399773 + xshift ;
+
+H910                 : H910                , at =    44.4994617773 + xshift ;
+
+Q911                 : Q911                , at =    46.7709867473 + xshift -0.17150086 ;
+
+IQ911                : IQ911               , at =    46.9462467473 + xshift -0.17150086;
+
+Q911                 : Q911                , at =    47.1215067473 + xshift -0.17150086;
+
+VT911                : VT911               , at =    47.6064399773 + xshift -0.10967323 ;
+
+H911                 : H911                , at =    49.3930317273 + xshift ;
+
+Q912                 : Q912                , at =    51.6035967073 + xshift ;
+
+IQ912                : IQ912               , at =    51.7178967073 + xshift ;
+
+Q912                 : Q912                , at =    51.8321967073 + xshift ;
+
+H912                 : H912                , at =    54.0431704473 + xshift ;
+
+Q913                 : Q913                , at =    56.3468541773 + xshift ;
+
+IQ913                : IQ913               , at =    56.5538641773 + xshift ;
+
+Q913                 : Q913                , at =    56.7608741773 + xshift ;
+
+Q914                 : Q914                , at =    57.6406041773 + xshift ;
+
+IQ914                : IQ914               , at =    57.8476141773 + xshift ;
+
+Q914                 : Q914                , at =    58.0546241773 + xshift ;
+
+HT914                : HT914               , at =    58.97529918 + xshift ;!58.24613418 + 0.576765+ xshift +0.3048*0.5 ;
+
+MW914TX              : MWTexas             , at =    59.8064399773 + xshift ;
+
+VT914                : VT914               , at =    60.3246399773 + xshift ;
+
+Q915                 : Q915                , at =    60.8840501773 + xshift ;
+
+IQ915                : IQ915               , at =    61.0910601773 + xshift ;
+
+Q915                 : Q915                , at =    61.2980701773 + xshift ;
+
+!HT915                : HT915               , at =    61.8183899773 + xshift ;
+
+Q916                 : Q916                , at =    62.1777999773 + xshift ;
+
+IQ916                : IQ916               , at =    62.3848099773 + xshift ;
+
+Q916                 : Q916                , at =    62.5918199773 + xshift ;
+
+H916                 : H916                , at =    64.8955037073 + xshift ;
+
+Q917                 : Q917                , at =    67.1064774373 + xshift ;
+
+IQ917                : IQ917               , at =    67.2207774373 + xshift ;
+
+Q917                 : Q917                , at =    67.3350774373 + xshift ;
+
+H917                 : H917                , at =    69.5456424173 + xshift ;
+
+Q918                 : Q918                , at =    71.8171673973 + xshift + 0.17150086;
+
+IQ918                : IQ918               , at =    71.9924273973 + xshift + 0.17150086;
+
+Q918                 : Q918                , at =    72.1676873973 + xshift + 0.17150086;
+
+H918                 : H918                , at =    74.4392123773 + xshift ;
+
+H918_OLD             : H918_OLD            , at =    76.5339773573 ;
+
+Q919                 : Q919                , at =    77.6501073573 ;
+
+IQ919                : IQ919               , at =    77.7644073573 ;
+
+Q919                 : Q919                , at =    77.8787073573 ;
+
+HT919                : HT919               , at =    79.1808373573 ;
+
+VT919                : VT919               , at =    80.0698373573 ;
+
+MW919TX              : MWTexas             , at =    80.9264397773 ;
+
+Q920                 : Q920                , at =    82.7049763573 ;
+
+IQ920                : IQ920               , at =    82.8192763573 ;
+
+Q920                 : Q920                , at =    82.9335763573 ;
+
+Q921                 : Q921                , at =    87.9595003573 ;
+
+IQ921                : IQ921               , at =    88.0738003573 ;
+
+Q921                 : Q921                , at =    88.1881003573 ;
+
+VT921                : VT921               , at =    92.8238807773 ;
+
+Q922                 : Q922                , at =    93.2905803573 ;
+
+IQ922                : IQ922               , at =    93.4048803573 ;
+
+Q922                 : Q922                , at =    93.5191803573 ;
+
+MW922TX              : MWTexas             , at =    93.9366807773 + 0.1;
+
+Q923                 : Q923                , at =    98.6167953573 ;
+
+IQ923                : IQ923               , at =    98.7310953573 ;
+
+Q923                 : Q923                , at =    98.8453953573 ;
+
+Q924                 : Q924                , at =   105.0005753570 ;
+
+IQ924                : IQ924               , at =   105.1148753570 ;
+
+Q924                 : Q924                , at =   105.2291753570 ;
+
+COL924A              : COL924A             , at =   105.8767757770 ;
+
+MCOL924              : MCOL924             , at =   106.1434757770 ;
+
+COL924B              : COL924B             , at =   106.4101757770 ;
+
+MW924TX              : MWTexas             , at =   106.9264397770 ;
+
+Q925                 : Q925                , at =   110.3267903570 ;
+
+IQ925                : IQ925               , at =   110.4410903570 ;
+
+Q925                 : Q925                , at =   110.5553903570 ;
+
+Q926                 : Q926                , at =   113.2880503570 ;
+
+IQ926                : IQ926               , at =   113.4023503570 ;
+
+Q926                 : Q926                , at =   113.5166503570 ;
+
+!MW926TX              : MWTexas             , at =   114.1750803570 ;
+
+MW926Nu              : MWNumi             , at =     114.1750803570 ;
+
+MM1                  : MM1                 , at =   117.4954583570 ;
+
+Q927                 : Q927                , at =   117.8129583570 ;
+
+IQ927                : IQ927               , at =   117.9272583570 ;
+
+Q927                 : Q927                , at =   118.0415583570 ;
+
+HT927                : HT927               , at =   119.5214883570 ;
+
+!MW927TX              : MWTexas             , at =   120.1738887770 ;
+
+MW927Nu              : MWNumi             , at =   120.1738887770 +0.1;
+
+VT927                : VT927               , at =   125.6876053570 ;
+
+Q928                 : Q928                , at =   126.6138153570 ;
+
+IQ928                : IQ928               , at =   126.7738353570 ;
+
+Q928                 : Q928                , at =   126.9338553570 ;
+
+HT928                : HT928               , at =   131.7403333570 ;
+
+Q929                 : Q929                , at =   132.7095643570 ;
+
+IQ929                : IQ929               , at =   132.8238643570 ;
+
+Q929                 : Q929                , at =   132.9381643570 ;
+
+AC929                : K104                , at =   134.4509943570 ;
+
+AC929                , at =   135.4923943570 ;
+
+AC929                , at =   136.5337943570 ;
+
+MP                   : MP                  , at =   137.0544943570 ;
+
+AC929                , at =   137.5751943570 ;
+
+AC929                , at =   138.6165943570 ;
+
+AC929                , at =   139.6579943570 ;
+
+Q930                 : Q930                , at =   141.1708243570 ;
+
+IQ930                : IQ930               , at =   141.2851243570 ;
+
+Q930                 : Q930                , at =   141.3994243570 ;
+
+HT930                : HT930               , at =   142.3686553570 ;
+
+VT930                : VT930               , at =   143.2576553570 ;
+
+!MW930TX              : MWTexas             , at =   144.0386557770 ;
+
+MW930Nu              : MWNumi             , at =   144.0386557770 + 0.1 ;
+
+Q931                 : Q931                , at =   146.1464903570 ;
+
+Q931                 : Q931                , at =   146.3750903570 ;
+
+COL931A              : COL931A             , at =   159.9400903570 ;
+
+MCOL931              : MCOL931             , at =   160.2067903570 ;
+
+COL931B              : COL931B             , at =   160.4734903570 ;
+
+Q932                 : Q932                , at =   162.3231203570 ;
+
+QMID                 : QMID                , at =   162.4374203570 ;
+
+Q932                 : Q932                , at =   162.5517203570 ;
+
+MW932NU              : MWNumi              , at =   166.6660207770 ;
+
+Q933                 : Q933                , at =   169.5261353570 ;
+
+IQ933                : IQ933               , at =   169.6861553570 ;
+
+Q933                 : Q933                , at =   169.8461753570 ;
+
+VT933                : VT933               , at =   170.4585957770 ;
+
+IC933                : IC                  , at =   171.4279658570 ;
+
+HDA1                 : HDA1                , at =   173.4816247770 ;
+
+MW933NU              : MWNumi              , at =   182.9264397770 ;
+
+Q934                 : Q934                , at =   183.4169823570 ;
+
+IQ934                : IQ934               , at =   183.5770023570 ;
+
+Q934                 : Q934                , at =   183.7370223570 ;
+
+Q935                 : Q935                , at =   185.9432633570 ;
+
+IQ935                : IQ935               , at =   186.2711883570 ;
+
+Q935                 : Q935                , at =   186.5991133570 ;
+
+MW935NU              : MWNumi              , at =   187.3264397770 ;
+
+Q936                 : Q936                , at =   187.8841283570 ;
+
+IQ936                : IQ936               , at =   188.0441483570 ;
+
+Q936                 : Q936                , at =   188.2041683570 ;
+
+VT936                : VT936               , at =   189.1571983570 ;
+
+HT936A               : HT936A              , at =   189.6651983570 ;
+
+BEAMSTOP1            : BEAMSTOP1           , at =   190.8191443570 ;
+
+BEAMSTOP2            : BEAMSTOP2           , at =   193.2000143570 ;
+
+FCOL                 : FCOL                , at =   194.7075628570 ;
+
+MW936TX              : MWTexas             , at =   195.2496628570 ;
+
+FCOL                 : FCOL                , at =   195.7917628570 ;
+
+SHIELDW              : SHIELDW             , at =   198.6185082770 ;
+
+HT936B               : HT936B              , at =   202.5508928570 ;
+
+V936_IN              : V936_IN             , at =   203.5384919070 ;
+
+V936                 : V936                , at =   204.1481062470 ;
+
+V936K                : V936K               , at =   204.7591062470 ;
+
+Q937                 : Q937                , at =   205.4457618970 ;
+
+IQ937                : IQ937               , at =   205.6388018970 ;
+
+Q937                 : Q937                , at =   205.8318418970 ;
+
+MW937NU              : MWNumi              , at =   206.6248815570 ;
+
+Q938                 : Q938                , at =   208.6578618970 ;
+
+IQ938                : IQ938               , at =   208.8753618970 ;
+
+Q938                 : Q938                , at =   209.0928693970 ;
+
+Q939                 : Q939                , at =   213.5114628970 ;
+
+IQ939                : IQ939               , at =   213.7045028970 ;
+
+Q939                 : Q939                , at =   213.8975428970 ;
+
+Q940                 : Q940                , at =   219.8988608970 ;
+
+IQ940                : IQ940               , at =   220.0131608970 ;
+
+Q940                 : Q940                , at =   220.1274608970 ;
+
+!MW940Nu: MWNumi, at =220.7 - 0.07356;
+
+MW940TX: MWTexas,  at =220.7 - 0.07356;
+
+HT940                : HT940               , at =   221.5088408970 ;
+
+VT940                : VT940               , at =   223.2280408970 ;
+
+Q941                 : Q941                , at =   226.1287788970 ;
+
+IQ941                : IQ941               , at =   226.3218188970 ;
+
+Q941                 : Q941                , at =   226.5148588970 ;
+
+MW941Nu: MWNumi, at =230 -0.6 - 0.07356;
+
+Q942                 : Q942                , at =   230.9334598970 ;
+
+IQ942                : IQ942               , at =   231.1509598970 ;
+
+Q942                 : Q942                , at =   231.3684598970 ;
+
+VT942                : VT942               , at =   232.8918398970 ;
+
+Q943                 : Q943                , at =   234.1944798970 ;
+
+IQ943                : IQ943               , at =   234.3875198970 ;
+
+Q943                 : Q943                , at =   234.5805598970 ;
+
+!MW943Nu: MWNumi, at =235+0.095- 0.07356;
+
+MW943TX:  MWTexas, at =235+0.095- 0.07356;
+
+V943                 : V943                , at =   235.8782155470 ;
+
+V943K                : V936K               , at =   236.4888371970 ;
+
+TIEIN                : TIEIN               , at =   236.8420286570;!it was at 236.7855886570
+
+!!MU2ESOL : MU2ESOL               , at =   236.8420286570+7.9998*0.5+1.500000e-04;
+
+!MU2ESOL : MU2ESOL               , at =   244.842028657-4.;
+
+!ENDSEQUENCE;
+
+!RETURN;
+
+
+
+HT943                : HT943               , at =   237.6024291570 ;
+
+MW943TXb: MWTexas, at =  238.2120+0.233;
+
+PCOL                 : PCOL                , at =   239.2120291570 ;
+
+TIEIN2               : TIEIN2              , at =   239.7588286570 ;
+
+MW943NURick              : MWNumi              , at =   240.0264395570 ;
+
+IC943                : IC                  , at =   240.3652606570 ;
+
+!M4END                : M4END               , at =   244.7120295570 ;
+
+M4END                : M4END               , at =  244.842028657;!TIEIN +8 m solenoid (from tracking)
+
+ENDSEQUENCE;
+
+RETURN;
+
+
+
+!Steve March 21
+
+newstart: beta0, betx=12.22350,
+
+                 alfx=1.88239, 
+
+                 bety=5.61627, 
+
+                 alfy=-0.61825,
+
+                 dx=0.02765,dpx=0.00346,
+
+                 dy=-0.12410,
+
+                 dpy=-0.07144;
+
+
+
+use, sequence= M4line;
+
+select, flag=twiss, clear;
+
+set,    format="12.8f";
+
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,x,y,keyword,l,angle,k1l;
+
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss_new.tfs";
+
+enter Twiss module
+++++++ info: Zero value of SIGT replaced by 1.
+++++++ info: Zero value of SIGE replaced by 1/1000.
+  
+open line - error with deltap:   1.000000E-06
+end values:  -7.906864E-09  1.939132E-08  2.282421E-10 -1.030873E-07 -2.712953E-06  0.000000E+00
+++++++ info: Zero value of SIGT replaced by 1.
+++++++ info: Zero value of SIGE replaced by 1/1000.
+  
+open line - error with deltap:   0.000000E+00
+end values:   0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
+
+++++++ table: summ
+
+      length       orbit5         alfa      gammatr 
+244.84202844  -0.00000000   0.00000000   0.00000000 
+
+          q1          dq1      betxmax        dxmax 
+  3.42266330 -10.83401489 250.06408567   2.23392753 
+
+       dxrms       xcomax       xcorms           q2 
+  0.54030246   0.00000000   0.00000000   3.44170640 
+
+         dq2      betymax        dymax        dyrms 
+-15.96107327 173.54736875   0.62523316   0.15842917 
+
+      ycomax       ycorms       deltap      synch_1 
+  0.00000000   0.00000000   0.00000000   0.67170086 
+
+     synch_2      synch_3      synch_4      synch_5 
+  0.04072004   0.00160103   0.00000000   0.00057294 
+
+
+set,    format="14.8f";
+
+!Steve, March 21 2016
+
+survey,file="survey_new.tfs",Z0=30446.932608,
+
+                         X0=30071.579367,
+
+                         Y0=222.115867,
+
+                         theta0=2.090464,
+
+                         phi0=0.056064;
+
+ SROT
+!stop;
+
+!Introduce random misalignments
+
+!set,    format="14.10f";
+
+!SELECT,FLAG=ERROR, CLEAR;
+
+!SELECT, flag=ERROR, CLASS=quadrupole;
+
+!EOPTION,SEED=1,ADD=TRUE;
+
+!EALIGN, DX:=0.000*TGAUSS(2.5),DY:=0.0000*TGAUSS(2.5),DS:=0.,
+
+!        DPHI:=0.,DTHETA:=0.,DPSI:=0.0*TGAUSS(2.5);
+
+!        MREX:=0.,MREY:=0.,
+
+!        MSCALX:=0.,MSCALY:=0.,
+
+!        AREX:=0.,AREY:=0.;
+
+!Introduce relative field errors
+
+SELECT,FLAG=ERROR, CLEAR;
+
+SELECT, flag=ERROR, CLASS=quadrupole;
+
+EOPTION,SEED=1,ADD=TRUE;
+
+!specify a radius otherwise it complains
+
+!the value is unrelevant
+
+EFCOMP,order=1, radius=0.010, dknr:={0, 1e-3*TGAUSS(2.5)};
+
+Assigned field errors to 86 elements
+set,    format="18.12f";
+
+SELECT, flag=ERROR, CLASS=quadrupole;
+
+eprint;!for checking errors
+
+
+
+Alignment errors for element q901:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q901:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          8.907859e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q901:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q901:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          2.684606e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q902:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q902:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          8.690738e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q902:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q902:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -2.942800e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q903:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q903:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.662034e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q903:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q903:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -8.216821e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q904:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q904:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.532140e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q904:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q904:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          6.470700e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q905:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q905:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -2.246914e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q905:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q905:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.370267e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q906:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q906:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -5.610851e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q906:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q906:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -6.035542e-07      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q907:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q907:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          3.880751e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q907:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q907:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -2.600409e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q908:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q908:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -4.788386e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q908:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q908:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.261286e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q909:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q909:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.603322e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q909:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q909:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          8.633949e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q910:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q910:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.109709e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q910:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q910:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.273929e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q911:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q911:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -8.448674e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q911:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q911:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.000971e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q912:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q912:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -5.520311e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q912:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q912:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          6.056543e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q913:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q913:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.377213e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q913:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q913:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          4.437237e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q914:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q914:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -8.779711e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q914:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q914:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.653194e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q915:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q915:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.608423e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q915:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q915:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -4.172770e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q916:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q916:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          8.431873e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q916:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q916:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          3.081698e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q917:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q917:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.323960e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q917:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q917:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          2.428149e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q918:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q918:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          5.911274e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q918:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q918:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          5.136319e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q919:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q919:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          2.666444e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q919:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q919:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -2.695251e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q920:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q920:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -5.439741e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q920:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q920:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -9.070466e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q921:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q921:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.192698e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q921:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q921:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          9.876738e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q922:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q922:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          8.650532e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q922:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q922:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          3.552641e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q923:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q923:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          7.618810e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q923:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q923:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -6.299451e-07      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q924:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q924:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -7.911434e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q924:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q924:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.157787e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q925:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q925:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          2.124686e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q925:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q925:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.645934e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q926:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q926:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -6.391953e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q926:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q926:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -5.914141e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q927:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q927:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.091001e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q927:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q927:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          7.518719e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q928:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q928:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.324041e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q928:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q928:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.459971e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q929:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q929:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -5.175729e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q929:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q929:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          5.036509e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q930:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q930:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -2.823729e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q930:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q930:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.474961e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q931:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q931:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.325874e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q931:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q931:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -6.428477e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q932:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q932:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.174016e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q932:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q932:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          2.138592e-08      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q933:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q933:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.145156e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q933:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q933:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.611957e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q934:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q934:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          3.435067e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q934:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q934:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.166473e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q935:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q935:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -5.460714e-06      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q935:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q935:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          2.129232e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q936:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q936:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.258445e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q936:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q936:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.397743e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q937:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q937:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.029701e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q937:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q937:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -6.190979e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q938:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q938:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          6.579024e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q938:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q938:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          2.604003e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q939:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q939:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.242317e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q939:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q939:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -3.776756e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q940:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q940:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -7.671229e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q940:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q940:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.576927e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q941:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q941:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -6.305916e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q941:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q941:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          3.180523e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q942:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q942:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          2.199105e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q942:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q942:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -6.035813e-05      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q943:1 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q943:1 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          -1.871413e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+
+
+Alignment errors for element q943:2 
+
+Displacements in [mm], rotations in [mrad] 
+     dx         dy           ds       dphi     dtheta       dpsi       mrex       mrey      mredx      mredy       arex       arey     mscalx     mscaly
+
+
+
+Field errors for element q943:2 
+Multipole order:     Normal:           Skew: 
+       0          0.000000e+00      0.000000e+00
+       1          1.111146e-04      0.000000e+00
+       2          0.000000e+00      0.000000e+00
+       3          0.000000e+00      0.000000e+00
+       4          0.000000e+00      0.000000e+00
+       5          0.000000e+00      0.000000e+00
+       6          0.000000e+00      0.000000e+00
+       7          0.000000e+00      0.000000e+00
+       8          0.000000e+00      0.000000e+00
+       9          0.000000e+00      0.000000e+00
+      10          0.000000e+00      0.000000e+00
+      11          0.000000e+00      0.000000e+00
+      12          0.000000e+00      0.000000e+00
+      13          0.000000e+00      0.000000e+00
+      14          0.000000e+00      0.000000e+00
+      15          0.000000e+00      0.000000e+00
+      16          0.000000e+00      0.000000e+00
+      17          0.000000e+00      0.000000e+00
+      18          0.000000e+00      0.000000e+00
+      19          0.000000e+00      0.000000e+00
+      20          0.000000e+00      0.000000e+00
+
+!To save errors on a file which can be read back
+
+!by madx
+
+!ESAVE, file="quads_error.dat";
+
+
+
+
+
+
+
+select, flag=twiss, clear;
+
+set,    format="10.4f";
+
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,keyword,l,angle,k1l;
+
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss_errors.tfs";
+
+enter Twiss module
+++++++ info: Zero value of SIGT replaced by 1.
+++++++ info: Zero value of SIGE replaced by 1/1000.
+  
+open line - error with deltap:   1.000000E-06
+end values:  -6.380221E-09  1.707722E-08  1.427266E-08 -1.013833E-07 -2.712953E-06  0.000000E+00
+++++++ info: Zero value of SIGT replaced by 1.
+++++++ info: Zero value of SIGE replaced by 1/1000.
+  
+open line - error with deltap:   0.000000E+00
+end values:   0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
+
+++++++ table: summ
+
+    length     orbit5       alfa    gammatr 
+  244.8420    -0.0000     0.0000     0.0000 
+
+        q1        dq1    betxmax      dxmax 
+    3.4294   -11.0207   250.6831     2.2338 
+
+     dxrms     xcomax     xcorms         q2 
+    0.5390     0.0000     0.0000     3.4300 
+
+       dq2    betymax      dymax      dyrms 
+  -15.4721   173.1572     0.6253     0.1583 
+
+    ycomax     ycorms     deltap    synch_1 
+    0.0000     0.0000     0.0000     0.6693 
+
+   synch_2    synch_3    synch_4    synch_5 
+    0.0407     0.0016     0.0000     0.0006 
+
+
+stop;
+
+  Number of warnings: 1
+1 in C and 0 in Fortran
+
+  ++++++++++++++++++++++++++++++++++++++++++++
+  + MAD-X 5.02.00 (64 bit) finished normally +
+  ++++++++++++++++++++++++++++++++++++++++++++

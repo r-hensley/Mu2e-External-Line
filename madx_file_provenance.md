@@ -99,11 +99,33 @@ distribution, not to the lattice geometry. Prebys has confirmed the notes as
 his documentation and authorized incorporation of relevant information into
 this repository.
 
+A curated copy is now preserved under
+[`G4beamline/eric_g4beamline_study/`](G4beamline/eric_g4beamline_study/README.md).
+It includes the original documentation, converter, G4Beamline scan decks,
+analysis macros, translated lattice fragments, small historical results, and
+SHA-256 provenance maps. Large particle inputs and two large result PDFs are
+documented but ignored by Git; their READMEs link to Prebys's server and give
+the expected sizes and hashes. The accompanying
+[`download_large_files.sh`](G4beamline/eric_g4beamline_study/data/download_large_files.sh)
+restores only those nine ignored dependencies: four selected export-archive
+members and five standalone ROOT inputs. It verifies the server archives and
+every installed file by SHA-256 and refuses to overwrite conflicting data.
+
+The recovered `MAD_Eliana` package belongs to the May-November 2016 `storage`
+production-target family, not the August 2018 or October 2024 lattice. Its
+`m4.def` is byte-identical to the corresponding
+[`2016_May-Nov_Storage`](MADX/m4_lattice_archive/2016_May-Nov_Storage/README.md)
+archive file, and its `values.dat` is byte-identical to that archive's
+`values_May_2016.dat`. The sequence and driver are related working variants,
+not exact duplicates. Later rerun/export timestamps do not redefine the
+lattice generation.
+
 ## Production-Lattice Chronology
 
-Historical source packages were reviewed to establish the lineage below. Most
-of those earlier and later packages are comparison material and are not
-currently included in this repository.
+Historical source packages were reviewed to establish the lineage below. The
+historical MAD-X archive and recovered Prebys study are now included as
+comparison material; they are not the repository's published August 2018
+reference snapshot.
 
 | Period | Production-target model | Relationship to the published reference |
 |---|---|---|

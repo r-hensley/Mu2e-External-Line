@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+
+
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Notes on Running G4beamline on the grid</title></head><body>
+<h1>Running g4beamline for the Mu2e extinction line on the grid</h1>
+<span style="font-style: italic;">(last updated October 15, 2015)</span><br>
+<br>
+I started these notes after trying to remember how I ran g4beamline on
+the grid last time.&nbsp; For general notes on g4beamline, see <a href="AAAREADME_g4beamline.html">this file</a>.<br>
+<br>
+<h2>Development Area</h2>
+I develop g4beamline files in the area<br>
+~GoogleDrive/mu2e/extinction/g4beamline_study/mu2e_new.g4bl<br>
+That directory has an excel file called 'Calculations.xlsx' with all the input calculations.<br>
+<br>
+<h2>Grid Computing<br>
+</h2>
+There's a lot of grid documentation <a href="http://mu2e.fnal.gov/atwork/computing/fermigrid.shtml">here</a>, but it's mostly pretty crappy and way to wordy.<br>
+<br>
+
+The grid programs are run on mu2egpvm01 or mu2egpvm02.&nbsp; You can connect with <br>
+&gt; ssh -XKA mu2egpvm01<br>
+I have that aliased to "mu2e" on my Mac in a .cshrc which is sometimes disabled by renaming it to "dontuse.cshrc".&nbsp; <br>
+<br>
+This node uses the bash script and the .shrc file will automatically
+set things up on that node.&nbsp; The special mu2e links are in the
+~/mu2e subdirectory.&nbsp; There's a link in that directory to <br>
+grid-&gt;/grid/data/mu2e/personal/prebys/<br>
+which is where the g4bl script is.&nbsp; The command to run it is (eg)<br>
+mu2eg4bl --in=mu2e.g4bl --g4bl-version=v2_16 --njobs=100 --events=1000000<br>
+This will generate a total of 100,000,000 events, which should be enough to evaluate extinction.<br>
+<br>
+Figure out how the job is doing with <br>
+&gt; jobsub_q<br>
+&gt; jobsub_q --user=`whoami`<br>
+&gt; jobsub_q --summary<br>
+<br>
+Output will be written to:<br>
+/mu2e/data/outstage/prebys/<br>
+which has been linked to <br>
+~/mu2e/outstage<br>
+<br>
+This will create $nJob separate directories, each with an output file.&nbsp;&nbsp; These can be added together with, eg<br>
+&gt; hadd mu2e_1_5.root 000*/g4beamline.root<br>
+<br>
+<br>
+<br>
+
+  
+
+</body></html>
