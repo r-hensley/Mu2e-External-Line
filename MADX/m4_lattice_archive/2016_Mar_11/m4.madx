@@ -1,0 +1,28 @@
+beam,    sequence=M4line, particle="proton", energy=8.93828;
+roton=1;
+ECMAG_srot =-0.00004901;!Feb 2016
+call, file="m4.def";
+call, file="m4.seq";
+call, file="quads_final.dat";
+!Steve, Feb 17 2016
+newstart: beta0, betx=11.99703,
+                 alfx= 1.83453,
+                 bety = 5.72125,
+                 alfy=-0.63488,
+                 dx=0.02863,dpx=0.00326,
+                 dy= -0.12108,
+                 dpy=-0.06971;
+use, sequence= M4line;
+select, flag=twiss, clear;
+set,    format="12.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,x,y,keyword,l,angle,k1l;
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss.tfs";
+
+!Steve, Feb 17 2016
+survey,file="survey.tfs",Z0=30446.887848,
+                         X0=30071.657446,
+                         Y0=222.112339,
+                         theta0=2.090510,
+                         phi0=0.054695;
+
+stop;

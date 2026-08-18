@@ -1,0 +1,481 @@
+!Original AC929A+B (3+3 m new type) temporarily replaced by 6 K04 (6*1.0414 m)                                                              
+!to get kickers in the ces0                                                                                                                 
+!                                                                                                                                           
+!CDA correctors (with coils+connections) are 1.5875 m long                                                                                  
+!therefore one should keep free at least (1.5875-1.2192)/2 = 0.18415 at                                                                     
+!each end. For this it would be good to shift PCOL by +0.1 or 0.2 m                                                                         
+!Same for VDPA where the free spaces must be (1.0668-0.762)/2 = 0.1524 m                                                                    
+!                                                                                                                                           
+!VDPA have been suppressed!                                                                                                                 
+!Some Trim type changed according to Jim mail (May 13 2015)                                                                                 . 
+!Add collimator after Q907 (Eric mail from May 15 2015)                                                                                     
+!Q925 from L=0.2286 to L=0.41402                                                                                                            
+!Q926 from L=0.2286 to L=0.32004                                                                                                            
+!Now Q925 and Q926 back to 0.2286                                                                                                           
+                                                                                                                                            
+                                                                                                                                           
+MSTART        : MARKER ;                                                                                                   
+!g-2                                                                                                                                        
+v901_angle=0.11341001;!g-2                                                                                                                  
+                                                                                                                                            
+                                                                                                                                            
+IC: instrument, L=0.15875;!6.25"                                                                                                            
+PWC:  instrument, L=0.15875;!6.25"                                                                                                          
+ecmag_tilt:=pi/2+0.01023631;!restore tilt
+ecmag_ANGLE=-.05720001;                                                                                                                     
+ECMAG_srot =-0.0000496625;
+rho_ECMAG:=l_ecmag*0.5/(sin(ecmag_angle*0.5));
+ECMAG_arc:= rho_ECMAG*ecmag_angle;
+ds_ECMAG:= ECMAG_arc*0.5 ;!half arc length                                                                                                                             
+ECMAG         : RBEND, L:= l_ecmag, ANGLE:=ecmag_angle, K1=  0.00000000, K2=  0.00000000, TILT:= ecmag_tilt ;
+value, l_ecmag;
+HT900_kick=0;                                                                                                                               
+HT900         : HKICKER, L:=  l_HT900, KICK:=HT900_kick;                                                                                  
+Q901          : QUADRUPOLE, L:=0.5*l_q901, K1:=kq901;
+IQ901         : MARKER ;                                                                                                   
+
+rho_V901:=l_v901*0.5/(sin(v901_angle*0.5));
+V901_arc:= rho_V901*v901_angle;
+ds_v901:= V901_arc*0.5 ; 
+V901          : RBEND, L:=l_v901, ANGLE:=v901_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;                              
+ht901_kick=0;                                                                                                                               
+HT901         : HKICKER, L:= l_HT901, KICK:=ht901_kick ;                                                                                 
+Q902          : QUADRUPOLE, L:= 0.5*l_q902, K1:=kq902;
+IQ902         : MARKER ;                                                                                                   
+Q903          : QUADRUPOLE, L:= 0.5*l_q903, K1:=kq903;
+IQ903         : MARKER ;                                                                                                   
+Q904          : QUADRUPOLE, L:= 0.5*l_q904, K1:=kq904;
+IQ904         : MARKER ;                                                                                                   
+Q905          : QUADRUPOLE, L:= 0.5*l_q905, K1:=kq905;
+IQ905         : MARKER ;                                                                                                   
+HT905_kick=0;                                                                                                                               
+HT905         : HKICKER, L:=l_HT905, KICK:=HT905_kick;                                                                                  
+Q906          : QUADRUPOLE, L:= 0.5*l_q906,  K1:=kq906;
+IQ906         : MARKER ;                                                                                                   
+MV906         : MARKER ;  
+rho_V906:=l_v906*0.5/(sin(v906_angle*0.5));
+V906_arc:= rho_V906*v906_angle;
+ds_v906:= V906_arc*0.5 ; 
+value,ds_v906 ,l_v906,v906_angle;
+V906          : RBEND, L:= l_v906, ANGLE:=v906_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;                              
+IQ907         : MARKER ;                                                                                                   
+HT906         : HKICKER, L:= l_HT906, KICK:=HT906_kick ;                                                                                           
+Q907          : QUADRUPOLE, L:= 0.5*l_q907, K1:=kq907;
+rho_V907:=l_v907*0.5/(sin(v907_angle*0.5));
+V907_arc:= rho_V907*v907_angle;
+ds_v907:= V907_arc*0.5 ; 
+V907          : RBEND, L:= l_v907, ANGLE:=v907_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;                              
+!!!!!!!!!!!!!                                                                                                                               
+MWTexas  : MONITOR, L= 0.23495; !9.25"                                                                                                      
+MWNumi   : MONITOR, L= 0.4064 ; !16"                                                                                                        
+CDRF_23A      : DRIFT  , L=  0.23850700 ;                                                                                                   
+!COL907A        : RCOLLIMATOR, L= 0.5334;
+!COL907B        : RCOLLIMATOR, L= 0.5334;
+COL907        : RCOLLIMATOR, L= 0.5334*2;
+COL907H        : RCOLLIMATOR, L= 0.5334;
+                                                                                                                                            
+Q908          : QUADRUPOLE, L:= 0.5*l_q908, K1:=kq908;
+IQ908         : MARKER ;                                                                                                   
+SWIC          : MONITOR, L= 0.4064 ;! it was 0.38100000 in Carol files, but 12" is 0.4064 m...                                              
+Q909          : QUADRUPOLE, L:= 0.5*l_q909, K1:=kq909;
+IQ909         : MARKER ;                                                                                                   
+VT909_kick=0;                                                                                                                               
+HT909_kick=0;                                                                                                                               
+VT909         : VKICKER, L:= l_VT909, KICK:=VT909_kick ;!it was declared as a hkicker (by mistake?) in all files!                        
+HT909         : HKICKER, L:= l_HT909, KICK:=HT909_kick ;                                                                                     
+Q910          : QUADRUPOLE, L:= 0.5*l_q910, K1:=kq910;                                                                                       
+IQ910         : MARKER ;                                                                                                   
+!                                                                                                                                           
+!from 2013                                                                                                                                  
+h_ratio=0.8051952275;                                                                                                                       
+h911_angle:=h910_angle;                                                                                                                     
+h912_angle:=h910_angle/h_ratio;                                                                                                             
+
+
+rho_H910:=l_h910*0.5/(sin(h910_angle*0.5));
+H910_arc:= rho_H910*h910_angle;
+ds_h910:= H910_arc*0.5 ;                                                                                                                                             
+H910          : RBEND, L:= l_h910, ANGLE:=h910_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;                              
+Q911          : QUADRUPOLE, L:= 0.5*l_q911, k1:=k11_18;                                                                                      
+IQ911         : MARKER ;
+rho_H911:=l_h911*0.5/(sin(h911_angle*0.5));
+H911_arc:= rho_H911*h911_angle;
+ds_h911:= H911_arc*0.5 ;                                                                                                      
+H911          : RBEND, L:= l_h911, ANGLE:=h911_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;                              
+VT911_kick=0;                                                                                                                               
+VT911         : VKICKER, L:= l_VT911, KICK:=VT911_kick ;
+Q912          : QUADRUPOLE, L:= 0.5*l_q912, k1:=k12_17;                                                                                      
+IQ912         : MARKER ;                                                                                                   
+rho_H912:=l_h912*0.5/(sin(h912_angle*0.5));
+H912_arc:= rho_H912*h912_angle;
+ds_h912:= H912_arc*0.5 ; 
+H912          : RBEND, L:= l_h912, ANGLE:=h912_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;                              
+Q913          : QUADRUPOLE, L:= 0.5*l_q913,  k1:=k13_16;                                                                                     
+IQ913         : MARKER ;                                                                                                   
+Q914          : QUADRUPOLE, L:= 0.5*l_q914,  k1:=k14_15;                                                                                     
+IQ914         : MARKER ;                                                                                                   
+MOM           : MARKER ;                                                                                                   
+MW914M        : MARKER ;                                                                                                   
+HT914_kick=0;                                                                                                                               
+HT914         : HKICKER, L:= l_HT914, KICK:=HT914_kick ;
+VT914_kick=0;                                                                                                                               
+VT914         : VKICKER, L:= l_VT914, KICK:=VT914_kick;                                                                                  
+Q915          : QUADRUPOLE, L:= 0.5*l_q915,  k1:=k14_15;                                                                                     
+IQ915         : MARKER ;                                                                                                   
+Q916          : QUADRUPOLE, L:= 0.5*l_q916,  k1:=k13_16;                                                                                     
+IQ916         : MARKER ;                                                                                                   
+rho_H916:=l_h916*0.5/(sin(h912_angle*0.5));
+H916_arc:= rho_H916*h912_angle;
+ds_h916:= H916_arc*0.5 ; 
+H916          : RBEND, L:= l_h916, ANGLE:=h912_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;                              
+Q917          : QUADRUPOLE, L:= 0.5*l_q917,  k1:=k12_17;                                                                                     
+IQ917         : MARKER ;                                                                                                   
+rho_H917:=l_h917*0.5/(sin(h911_angle*0.5));
+H917_arc:= rho_H917*h911_angle;
+ds_h917:= H917_arc*0.5 ; 
+H917          : RBEND, L:= l_h917, ANGLE:=h911_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;                              
+Q918          : QUADRUPOLE, L:= 0.5*l_q918,  k1:=k11_18;                                                                                     
+IQ918         : MARKER ;                                                                                                   
+rho_H918:=l_h918*0.5/(sin(h910_angle*0.5));
+H918_arc:= rho_H918*h910_angle;
+ds_h918:= H918_arc*0.5 ; 
+H918          : RBEND, L:= l_h918, ANGLE:=h910_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;                              
+!                                                                                                                                           
+k_m1 :=-k_p1;                                                                                                                               
+Q919          : QUADRUPOLE, L:= 0.5*l_q919, K1:=k_p1;                                                                                        
+Q920          : QUADRUPOLE, L:= 0.5*l_q920, K1:=-k_p1;                                                                                       
+Q921          : QUADRUPOLE, L:= 0.5*l_q921, K1:=k_p1;                                                                                        
+Q922          : QUADRUPOLE, L:= 0.5*l_q922, K1:=-k_p1;                                                                                       
+Q923          : QUADRUPOLE, L:= 0.5*l_q923, K1:=k_p1;                                                                                        
+Q924          : QUADRUPOLE, L:= 0.5*l_q924, K1:=k_q924;                                                                                      
+Q925          : QUADRUPOLE, L:= 0.5*l_q925, K1:=k_q925;
+Q926          : QUADRUPOLE, L:= 0.5*l_q926, K1:=k_q926;
+Q927          : QUADRUPOLE, L:= 0.5*l_q927, K1:=k_q927;                                                                                      
+Q928          : QUADRUPOLE, L:= 0.5*l_q928, K1:=k_q928;                                                                                      
+Q929          : QUADRUPOLE, L:= 0.5*l_q929, K1:=k_q929;                                                                                      
+HT919_kick=0;                                                                                                                               
+VT919_kick=0;                                                                                                                               
+!HT919         : HKICKER, L=  0.76200000, KICK:=HT919_kick ;                                                                                
+HT919         : HKICKER, L:= l_HT919, KICK:=HT919_kick ;                                                                                 
+VT919         : VKICKER, L:= l_VT919, KICK:=VT919_kick ;                                                                                 
+!COL923A        : RCOLLIMATOR, L= 0.5334;
+!COL923B        : RCOLLIMATOR, L= 0.5334;
+COL923        : RCOLLIMATOR, L= 0.5334*2;
+COL923H        : RCOLLIMATOR, L= 0.5334;
+!COL924A        : RCOLLIMATOR, L= 0.5334;
+!COL924B        : RCOLLIMATOR, L= 0.5334;
+COL924        : RCOLLIMATOR, L= 0.5334*2;
+COL924H        : RCOLLIMATOR, L= 0.5334;
+ECOL           : RCOLLIMATOR, L=  1.0668;!The E_COL is 42 inches long                                                                       
+!COL931A       : RCOLLIMATOR, L= 0.5334;
+!COL931B       : RCOLLIMATOR, L= 0.5334;
+COL931       : RCOLLIMATOR, L= 0.5334*2;
+COL931H       : RCOLLIMATOR, L= 0.5334;
+VT921_kick=0 ;                                                                                                                              
+VT927_kick=0 ;                                                                                                                              
+HT927a_kick=0 ;                                                                                                                             
+VT927_kick=0 ;                                                                                                                              
+VT922_kick=0 ;                                                                                                                              
+HT922_kick=0 ;                                                                                                                              
+HT928_kick=0;                                                                                                                               
+VT923_kick=0.;                                                                                                                              
+VT921        : VKICKER, L:= l_VT921, KICK:=VT921_kick ;                                                                                  
+VT923        : VKICKER, L:= l_VT923, KICK:=VT923_kick ;                                                                                  
+HT927a  : HKICKER, L:=  l_HT927a, KICK:=HT927a_kick ;                                                                                      
+HT927b  : HKICKER, L:=  l_HT927b, KICK:=HT927b_kick ;                                                                                      
+VT927         : VKICKER, L:= l_VT927, KICK:=VT927_kick ;                                                                                  
+VT922         : VKICKER, L:=l_VT922, KICK:=VT922_kick ;                                                                                 
+HT922         : HKICKER, L:= l_HT922, KICK:=HT922_kick ;                                                                                 
+!HT928         : HKICKER, L=  0.30480000, KICK:=HT928_kick ;                                                                                
+HT928         : HKICKER, L:=  l_HT928, KICK:=HT928_kick ;!larger aperture                                                                 
+!AC929A        : HKICKER, L=  3.00000000, KICK=0 ;                                                                                          
+!AC929B        : HKICKER, L=  3.00000000, KICK=0 ;                                                                                          
+!avoid using them as correctors                                                                                                             
+!AC929A        : RBEND, L=  3.00000000, angle=0 ;                                                                                           
+!AC929B        : RBEND, L=  3.00000000, angle=0 ;                                                                                           
+!Replace them by existing kickers                                                                                                           
+!AC929          : K104;                                                                                                                     
+!AC929: HKICKER, L=1.0414, kick=0.;  
+!AC929: HKICKER, L=3.1242, kick=0.;                                                                                                      
+K104H: HKICKER, L=0.5207, kick=0.; 
+!K104: HKICKER, L=  0.5207*6, kick=0.;                                                                                                       
+!K104H : RBEND, L=0.5207, angle=0 ;
+AC929 :   HKICKER, L= 6, kick=0.;  !actual AC magnet                                                                                                        
+MP_AC929 : marker;                                                                                                                                             
+HT930_kick=0;                                                                                                                               
+VT930_kick=0;                                                                                                                               
+!HT930         : HKICKER, L=  0.30480000, KICK:=HT930_kick ;                                                                                
+HT930         : HKICKER, L:= l_HT930, KICK:=HT930_kick ;                                                                                 
+VT930         : VKICKER, L:= l_VT930, KICK:=VT930_kick ;                                                                                 
+Q930          : QUADRUPOLE, L:= 0.5*l_q930, K1:=k_q930;
+IQ931 : marker; 
+Q931          : QUADRUPOLE, L:= 0.5*l_q931, K1:=k_q931;
+Q932          : QUADRUPOLE, L:= 0.5*l_q932, k1:=k_q932;
+IQ932 : marker;  
+Q933          : QUADRUPOLE, L:= 0.5*l_q933, k1:=k_q933;
+VT933_kick=0;                                                                                                                               
+VT933         : VKICKER, L:=  l_VT933, KICK:=VT930_kick ;  
+                                                                               
+hda1_angle=0;
+!hda1_angle=-0.0873; !for switching into the diag line                                                                                                                                            
+HDA1  : rbend, L:= l_hda1, angle:=hda1_angle;                                                                                                      
+                                                                                                                                            
+Q934          : QUADRUPOLE, L:= 0.5*l_q934, K1:=k_q934;                                                                                      
+Q935          : QUADRUPOLE, L:= 0.5*l_q935, K1:=k_q935;                                                                                      
+                                                                                                                                            
+Q936          : QUADRUPOLE, L:= 0.5*l_q936, K1:=k_q936;                                                                                      
+rho_V936:=l_v936*0.5/(sin(v936_angle*0.5));
+V936_arc:= rho_V936*v936_angle;
+ds_v936:= V936_arc*0.5 ;                                                                                                                                             
+V936          : RBEND, L:= l_v936, ANGLE:=v936_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;                              
+VT936_kick=0;                                                                                                                               
+HT936A_kick=0;                                                                                                                              
+VT936         : VKICKER, L:=  l_VT936, KICK:=VT936_kick ;                                                                                 
+HT936A        : HKICKER, L:=  l_HT936A, KICK:=HT936A_kick ;                                                                                
+BEAMSTOP1     : RBEND, L=  1.88087000, ANGLE=0.00000000, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;                              
+BEAMSTOP2     : RBEND, L=  1.88087000, ANGLE=0.00000000, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;                              
+shieldw  : drift, l=3.6576+1.0097037-0.1125007;!=4.554803                                                                                   
+HT936B_kick=0;                                                                                                                              
+HT936B        : HKICKER, L:= l_HT936B, KICK:=HT936B_kick ;                                                                               
+IQ937         : MARKER ;                                                                                                   
+IQ938         : MARKER ;                                                                                                   
+IQ939         : MARKER ;                                                                                                   
+IQ940         : MARKER ;                                                                                                   
+                                                                                                                                            
+IQ941         : MARKER ;                                                                                                   
+IQ942         : MARKER ;                                                                                                   
+VT942_kick=0;                                                                                                                               
+VT942         : VKICKER, L:= l_VT942, KICK:=VT942_kick ;                                                                                 
+v943_angle:=V936_angle;
+rho_V943:=l_v943*0.5/(sin(v943_angle*0.5));
+V943_arc:= rho_V943*v943_angle;
+ds_v943:= V943_arc*0.5 ;                                                                                                                       
+V943          : RBEND, L:= l_v943, ANGLE:=v943_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;                              
+HT943_kick=0;                                                                                                                               
+HT943         : HKICKER, L:= l_HT943, KICK:=HT943_kick ; 
+HT943AB_kick=0;  
+HT943A_kick=0;                                                                                                                               
+HT943A         : HKICKER, L:= l_HT943A, KICK:=HT943AB_kick ;                                                                               
+HT943B_kick=0;                                                                                                                               
+HT943B         : HKICKER, L:= l_HT943B, KICK:=HT943AB_kick ; 
+qmid: marker;                                                                                                                               
+HT945A_kick=0 ;                                                                                                                             
+HT945A        : HKICKER, L:= l_HT945A, KICK:=HT945A_kick ;                                                                                
+MID          : marker ;                                                                                                                     
+FCOL          : RCOLLIMATOR, L=  0.50000000;                                                                                                
+HT945B_kick=0;                                                                                                                              
+HT945B        : HKICKER, L:= l_HT945B, KICK:=HT945B_kick ;                                                                                
+                                                                                                                                            
+Q937          : QUADRUPOLE, L:= 0.5*l_q937, K1:=kff1;
+Q938          : QUADRUPOLE, L:= 0.5*l_q938, K1:=kff2;
+
+VT938AB_kick=0 ;    
+VT938A         : VKICKER, L:= l_VT938A, KICK:=VT938AB_kick;
+VT938B         : VKICKER, L:= l_VT938B, KICK:=VT938AB_kick;
+
+
+Q939          : QUADRUPOLE, L:= 0.5*l_q939, K1:=kff3;
+Q940          : QUADRUPOLE, L:= 0.5*l_q940, K1:=kq940;
+M0            : MARKER ;                                                                                                   
+HT940_kick=0 ;                                                                                                                              
+VT940_kick=0 ;                                                                                                                              
+HT940         : HKICKER, L:= l_HT940, KICK:=HT940_kick ;                                                                                 
+VT940         : VKICKER, L:= l_VT940, KICK:=VT940_kick; 
+VT940AB_kick=0 ;    
+VT940A_kick=0 ;                                                                                                                              
+VT940A         : VKICKER, L:= l_VT940A, KICK:=VT940AB_kick;
+VT940B_kick=0 ;                                                                                                                              
+VT940B         : VKICKER, L:= l_VT940B, KICK:=VT940AB_kick;
+Q941          : QUADRUPOLE, L:= 0.5*l_q941, K1:=kff3;
+Q942          : QUADRUPOLE, L:= 0.5*l_q942, K1:=kff2;
+HT942_kick=0 ;                                                                                                                              
+HT942         : HKICKER, L:= l_HT942, KICK:=HT942_kick ;                                                                                 
+VT951         : VKICKER, L:= l_VT951, KICK:=VT951_kick;                                                                                  
+VT941         : VKICKER, L:= l_VT941, KICK:=VT941_kick;                                                                                  
+Q943          : QUADRUPOLE, L:= 0.5*l_q943, K1:=kff1;
+TIEIN         : MARKER ;                                                                                                   
+HT952_kick=0 ;                                                                                                                              
+HT952         : HKICKER, L:= l_HT952, KICK:=HT952_kick ;                                                                                 
+!PCOL          : RCOLLIMATOR, L=  1.00000000;                                                                                               
+PCOL          : RCOLLIMATOR, L= 1.0668;                                                                                                     
+B_SWIC        : MONITOR, L=  0.15875000 ;  
+
+
+!fake h-bends
+H936a_angle=0;
+H936a  : RBEND, L:= l_H936a, angle:=H936a_angle ; 
+
+H936b_angle=0;
+H936b  : RBEND, L:= l_H936b, angle:=H936b_angle ; 
+
+HT938 : hkicker, L:=l_HT938, kick:=HT938_kick;!placeholder
+
+
+
+MU2ESOL      : matrix, l=8.0000,!999999946938,!7.9998d0-2.*1.297971e-01,                                                                    
+/* solenoid as drift                                                                                                                        
+ rm11=1., rm12= 8.0000 , rm13=  0., rm14=  0., rm15= -0., rm16=  0.,                                                                        
+ rm21= -0., rm22=  1.,rm23=  0., rm24=  0., rm25= -0., rm26=  0.,                                                                           
+ rm31= -0, rm32=  0.,rm33=  1., rm34= 8.0000, rm35= -0., rm36=  0.,                                                                         
+ rm41= -0., rm42=  0.,rm43=  0., rm44=  1., rm45= -0., rm46=  0.,                                                                           
+ rm51= -0., rm52=  0.,rm55=  0., rm54=  0., rm55= 1., rm56=  0.,                                                                            
+ rm61= -0., rm62=  0.,rm66=  0., rm64=  0., rm65= -0., rm66=  1.;                                                                           
+*/                                                                                                                                          
+!0.5 sigma                                                                                                                                  
+!/*                                                                                                                                         
+  rm11=  0.981826E+00, rm12=  0.786531E+01, rm13=  0.110716E+00, rm14=  0.998223E+00, rm15= -0.575350E-02, rm16=  0.647539E-02,             
+  rm21= -0.173467E-01, rm22=  0.864188E+00, rm23=  0.487384E-01, rm24=  0.565766E+00, rm25= -0.891116E-02, rm26=  0.157278E-02,             
+  rm31= -0.168799E+00, rm32= -0.126173E+01, rm33=  0.972283E+00, rm34=  0.780676E+01, rm35= -0.111716E+00, rm36= -0.357683E-01,             
+  rm41= -0.652024E-01, rm42= -0.638866E+00, rm43= -0.190356E-01, rm44=  0.838986E+00, rm45= -0.603892E-01, rm46= -0.517476E-01,             
+  rm51= -0.304131E-03, rm52= -0.146610E-01, rm53=  0.395790E-01, rm54=  0.390866E+00, rm55=  0.100136E+01, rm56=  0.257572E-02,             
+  rm61=  0.281265E-14, rm62= -0.231578E-14, rm63=  0.112420E-13, rm64=  0.163526E-14, rm65= -0.109890E-13, rm66=  0.100000E+01;             
+!*/                                                                                                                                         
+
+TARGET: marker ;                                                                                                                                            
+M4END: marker;                                                                                                                              
+HT927  : HKICKER, L:= l_HT927, KICK:=HT927a_kick ;                                                                                       
+GM2_END      : marker;                                                                                                                      
+MCOL907: marker;                                                                                                                            
+IQ909a: marker;                                                                                                                             
+IQ910a: marker;                                                                                                                             
+H918_old     : marker;                                                                                                                      
+IQ919        : marker;                                                                                                                      
+IQ920        : marker;                                                                                                                      
+IQ921        : marker;                                                                                                                      
+IQ922        : marker;                                                                                                                      
+IQ923        : marker;                                                                                                                      
+IQ924        : marker;                                                                                                                      
+MCOL924: marker;                                                                                                                            
+IQ925        : marker;                                                                                                                      
+IQ926        : marker;                                                                                                                      
+MM1          : marker;                                                                                                                      
+IQ927        : marker;                                                                                                                      
+IQ928        : marker;                                                                                                                      
+IQ929        : marker;                                                                                                                      
+MP           : marker;                                                                                                                      
+IQ930        : marker;                                                                                                                      
+MCOL931      : marker;                                                                                                                      
+IQ933        : marker;                                                                                                                      
+IQ934        : marker;                                                                                                                      
+IQ935        : marker;                                                                                                                      
+IQ936        : marker;                                                                                                                      
+V936_in: marker;                                                                                                                            
+IQ943          : marker;                                                                                                                    
+TIEIN2   : marker;                                                                                                                          
+                                                                                                                                            
+!diagnostic line definitions                                                                                                                
+QDA01         : QUADRUPOLE, L:=  0.5*l_qda01, K1=0.04365608 ;                                                                                 
+QDA02         : QUADRUPOLE, L:=  0.5*l_qda02, K1=-.05675290 ;!  1.52400000,   
+IQDA01 : marker;
+IQDA02 : marker;  
+                                                                         
+absorber  : drift, l=3.3656206;                                                                                                             
+                                                                                                                                            
+!fake vertical corrector for using V901, V907906 and V907 as correctors                                                                        
+                                                                                                                                            
+V901K: vkicker, l=0.001, kick:=V901K_kick;                                                                                                  
+V906K: vkicker, l=0.001, kick:=V906K_kick;                                                                                                  
+V907K: vkicker, l=0.001, kick:=V907K_kick;                                                                                                  
+V936K: vkicker, l=0.001, kick:=V936K_kick;                                                                                                  
+!vfake: vkicker, l=0, kick=0;                                                                                                               
+K104: HKICKER, L=1.0414, kick=0.;                                                                                                           
+K104H: HKICKER, L= 0.5207, kick=0.;                                                                                                          
+
+absorber  : drift, l=3.3656206;                                                                                                             
+ABSDRIFT: drift, l=0.76831; !extra drift to get correct steel entrance
+                             !with the existing absorber which is shorter
+absorber  : drift, l=1.829;!use this existing element for drawing
+                            !The steel is actually 1.524 m, 
+                            !the front concrete block is 0.6096 m
+                            !the back concrete block is 0.9144 m
+Q901U :  marker ;
+Q901D :  marker ;
+Q902U :  marker ;
+Q902D :  marker ;
+Q903U :  marker ;
+Q903D :  marker ;
+Q904U :  marker ;
+Q904D :  marker ;
+Q905U :  marker ;
+Q905D :  marker ;
+Q906U :  marker ;
+Q906D :  marker ;
+Q907U :  marker ;
+Q907D :  marker ;
+Q908U :  marker ;
+Q908D :  marker ;
+Q909U :  marker ;
+Q909D :  marker ;
+Q910U :  marker ;
+Q910D :  marker ;
+Q911U :  marker ;
+Q911D :  marker ;
+Q912U :  marker ;
+Q912D :  marker ;
+Q913U :  marker ;
+Q913D :  marker ;
+Q914U :  marker ;
+Q914D :  marker ;
+Q915U :  marker ;
+Q915D :  marker ;
+Q916U :  marker ;
+Q916D :  marker ;
+Q917U :  marker ;
+Q917D :  marker ;
+Q918U :  marker ;
+Q918D :  marker ;
+Q919U :  marker ;
+Q919D :  marker ;
+Q920U :  marker ;
+Q920D :  marker ;
+Q921U :  marker ;
+Q921D :  marker ;
+Q922U :  marker ;
+Q922D :  marker ;
+Q923U :  marker ;
+Q923D :  marker ;
+Q924U :  marker ;
+Q924D :  marker ;
+Q925U :  marker ;
+Q925D :  marker ;
+Q926U :  marker ;
+Q926D :  marker ;
+Q927U :  marker ;
+Q927D :  marker ;
+Q928U :  marker ;
+Q928D :  marker ;
+Q929U :  marker ;
+Q929D :  marker ;
+Q930U :  marker ;
+Q930D :  marker ;
+Q931U :  marker ;
+Q931D :  marker ;
+Q932U :  marker ;
+Q932D :  marker ;
+Q933U :  marker ;
+Q933D :  marker ;
+Q934U :  marker ;
+Q934D :  marker ;
+Q935U :  marker ;
+Q935D :  marker ;
+Q936U :  marker ;
+Q936D :  marker ;
+Q937U :  marker ;
+Q937D :  marker ;
+Q938U :  marker ;
+Q938D :  marker ;
+Q939U :  marker ;
+Q939D :  marker ;
+Q940U :  marker ;
+Q940D :  marker ;
+Q941U :  marker ;
+Q941D :  marker ;
+Q942U :  marker ;
+Q942D :  marker ;
+Q943U :  marker ;
+Q943D :  marker ;
+
+QDA01U:  marker ;
+QDA01D:  marker ;
+QDA02U:  marker ;
+QDA02D:  marker ;

@@ -1,0 +1,54 @@
+beam,    sequence=M4tail, particle="proton", energy=8.93828;!pc=8.8889,
+
+!emittance values from Dean: 2e-6 95% un-normalized 
+!from  Steve dp/p=5.e-3
+ener=8.93828;!energy;
+gamma=ener/0.93828;
+beta=sqrt(1-1/gamma^2);
+ex_un95=2E-6;
+ey_un95=2E-6;
+ex_un=ex_un95/6.25d0;
+ey_un=ey_un95/6.25d0;
+dpp=5.e-3/6.25d0;
+value, beta, gamma;
+
+call, file="m4tail.seq";
+
+newstart: beta0, betx=12.22350,
+                 alfx=1.88239, 
+                 bety=5.61627, 
+                 alfy=-0.61825,
+                 dx=0.02765,dpx=0.00346,
+                 dy=-0.12410,
+                 dpy=-0.07144;
+
+!starting M4 Twiss propagated to Q937u 
+q937u_start: beta0, betx=62.78085453,alfx=-5.48823553,bety=64.13512551, alfy=-5.62800415, dx=-0.07931965, dpx=-0.00779099,
+                    dy= 0.04069148, dpy=0.02382236; 
+use, sequence= M4tail;
+select, flag=twiss, clear;
+set,    format="14.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,x,px,y,keyword,l,angle,k1l;
+twiss,beta0=q937u_start,sequence=M4tail, file="M4tail_twiss.tfs";
+
+
+set,    format="16.12f";
+
+!from Igor
+survey,file="survey_m4tail.tfs",X0=13.1999277293465-0.011160884,
+                                Y0=1.11848196673277+0.011067394,
+                                Z0=32.0834585952801+0.031626149,theta0=PI+0.231355+0.0063746535,phi0=-0.0236142-0.00032143300;
+
+
+!MADX coords at M4 start:
+!                        Z0=30446.93287900,
+!                        X0=30071.57952300,
+!                         Y0=222.11764700,
+!                         theta0=2.09050700,
+!                         phi0=0.05579200;
+!
+!starting MADX survey coordinates at Q937u with above coords at M4 start
+survey,file="M4tail_survey.tfs",X0=30172.904191544920,y0=223.183833065879,z0=30278.708685888392,
+                               theta0=2.801318999928,phi0=-0.023689633004;
+
+stop;

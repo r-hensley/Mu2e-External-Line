@@ -1,0 +1,102 @@
+!FF à la Carol
+!Using 43 quads, 32 ps
+!Quad types changed according to Jim e-mail (Feb 23, 2015)
+!Trims changed according to Jim mail ( (May 13 2015)
+!Add collimator after Q907 (Eric mail from May 15 2015)
+!Q924 has its own power supply
+
+!exn for madx is the 2 sigma normalized emittance, while 30e-6
+!is the 95% normalized emittance ie 2.5 sigma
+beam,    sequence=M4line, particle="proton", energy=8.93828,!pc=8.8889,
+                exn= 30E-6*4.0/6.25, eyn= 30E-6*4.0/6.25,
+                sige=0.01/2., sigt=0;!sige is 1 sigma de/e 
+ener=8.93828;!energy;
+gamma=ener/0.93828;
+beta=sqrt(1-1/gamma^2);
+exn95=30E-6;
+eyn95=30E-6;
+dee=0.01/2;
+value, beta, gamma;
+  theEX     = exn95/(beta*gamma*6.25);
+  theEY     = eyn95/(beta*gamma*6.25);
+  theSIGT   =  0;
+  theSIGPT  =  dee/beta^2;
+
+
+call, file="m4.def";
+call, file="m4_moved_col923.seq";
+call, file="m4_quads.dat";!Q924 has its own power supply
+
+!my best values with V907 free and V901 and V906 as for g-2 
+!with +18 micron diff between y_908 exit and y_v937 entrance
+v907_angle =     0.06640971 ;
+v936_angle = 0.023767389 ;!to get phi_TIEIN=-0.04752761 (Feb 18)
+
+
+!With new ECMAG (Carol mails from Jan 5, 2015 and Feb 10, 2015)
+newstart: beta0, betx=1.341699222E+01, 
+                 alfx= 1.766788162E+00,
+                 bety = 4.620160212E+00,
+                 alfy=-7.241653273E-01,
+                 dx=-0.020,dpx=0.008,
+                 dy= -1.262518174E-01,
+                 dpy=-7.287942972E-02;
+use, sequence= M4line;
+select, flag=twiss, clear;
+set,    format="12.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,keyword,l,angle,k1l;
+!select,  flag=twiss, column=name,keyword,s,l;
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss.tfs";
+!stop;
+
+!starting values from Carol (Jan 2015)
+set,    format="14.8f";
+survey,file="survey.tfs",Z0=30446.933603-0.01867511,  X0=30071.631905-0.0107849645, 
+Y0=222.005097+0.1110466, theta0=2.094511-0.003767,phi0=0.056213;
+
+set,    format="12.8f";
+ASSIGN,echo="quads.dat";
+value, kq901;
+value, kq902;
+value, kq903;
+value, kq904;
+value, kq905;
+value, kq906;
+value, kq907;
+value, kq908;
+value, kq909;
+value, kq910;
+
+value, k11_18;
+value, k12_17;
+value, k13_16;
+value, k14_15;
+
+value, k_p1;
+value, k_q924;
+value, k_q925;
+value, k_q926;
+value, k_q927;
+value, k_q928;
+value, k_q929;
+
+value, k_q930;
+value, k_q931;
+value, k_q932;
+value, k_q933;
+value, k_q934;
+value, k_q935;
+value, k_q936;
+
+value, kff1;
+value, kff2;
+value, kff3;
+value, kq940;
+
+ASSIGN, echo= terminal;
+!stop;
+
+SELECT, FLAG=twiss, CLEAR;
+twiss,beta0=newstart;
+PLOT,interpolate=true, colour=100, table=twiss,HAXIS=S, VAXIS1=betx,bety,VAXIS2=dx,dy, HMIN=0,HMAX = 250;
+stop;

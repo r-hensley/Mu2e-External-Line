@@ -1,0 +1,25 @@
+MACE CSV TO MAD-X RECONSTRUCTION COMPARISON
+Generated: 2026-08-15
+CSV: mu2e-dabs-v2-functions.csv
+TFS: twiss_mace_transport_reconstructed.tfs
+
+CSV sample rows: 693
+MAD-X TFS rows: 1387
+Matched named CSV samples: 693
+Missing named CSV samples: 0
+
+Maximum absolute differences at matched sample markers:
+CSV column              TFS column    maximum difference       marker
+S[m]                    S               0.000000000000e+0    W_FIRST_BEG
+BX[m]                   BETX            0.000000000000e+0    W_FIRST_BEG
+AX[1]                   ALFX           1.100009840160e-14    O_DAC929F_MID
+BY[m]                   BETY            0.000000000000e+0    W_FIRST_BEG
+AY[1]                   ALFY           9.999813477268e-15    Q_DQ912_END
+DX[m]                   DX             1.000068083901e-14    O_DMW932_END
+DDX[1]                  DPX             0.000000000000e+0    W_FIRST_BEG
+DY[m]                   DY             1.000068083901e-15    O_DQ920_MID
+DDY[1]                  DPY            3.000021292585e-17    Q_DQ931_END
+MUX[2*pi*rad]           MUX             0.000000000000e+0    W_FIRST_BEG
+MUY[2*pi*rad]           MUY             0.000000000000e+0    W_FIRST_BEG
+
+All values match at the CSV's six-decimal precision: true

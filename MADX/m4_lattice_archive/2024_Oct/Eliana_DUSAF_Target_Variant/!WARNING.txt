@@ -1,0 +1,15 @@
+PROVENANCE WARNING
+
+The sequence in this directory was uniquely received with Eliana's files. It
+uses the same October 2024 magnet definitions, settings, and placements as the
+for_Igor sequence through V943, but changes the terminal target-marker
+bookkeeping for a DUSAF study.
+
+Several downstream placements reference an undefined variable named
+"tien_shift" while the nearby commented spelling is "tiein_shift". This is
+almost certainly a typo. MAD-X 5.08.00 treated the undefined name as zero in a
+temporary reproduction, so those placements did not receive the apparent
+intended shift. The received sequence is preserved unchanged; do not repair it
+in place.
+
+This is a study variant, not evidence of an approved or operational lattice.

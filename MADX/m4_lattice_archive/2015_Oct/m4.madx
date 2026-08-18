@@ -1,0 +1,43 @@
+beam,    sequence=M4line, particle="proton", energy=8.93828,!pc=8.8889,
+                exn= 19E-6*4.0/6.25, eyn= 19E-6*4.0/6.25,
+                sige=0.01/2., sigt=0;!sige is 1 sigma de/e 
+ener=8.93828;!energy;
+gamma=ener/0.93828;
+beta=sqrt(1-1/gamma^2);
+exn95=19E-6;
+eyn95=19E-6;
+dee=0.01/2;
+value, beta, gamma;
+
+roton=1;
+!starting values based on Feb 2015
+ECMAG_srot =-0.000049;
+
+call, file="m4.def";
+call, file="m4_tempo.seq";
+call, file="m4_quads.dat";
+
+
+v907_angle =     0.06640971 ;
+v936_angle = 0.023767389 ;
+
+newstart: beta0, betx=1.341699222E+01, 
+                 alfx= 1.766788162E+00,
+                 bety = 4.620160212E+00,
+                 alfy=-7.241653273E-01,
+                 dx=-0.020,dpx=0.008,
+                 dy= -1.262518174E-01,
+                 dpy=-7.287942972E-02;
+
+use, sequence= M4line;
+select, flag=twiss, clear;
+set,    format="12.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,keyword,l,angle,k1l;
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss.tfs";
+
+
+set,    format="14.8f";
+survey,file="survey.tfs",Z0=30446.933603-0.01867511,  X0=30071.631905-0.0107849645, 
+Y0=222.005097+0.1110466, theta0=2.094511-0.003767,phi0=0.056213;
+
+stop;

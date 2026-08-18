@@ -1,0 +1,21 @@
+! Local first-order reconstruction generated 2026-08-15.
+! This is not recovered historical source.  See !NOTE.md.
+beam, particle=proton, energy=8.93828;
+
+call, file="mace_transport_maps.def";
+call, file="mace_transport_reconstructed.seq";
+
+csv_start: beta0,
+  betx=1.1885908000000001E+1, alfx=-1.6017999999999999E+0,
+  bety=5.9413000000000000E+0, alfy=8.6219999999999997E-1,
+  dx=9.0399999999999994E-2, dpx=5.4999999999999997E-3,
+  dy=0.0000000000000000E+0, dpy=0.0000000000000000E+0;
+
+use, sequence=MACE_DABS;
+set, format="20.12g";
+select, flag=twiss, clear;
+select, flag=twiss,
+  column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,keyword,l;
+twiss, beta0=csv_start, sequence=MACE_DABS,
+  file="twiss_mace_transport_reconstructed.tfs";
+stop;

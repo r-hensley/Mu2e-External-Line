@@ -1,0 +1,37 @@
+!
+!Fit to new survey+Twiss from Steve (March 21, 2016)
+beam,    sequence=M4line, particle="proton", energy=8.93828;
+roton=1;
+ECMAG_srot =-0.00004982;!March 21 2016 
+call, file="m4.def";
+!call, file="extra.def";
+call, file="line_shifted.seq";
+!call, file="m4_apertures.dat";
+
+call, file="quads_all.dat";
+
+!Steve March 21
+newstart: beta0, betx=12.22350,
+                 alfx=1.88239, 
+                 bety=5.61627, 
+                 alfy=-0.61825,
+                 dx=0.02765,dpx=0.00346,
+                 dy=-0.12410,
+                 dpy=-0.07144;
+
+use, sequence= M4line;
+select, flag=twiss, clear;
+set,    format="12.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,x,y,keyword,l,angle,k1l;
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss_new.tfs";
+twiss,chrom,beta0=newstart,sequence=M4line,file="twissp.tfs",deltap=0.005;
+twiss,chrom,beta0=newstart,sequence=M4line,file="twissm.tfs",deltap=-0.005;
+
+set,    format="14.8f";
+!Steve, March 21 2016
+survey,file="survey_new.tfs",Z0=30446.932608,
+                         X0=30071.579367,
+                         Y0=222.115867,
+                         theta0=2.090464,
+                         phi0=0.056064;
+stop;

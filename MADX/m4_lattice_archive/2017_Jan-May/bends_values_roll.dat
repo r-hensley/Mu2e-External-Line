@@ -1,0 +1,11 @@
+!Jan 2017 after rolling again ECMAG
+new_shift =     0.05023959 ;
+xshift =    -0.08691369 ;
+tiein_shift =    -0.03895743 ;
+ecmag_srot =    -0.00004966 ;
+ecmag_angle =    -0.05720001 ;
+v901_angle =     0.11341001 ;
+v906_angle =    -0.06713342 ;
+v907_angle =     0.06671241 ;
+h910_angle =    -0.10965087 ;
+v936_angle =     0.02376400 ;

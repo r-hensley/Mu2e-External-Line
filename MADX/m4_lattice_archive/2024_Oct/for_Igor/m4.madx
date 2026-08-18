@@ -1,0 +1,47 @@
+beam,    sequence=M4line, particle="proton", energy=8.93828;!pc=8.8889,
+
+!emittance values from Dean: 2e-6 95% un-normalized 
+!from  Steve dp/p=5.e-3
+ener=8.93828;!energy;
+gamma=ener/0.93828;
+beta=sqrt(1-1/gamma^2);
+ex_un95=2E-6;
+ey_un95=2E-6;
+ex_un=ex_un95/6.25d0;
+ey_un=ey_un95/6.25d0;
+dpp=5.e-3/6.25d0;
+value, beta, gamma;
+
+call, file="october_2024_def+seq.seq";!contains the effective lengths!!!
+
+newstart: beta0, betx=12.22350,
+                 alfx=1.88239, 
+                 bety=5.61627, 
+                 alfy=-0.61825,
+                 dx=0.02765,dpx=0.00346,
+                 dy=-0.12410,
+                 dpy=-0.07144;
+
+value, ECMAG_srot;
+
+use, sequence= M4line;
+select, flag=twiss, clear;
+set,    format="14.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,x,px,y,keyword,l,angle,k1l;
+twiss,beta0=newstart,sequence=M4line,file="twiss_test.tfs";
+
+
+
+
+set,    format="16.12f";
+!Steve october 2016
+survey,file="survey_test.tfs",Z0=30446.93287900,
+                        X0=30071.57952300,
+                         Y0=222.11764700,
+                         theta0=2.09050700,
+                         phi0=0.05579200;
+value, h_ratio;
+value, h910_angle, h911_angle, h912_angle, h916_angle, h917_angle, h918_angle;
+value, ECMAG_srot;
+
+stop;

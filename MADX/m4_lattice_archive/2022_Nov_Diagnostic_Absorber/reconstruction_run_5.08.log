@@ -1,0 +1,82 @@
+
+  ++++++++++++++++++++++++++++++++++++++++++++
+  +     MAD-X 5.08.00  (64 bit, Windows)     +
+  + Support: mad@cern.ch, http://cern.ch/mad +
+  + Release   date: 2022.01.13               +
+  + Execution date: 2026.08.15 13:24:52      +
+  ++++++++++++++++++++++++++++++++++++++++++++
+
+X:> X:> X:> X:> X:> X:> X:> X:> beta               =       0.9944750494 ;
+gamma              =        9.526239502 ;
+X:> X:> X:> X:> X:> theex              =    5.066707693e-07 ;
+X:> X:> X:> X:> ++++++ info: ecmag_srot redefined
+l_ecmag            =            2.16992 ;
+++++++ warning: division by zero, result set to zero, expr: l_v906*0.5/(sin(v906_angle*0.5))
+ds_v906            =                  0 ;
+l_v906             =              1.524 ;
+v906_angle         =                  0 ;
+++++++ info: vt927_kick redefined
+++++++ info: element redefined: k104h
+++++++ info: element redefined: absorber
+++++++ info: element redefined: absorber
+X:> ++++++ info: hda1_angle redefined
+X:> ++++++ info: element redefined: qda01
+X:> ++++++ info: element redefined: qda02
+X:> ++++++ info: ecmag_srot redefined
+++++++ info: ecmag_angle redefined
+++++++ info: v901_angle redefined
+++++++ info: h936a_angle redefined
+++++++ info: h936b_angle redefined
+X:> X:> ++++++ info: xshift redefined
+X:> X:> ecmag_srot         =         -4.966e-05 ;
+X:> X:> X:> X:> X:> X:> X:> X:> X:> enter Twiss module
+ Found 6 initial orbit vector values from twiss command. 
+++++++ info: Zero value of SIGT replaced by 1.
+++++++ info: Zero value of SIGT replaced by 1.
+++++++ info: Zero value of SIGT replaced by 1.
+  
+open line - error with deltap:   1.000000E-06
+initial orbit vector:   0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
+final orbit vector:    -9.800585E-07  1.067485E-07  1.063712E-06  3.636544E-08 -2.189983E-06  0.000000E+00
+++++++ warning: TWISS:  Calculation of Wx, Wy etc. could be inaccurate due to coupling!                                                                                       
+++++++ info: Zero value of SIGT replaced by 1.
+++++++ info: Zero value of SIGT replaced by 1.
+++++++ info: Zero value of SIGT replaced by 1.
+  
+open line - error with deltap:   0.000000E+00
+initial orbit vector:   0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
+final orbit vector:     0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
+++++++ warning: TWISS:  Calculation of Wx, Wy etc. could be inaccurate due to coupling!                                                                                       
+
+++++++ table: summ
+
+        length         orbit5           alfa        gammatr 
+  197.64500000    -0.00000000     0.00000000     0.00000000 
+
+            q1            dq1        betxmax          dxmax 
+    2.73821014    -4.98856959   250.06406373     2.18204491 
+
+         dxrms         xcomax         xcorms             q2 
+    0.72311204     0.00000000     0.00000000     2.21536253 
+
+           dq2        betymax          dymax          dyrms 
+   -3.25630565    83.43424896     0.64768513     0.16537508 
+
+        ycomax         ycorms         deltap        synch_1 
+    0.00000000     0.00000000     0.00000000     0.65001254 
+
+       synch_2        synch_3        synch_4        synch_5 
+    0.04455313     0.00185263    -0.00004498     0.00056299 
+
+       synch_6        synch_8         nflips          dqmin 
+   36.18781881     2.07920578     0.00000000     0.00020927 
+
+   dqmin_phase 
+   -0.55967557 
+X:> 
+  Number of warnings: 3
+1 in C and 2 in Fortran
+
+  ++++++++++++++++++++++++++++++++++++++++++++
+  +          MAD-X finished normally         +
+  ++++++++++++++++++++++++++++++++++++++++++++

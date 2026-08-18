@@ -1,0 +1,83 @@
+! Local reconstruction made 2026-08-15 from the supplied 2022 TWISS table
+! and the exact August 2018 upstream source package.  This is not the lost
+! original 2022 driver.  See !NOTE.md in the archived reconstruction folder.
+!New tiein 
+!geometry matched, optics re-matched only from FF to "mirror point"
+!!Option, RBARC= false;
+beam,    sequence=M4line, particle="proton", energy=8.93828,!pc=8.8889,
+                exn= 30E-6*4.0/6.25, eyn= 30E-6*4.0/6.25,
+                sige=0.01/2., sigt=0;!sige is 1 sigma de/e 
+ener=8.93828;!energy;
+gamma=ener/0.93828;
+beta=sqrt(1-1/gamma^2);
+exn95=30E-6;
+eyn95=30E-6;
+dee=0.01/2;
+value, beta, gamma;
+  theEX     = exn95/(beta*gamma*6.25);
+  theEY     = eyn95/(beta*gamma*6.25);
+  theSIGT   =  0;
+  theSIGPT  =  dee/beta^2;
+value, theEX;
+
+roton=1;
+ECMAG_srot =-0.0000496625; !after shortening ECMAG
+call,file="magnet_eff_lengths.def";!for twiss matching
+!call,file="magnet_mech_lengths.def";
+call, file="m4_new.def";!with reinstated roll
+
+! Confirmed from the supplied 2022 TWISS table.
+hda1_angle=-0.0873;
+! The 2022 K1L values have the opposite signs from the stored 2018 defaults.
+QDA01: quadrupole, l:=0.5*l_qda01, k1=-0.04365608;
+QDA02: quadrupole, l:=0.5*l_qda02, k1= 0.05675290;
+
+call, file="bends_values_aug2018.dat";
+call, file="quads_aug2018.dat";
+
+call, file="diag_2022_reconstructed.seq";
+!
+
+
+!h938_angle = -9.78910596556e-06 ; 0.000 0.0097891
+!Steve March 21 2016
+newstart: beta0, betx=12.22350,
+                 alfx=1.88239, 
+                 bety=5.61627, 
+                 alfy=-0.61825,
+                 dx=0.02765,dpx=0.00346,
+                 dy=-0.12410,
+                 dpy=-0.07144;
+
+value, ECMAG_srot;
+
+
+newstart: beta0, betx=12.22350,
+                 alfx=1.88239, 
+                 bety=5.61627, 
+                 alfy=-0.61825,
+                 dx=0.02765,dpx=0.00346,
+                 dy=-0.12410,
+                 dpy=-0.07144;
+
+use, sequence= M4line;
+set,    format="14.10f";
+!Steve october 2016
+survey,file="survey_estimate_2018_frame.tfs",Z0=30446.93287900,
+                        X0=30071.57952300,
+                         Y0=222.11764700,
+                         theta0=2.09050700,
+                         phi0=0.05579200;
+
+! Alternative historical diagnostic frame from the received 2016 driver.
+survey,file="survey_estimate_2016_diag_frame.tfs",Z0=30446.93260800,
+                        X0=30071.57936700,
+                         Y0=222.11586700,
+                         theta0=2.09046400,
+                         phi0=0.05606400;
+
+select, flag=twiss, clear;
+set,    format="14.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,keyword,l,angle,k1l;
+twiss,chrom,beta0=newstart,sequence=M4line,file="twiss_reconstructed_5.08.tfs";
+stop;

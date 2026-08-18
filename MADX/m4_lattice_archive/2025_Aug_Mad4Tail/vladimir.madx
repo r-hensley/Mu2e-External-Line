@@ -1,0 +1,52 @@
+beam,    sequence=M4tail, particle="proton", energy=8.93828;!pc=8.8889,
+ 
+!emittance values from Dean: 2e-6 95% un-normalized
+!from  Steve dp/p=5.e-3
+ener=8.93828;!energy;
+gamma=ener/0.93828;
+beta=sqrt(1-1/gamma^2);
+ex_un95=2E-6;
+ey_un95=2E-6;
+ex_un=ex_un95/6.25d0;
+ey_un=ey_un95/6.25d0;
+dpp=5.e-3/6.25d0;
+value, beta, gamma;
+ 
+call, file="m4tail.seq";
+newstart: beta0, betx=12.22350,
+                 alfx=1.88239, 
+                 bety=5.61627, 
+                 alfy=-0.61825,
+                 dx=0.02765,dpx=0.00346,
+                 dy=-0.12410,
+                 dpy=-0.07144; 
+
+use, sequence= M4tail;
+
+theta00=3.379854;
+phi00=-0.023690;
+call, file="survey_macro.madx";
+exec,compute_survey;
+
+MATCH,  use_macro,sequence=M4tail,beta0=newstart;
+VARY NAME=THETA00, STEP=1e-6, LOWer=3.37, upper=3.38;
+VARY NAME=PHI00, STEP=1e-6, LOWer=-0.024, upper=-0.023;
+use_macro,name=compute_survey;
+CONSTRAINT, expr=x_TIEIN=5.808984;
+CONSTRAINT, expr=y_TIEIN=0.342542;
+CONSTRAINT, expr=z_TIEIN=1.592194;
+!simplex, CALLS = 20000,TOLERANCE=1.e-18;
+lmdif, CALLS = 10000,TOLERANCE=1.e-12;
+ENDMATCH;
+ 
+// survey,file="survey_m4tail.tfs",X0=13.1999277293465-0.011160884+0.0024692134,
+//                                Y0=1.11848196673277+0.011067394+0.00049911206,
+//                                Z0=32.0834585952801+0.031626149+0.010190235,
+//                                theta0=PI+0.231355+0.0063746535,phi0=-0.0236142-0.00032143300;
+
+survey,file="survey_m4tail.tfs",X0=13.199928,
+                                Y0=1.118482,
+                                Z0=32.083459,
+                                theta0=theta00, phi0=phi00;
+ 
+stop;

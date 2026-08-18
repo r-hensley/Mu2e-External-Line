@@ -1,0 +1,28 @@
+NOTE ON THE AUGUST 14, 2025 MATCHING FILES
+
+Confirmed:
+
+- m4tail_match.madx (15:44:30) is not a working standard MAD-X driver.
+  CONSTRAINT does not accept the geometric SURVEY coordinate Z; its X and Y
+  keywords are Twiss/orbit coordinates instead.  The following GLOBAL command
+  also does not accept the SURVEY initial-frame values X0, Y0, and Z0.
+
+- vladimir.madx (15:49:54) and survey_macro.madx (15:50:02) replace that
+  approach with MATCH, USE_MACRO.  The macro runs SURVEY, reads the TIEIN X, Y,
+  and Z table values, and constrains those expressions.  It also makes the
+  surveyed angles live matching variables and invokes the LMDIF optimizer.
+
+- These files all use the same m4tail.seq.  The later matching implementation
+  does not change the tail lattice or any magnet setting.
+
+Likely interpretation:
+
+The timestamps and contents strongly suggest that m4tail_match.madx was a
+preliminary failed attempt and that vladimir.madx plus survey_macro.madx was
+its same-day replacement.  No supplied author comment or log explicitly
+confirms that history.
+
+Keep m4tail_match.madx only as provenance; do not use it as a runnable driver.
+The macro-based replacement is syntactically supported, but a local MAD-X
+5.08.00 test reported "converged without success," so it is not established as
+a successfully matched solution.

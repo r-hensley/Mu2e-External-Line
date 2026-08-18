@@ -1,0 +1,14 @@
+compute_survey: macro={
+use, sequence=M4tail;
+survey,X0=13.199928,
+       Y0=1.118482,
+       Z0=32.083459,
+       theta0:=theta00,
+       phi0:=phi00;
+twiss,beta0=newstart,sequence=M4tail;
+x_TIEIN :=table(survey,TIEIN,x);
+y_TIEIN :=table(survey,TIEIN,y);
+z_TIEIN :=table(survey,TIEIN,z);
+phi_TIEIN :=table(survey,TIEIN,phi);
+theta_TIEIN :=table(survey,TIEIN,theta);
+};

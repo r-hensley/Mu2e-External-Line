@@ -1,0 +1,69 @@
+!Rematching geom and optics after rolling again ECMAG
+!!Option, RBARC= false;
+beam,    sequence=M4line, particle="proton", energy=8.93828,!pc=8.8889,
+                exn= 30E-6*4.0/6.25, eyn= 30E-6*4.0/6.25,
+                sige=0.01/2., sigt=0;!sige is 1 sigma de/e 
+ener=8.93828;!energy;
+gamma=ener/0.93828;
+beta=sqrt(1-1/gamma^2);
+exn95=30E-6;
+eyn95=30E-6;
+dee=0.01/2;
+value, beta, gamma;
+  theEX     = exn95/(beta*gamma*6.25);
+  theEY     = eyn95/(beta*gamma*6.25);
+  theSIGT   =  0;
+  theSIGPT  =  dee/beta^2;
+value, theEX;
+
+roton=1;
+ECMAG_srot =-0.0000496625; !after shortening ECMAG
+call,file="magnet_eff_lengths.def";!for twiss matching
+!call bends_values_roll.dat here for avoiding warnings
+call, file="bends_values_roll.dat";!Jan 2017 values values after rolling again ECMAG
+call, file="m4_new.def";!with reinsteted roll
+call, file="m4_cleaned.seq";
+call, file="bends_values_roll.dat";!overwrite .def values
+call, file="quads_jan17.dat";
+
+!Steve March 21
+newstart: beta0, betx=12.22350,
+                 alfx=1.88239, 
+                 bety=5.61627, 
+                 alfy=-0.61825,
+                 dx=0.02765,dpx=0.00346,
+                 dy=-0.12410,
+                 dpy=-0.07144;
+
+value, ECMAG_srot;
+use, sequence= M4line;
+set,    format="14.10f";
+!Steve october 2016
+survey,file="m4_survey.tfs",Z0=30446.93287900,
+                        X0=30071.57952300,
+                         Y0=222.11764700,
+                         theta0=2.09050700,
+                         phi0=0.05579200;
+!Carol
+/*
+x00 =   30071.6211196546 ;
+y00 =     222.1161421516 ;
+z00 =   30446.9149280240 ;
+theta00 =       2.0907442956 ;
+phi00 =       0.0562128663 ;
+v901_angle =       0.1134098151 ;
+v906_angle =      -0.0663762400 ;
+v907_angle =      -0.0912547059 ;
+survey,file="my_g-2.tfs",Z0=Z00,
+                        X0=X00,
+                         Y0=Y00,
+                         theta0=theta00,
+                         phi0=phi00;
+*/
+!stop;
+select, flag=twiss, clear;
+!set,    format="18.14f";
+set,    format="14.8f";
+select,  flag=twiss, column=name,s,betx,alfx,bety,alfy,dx,dpx,dy,dpy,mux,muy,keyword,l,angle,k1l;
+twiss,chrom,beta0=newstart,sequence=M4line,file="m4_twiss.tfs";
+stop;

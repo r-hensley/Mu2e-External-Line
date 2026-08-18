@@ -1,0 +1,6 @@
+WARNING: This is the surviving mixed 2017-style working set, not a frozen 2017
+release. The 2017 m4.madx driver explicitly calls m4_new.def and
+magnet_eff_lengths.def, but no 2017 copies of those files survive. The August
+2018 copies were therefore used as the only surviving files with the exact
+names required by the driver, not as arbitrary replacements. The job runs, but
+it may not reproduce the original 2017 lattice.

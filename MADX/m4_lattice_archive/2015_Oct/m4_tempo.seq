@@ -1,0 +1,351 @@
+!copied from m4_moved_col923.seq
+!Suppressed HT927b and introduced HT914. I added a
+!MW935Nu. I moved HT905 by -0.3 m (it is in the g-2 common part!).
+!Some MW have been moved to improve correction
+!
+!New iteration to improve dp/p performance
+!Q925 length from 0.28 to 0.4
+!Try improving momentum performance
+!Q926 became too strong, I changed from e 0.28 to 0.32 m 
+!and I shifted it by +2 m
+!Q925 length from 0.28 to 0.4
+!Q934 shifted by +3 m for lowering b_y peak at IQ934 and improving dp/p performance
+!Q925 and Q926 at least with my_shift=0.725 may be replaced again by the shorter ones
+!
+M4line               : sequence, REFER=CENTRE, L=0.244785592E+03;
+MSTART       : MSTART      , at =     0.00000000 ;
+!g-2 (feb 10 2015)
+ECMAG        : ECMAG       , at =     1.10014997 ;
+SROTECMAG : SROTATION , at =  1.10014997   +0.5*2.2003 ,angle:=ECMAG_srot*roton;
+!MW900Tx : MWTexas , at =2.40839995 ;!L=0.23495, HT900 could be shifted to make more room?
+IC900 : IC  , at =       2.40839995 ;!L=0.15875
+HT900        : HT900       , at =     2.76717495 ;!new position in g-2, L=  0.16510
+!HT900        : HT900       , at =     2.68289995;
+Q901         : Q901        , at =     4.33148995 ;
+IQ901        : IQ901       , at =     4.44578995 ;
+Q901         : Q901        , at =     4.56008995 ;
+V901         : V901        , at =     6.75294798 ;
+V901k: vfake, at =6.75294798+3.048*0.5 +0.001;!fake vkicker
+!!MW, at = 9.3;
+HT901        : HT901       , at =     8.97146801 ;
+Q902         : Q902        , at =     9.93420101 ;
+IQ902        : IQ902       , at =    10.14121101 ;
+Q902         : Q902        , at =    10.34822101 ;
+Q903         : Q903        , at =    12.13395401 ;
+IQ903        : IQ903       , at =    12.34096401 ;
+Q903         : Q903        , at =    12.54797401 ;
+MW903Nu : MWNumi , at =13.5;
+Q904         : Q904        , at =    14.11525801- (0.41402-0.35052)*0.5;
+IQ904        : IQ904       , at =    14.29051801 ;
+Q904         : Q904        , at =    14.46577801+ (0.41402-0.35052)*0.5;
+!B_SWIC       : B_SWIC      , at =    16.42313201 ;!this is g-2 PWC must be replaced for mu2e operation
+!!MW3: MWNumi, at =16.42313201 ;
+Q905         : Q905        , at =    18.28510801+ (0.41402000-0.228600)*0.5 ;
+IQ905        : IQ905       , at =    18.49211801 ;
+Q905         : Q905        , at =    18.69912801- (0.41402000-0.228600)*0.5 ;
+!!MW, at =19.3;
+!HT905 moved upstream by 0.3 m but this is in common with g-2 !!!
+HT905        : HT905       , at =    20.15502601 -0.3 ;!try to move it a bit upstream
+!!MW3 : MW, at =20.15502601 ;
+Q906         : Q906        , at =    20.86622601 -(0.35052-0.2286)*0.5;
+IQ906        : IQ906       , at =    20.98052601 ;
+Q906         : Q906        , at =    21.09482601 +(0.35052-0.2286)*0.5;
+!!MW, at = 21.53945301 ;
+!MV906        : MV906       , at =    21.53945301 ;!marker
+V906         : V906        , at =    22.56308592;
+V906k: vfake, at = 22.56308592 +1.524*0.5+0.001;
+MW906Nu : MWNumi, at =    23.58671882 +0.10;
+!MV906        : MV906       , at =    23.58671882 ;!marker
+!Q907         : Q907        , at =    24.10780082 ;
+IQ907        : IQ907       , at =    24.22210082 ;
+!Q907         : Q907        , at =    24.33640082 ;
+HT906        : HT906       , at =    25.53122582 ;
+!Q908a         : Q908a        , at =    26.43673582 ;
+!IQ908a        : IQ908a       , at =    26.64374582 ;
+!Q908a         : Q908a        , at =    26.85075582 ;
+Q907         : Q907        , at =    26.43673582 ;
+IQ907        : IQ907       , at =    26.64374582 ;
+Q907         : Q907        , at =    26.85075582 ;
+!MV908        : MV908       , at =    27.66599882 ;
+V907         : V907        , at =    28.68963172 ; !new: 28.68963172 ;! old: 28.68975628 ; on purpose?
+V907k: vfake, at = 28.68963172+1.524*0.5+0.001;
+!MV908        : MV908       , at =    29.71326463 ;
+!ENDSEQUENCE;
+GM2_END      : marker     , at =    29.95177160 ;
+!!!!!
+!MW, at =33;
+MW907Nu: MWNumi, at = 29.951772+0.5;
+COL907A       : COL907A      , at = 30.654972+0.3+0.5334*0.5 ;
+MCOL907: marker, at = 30.654972+0.3+0.5334;
+COL907B      :  COL907B    , at =   30.654972+0.3+0.5334+0.5334*0.5;
+Q908         : Q908        , at =    35.15046882 +(0.35052-0.2286)*0.5;
+IQ908        : IQ908       , at =    35.32572882 ;
+Q908         : Q908        , at =    35.50098882 -(0.35052-0.2286)*0.5;
+!IC908         : IC        , at =    36.17154882 ; !dropped because of money
+MW908Nu: MWNumi, at =36.17+0.381000*0.5+0.5;
+!Q909 shifted by +0.5 m helps keeping Q908 below 0.5 and Q909 above 1e-3
+!although the penalty is 8.7e-3 with or w/o shift
+Q909         : Q909        , at =    37.64057982 +0.5*0;
+IQ909        : IQ909       , at =    37.75487982 +0.5*0;
+Q909         : Q909        , at =    37.86917982 +0.5*0;
+IQ909a        : marker       , at =  37.98347982 +0.5*0;
+
+VT909        : VT909       , at =    39.03654682 ;
+HT909        : HT909       , at =    39.92554682 ;
+Q910         : Q910        , at =    41.26945782 ;
+IQ910        : IQ910       , at =    41.44471782 ;
+Q910         : Q910        , at =    41.61997782 ;
+IQ910a         : marker       , at = 41.79523782;
+MW910Tx : MWTexas , at = 43.-0.4;
+!MSTART       : MSTART      , at =    42.46635682 ;
+!MW           : MW          , at =    42.86005682 ;
+my_shift=0.725;
+!my_shift=0;
+!HT909a       : HT909       , at =  41.795238+0.3048*0.5+0.4;
+H910         : H910        , at =    45.14302180 -my_shift ;
+!Srot205 :	SROTATION,	at = 0.0000,	from = Q205.C,	ANGLE = Psi205 ;
+!SROT910 : SROTATION , at =    45.14302180 -my_shift +0.5*3.050 ,angle:=H910_srot*roton;
+!MW910Tx : MWTexas , at = 47.-my_shift ;moved upstreams to 43 m
+Q911         : Q911        , at =    47.41454677 -my_shift  ;
+IQ911        : IQ911       , at =    47.58980677 -my_shift  ;
+Q911         : Q911        , at =    47.76506677 -my_shift  ;
+!MW, at = 48.3-my_shift  ;
+VT911: VT911 ,  at = 48.3-my_shift-0.05;
+H911         : H911        , at =    50.03659175 -my_shift  ;
+!SROT911 : SROTATION , at =    50.03659175 -my_shift +0.5*3.050 ,angle:=H911_srot*roton;
+Q912         : Q912        , at =    52.24715673 -my_shift  ;
+IQ912        : IQ912       , at =    52.36145673 -my_shift  ;
+Q912         : Q912        , at =    52.47575673 -my_shift  ;
+!!!MW912Tx : MWTexas, at = 52.;it is worse
+H912         : H912        , at =    54.68673047 -my_shift  ;
+!SROT912 : SROTATION , at =  54.68673047 -my_shift +0.5*3.06 ,angle:=H912_srot*roton;
+!
+MW912Tx : MWTexas, at =56.5 -my_shift ;
+Q913         : Q913        , at =    56.99041420 -my_shift  ;
+IQ913        : IQ913       , at =    57.19742420 -my_shift  ;
+Q913         : Q913        , at =    57.40443420 -my_shift  ;
+Q914         : Q914        , at =    58.28416420 -my_shift  ;
+IQ914        : IQ914       , at =    58.49117420 -my_shift  ;
+Q914         : Q914        , at =    58.69818420 -my_shift  ;
+!HT914        : HT914    , at = 59.+0.725*0 ;  !!!!Added NEW but here bx=2.4 m thus moved downstream -> HT915
+!!MOM          : MOM         , at =    59.82079720 -my_shift  ;
+!!MW, at = 59.82079720 -my_shift  ;
+!!MW914M       : MW914M      , at =    60.11289720 -my_shift  ;
+!!MOM          : MOM         , at =    60.40499720 -my_shift  ;
+MOM          : MOM          , at =    59.50511900 +0.725*0;
+MW914Nu : MWNumi, at = 60-my_shift+.45  ;!Reinstated for y
+VT914: VT914 , at = 61.3206-my_shift -0.5*0.3048-0.2;
+Q915         : Q915        , at =    61.52761020 -my_shift  ;
+IQ915        : IQ915       , at =    61.73462020 -my_shift  ;
+Q915         : Q915        , at =    61.94163020 -my_shift  ;
+!MW915Tx : MWTexas, at =    61.94163020+0.5*0.41402+0.225 -my_shift  ;!move downstream at 71.4 m
+HT915        : HT915    , at = 61.889350 - 0.304800*0.5 ;  !!!!Added NEW
+Q916         : Q916        , at =    62.82136020 -my_shift  ;
+IQ916        : IQ916       , at =    63.02837020 -my_shift  ;
+Q916         : Q916        , at =    63.23538020 -my_shift  ;
+!MW, at =62.71739020+0.5*0.381+0.1;
+!MW, at = 63.5-my_shift  ;
+H916         : H916        , at =    65.53906393 -my_shift;
+!MW916Tx : MWTexas, at =  66.5; !moved from 60 m and renamed
+!SROT916 : SROTATION , at =   65.53906393 -my_shift +0.5*3.06, angle:=H916_srot*roton;
+MW916Tx: MWTexas, at = 67.355-my_shift;
+Q917         : Q917        , at =    67.75003766 -my_shift  ;
+IQ917        : IQ917       , at =    67.86433766 -my_shift  ;
+Q917         : Q917        , at =    67.97863766 -my_shift  ;
+!MW10 : MWTexas, at = 68.5-my_shift -2.606058e-02-0.09;
+H917         : H917        , at =    70.18920264 -my_shift  ;
+MW917Tx: MWTexas, at = 71.4+0.725*0;!was MW915Tx
+!SROT917 : SROTATION , at =   70.18920264 -my_shift +0.5*3.05, angle:=H917_srot*roton;
+Q918         : Q918        , at =    72.46072762 -my_shift  ;
+IQ918        : IQ918       , at =    72.63598762 -my_shift  ;
+Q918         : Q918        , at =    72.81124762 -my_shift  ;
+!MW920Nu           : MWNumi          , at =  72.5;
+H918         : H918        , at =    75.08277260 -my_shift  ;
+!SROT918 : SROTATION , at =   75.08277260 -my_shift +0.5*3.05, angle:=H918_srot*roton;
+H918_old     : marker , at = 76.60753758;!exit of H918 in 2014 before new ECMAG
+!MW           : MW          , at =    77.36573758 ;
+!VT918 : VT909, at = 77.609368-0.5*0.3048-0.2;
+Q919         : Q919        , at =    77.72366758 ;
+IQ919        : marker      , at =    77.83796758 ;
+Q919         : Q919        , at =    77.95226758 ;
+!MW           : MW          , at =  77.95226758+0.2286+0.1+0.2;
+HT919        : HT919       , at =    79.25439758 ;
+VT919        : VT919       , at =    80.14339758 ;
+MW919Nu           : MWNumi          , at =   81.; !It was MW920Nu
+Q920         : Q920        , at =    82.77853658 ;
+IQ920        : marker      , at =    82.89283658 ;
+Q920         : Q920        , at =    83.00713658 ;
+!MW920Nu           : MWNumi          , at =     83.00713658+0.2286+0.1+0.4; !moved upstream Q920
+Q921         : Q921        , at =    88.03306058 ;
+IQ921        : marker       , at =    88.14736058 ;
+Q921         : Q921        , at =    88.26166058 ;
+VT921 : VT921, at = 93.249841-0.5*0.3048-0.2;
+
+Q922         : Q922        , at =    93.36414058 ;
+IQ922        : marker       , at =    93.47844058 ;
+Q922         : Q922        , at =    93.59274058 ;
+MW922Nu: MWNumi, at = 93.707041+0.5*0.4064+0.1;
+Q923        : Q923        , at =    98.69035558 ;
+IQ923        : marker       , at =    98.80465558 ;
+Q923         : Q923        , at =    98.91895558 ;
+!VT923: VT923, at = 101.463146-0.5*0.3048-0.2;
+!COL923      : ECOL      , at =   101.99654558 ;
+!COL924A       : COL923A      , at =   101.74654558-0.0167+2 ;
+!MCOL924      : marker      , at =   101.99654558+2  ;
+!COL924B       : COL923B      , at =   102.24654558+0.0167+2  ;
+!MCOL923      : marker      , at =   (100.+98.80465558)*0.5;
+!Q923a         : Q923        , at =    100-0.2286*0.5 ;
+!IQ923a         : marker       , at =   100. ;
+!Q923b         : Q923        , at =    100+0.2286*0.5 ;
+Q924         : Q924        , at =   105.07413558 ;
+IQ924        : marker      , at =   105.18843558 ;
+Q924         : Q924        , at =   105.30273558 ;
+COL924A       : COL924A      , at = 105.417036+0.8-0.5334*0.5 ; 
+MCOL924: marker, at = 105.417036+0.8;!try
+COL924B       : COL924B      , at = 105.417036+0.8+0.5334*0.5  ;
+MW924Nu: MWNumi, at =   107.;
+Q925         : Q925        , at =   110.40035058;!-(0.41402-0.2286)*0.5;
+IQ925        : marker       , at =   110.51465058 ;
+Q925         : Q925        , at =   110.62895058;!+(0.41402-0.2286)*0.5 ;
+!MW, at = 111.;
+Q926         : Q926        , at =   111.47591058 -0.2286*0.5+2;
+IQ926        : marker       , at =   111.47591058 +2;
+Q926         : Q926        , at =   111.47591058 +0.2286*0.5+2;
+!MW           : MW          , at =   112.41444058 ;
+!WAISTH       : marker      , at =   113.70654058 ;
+MW926Nu           : MWNumi          , at =   114.24864058 ;
+MM1          : marker        , at =   117.56901858 ;
+Q927         : Q927        , at =   117.88651858 ;
+IQ927        : marker       , at =   118.00081858 ;
+Q927         : Q927        , at =   118.11511858 ;
+!renamed
+HT927       : HT927a      , at =   119.59504858 ;
+MW927Nu: MWNumi, at =119.747449+0.5;
+!HT927b       : HT927b      , at =   125.25316558 ;!REMOVED
+VT927       : VT927      , at =   125.76116558 ;
+!MW927Tx: MWTexas, at =126.+0.22; !!REMOVED
+Q928         : Q928        , at =   126.73309558 -(0.32004-0.2286)*0.5;
+IQ928        : marker      , at =   126.84739558 ;
+Q928         : Q928        , at =   126.96169558 +(0.32004-0.2286)*0.5;
+!MW, at =127.167436+0.5;
+HT928        : HT928       , at =   131.81389358 ;
+Q929         : Q929        , at =   132.78312458 ;
+IQ929        : marker       , at =   132.89742458 ;
+Q929         : Q929        , at =   133.01172458 ;
+MW929Nu           : MWNumi          , at =   133.83595458 -0.2;
+!Replace with existing Recycler kicker (41"=1.0414m)
+!AC929A       : AC929A      , at =   135.62805458 ;
+!MP           : marker          , at =   137.12805458 ;
+!AC929B       : AC929B      , at =   138.62805458  ;
+AC929          : K104      , at = 137.12805458-2.5*1.0414 ;
+AC929                      , at = 137.12805458-1.5*1.0414 ;
+AC929                      , at = 137.12805458-1.0414*0.5 ;
+MP           : marker          , at =   137.12805458 ;
+AC929                      , at = 137.12805458+1.0414*0.5 ;
+AC929                      , at = 137.12805458+1.5*1.0414;
+AC929                      , at = 137.12805458+2.5*1.0414;
+!MW           : MW          , at =   140.42015458  ;
+Q930         : Q930        , at =   141.24438458  ;
+IQ930        : marker       , at =   141.35868458  ;
+Q930         : Q930        , at =   141.47298458  ;
+HT930        : HT930       , at =   142.44221558  ;
+VT930        : VT930       , at =   143.33121558  ;
+MW930Nu : MWNumi, at =143.712216 +0.4;
+Q931         : Q931        , at =   146.22005058  ;
+Q931         : Q931        , at =   146.44865058  ;
+!MW : MW, at = 146.562951 +1.;
+!COL931       : ECOL     , at =   160.28035058  ;
+COL931A      : COL931A     , at =   160.03035058 - 0.0167;
+MCOL931      : marker     , at =   160.28035058  ;
+COL931B      : COL931B     , at =   160.53035058 + 0.0167;
+!MW           : MW          , at =   161.57245058  ;
+Q932         : Q932        , at =   162.35096058  +(0.32004-0.2286)*0.5;
+QMID         : QMID        , at =   162.51098058   ;
+Q932         : Q932        , at =   162.67100058  -(0.32004-0.2286)*0.5;
+MW932Nu: MWNumi, at = 162.739581 +4.;
+Q933         : Q933        , at =   169.59969558-0.  ;
+IQ933        : marker      , at =   169.75971558-0.  ;
+Q933         : Q933        , at =   169.91973558-0.  ;
+VT933        : VT933       , at =   170.079756 +0.3 + 0.30480*0.5;
+!MW           : MW          , at =   172.;
+IC933         : IC        , at =   171.50152608 ;
+!in M4 HDA1 is a drift, use sagitta for computing position
+HDA1: HDA1, at = 174.317185 - 0.5*1.524;
+middle_hd=174.317185 - 0.5*1.524;
+value, middle_hd;
+
+MW933Nu           : MWNumi          , at = 183.;  !177.; moved downstream at 181 m
+!MW933Nu           : MWNumi          , at =   177.; moved downstream at 180 m
+Q934         : Q934        , at =   179.97530258 +(0.35052000-0.320040)*0.5+3.5;!1.5;!0.5;
+IQ934        : marker       , at =   180.15056258+3.5;!1.5;!+0.5 ;
+Q934         : Q934        , at =   180.32582258 -(0.35052000-0.320040)*0.5+3.5;!1.5;!+0.5;
+!This is good for y, move here MW914Nu which was at 60-myshift m and was ueberflussig
+!MW934Nu           : MWNumi          , at =180.+1.5+3.5;!it was MW933Nu
+Q935         : Q935        , at =   185.01682358+1.;!0.5;
+IQ935        : marker       , at =   185.34474858+1.;!+0.5 ;
+Q935         : Q935        , at =   185.67267358+1.;!+0.5;
+!
+MW935Nu           : MWNumi          , at =   187.+.4;!Added NEW Here it is much better for x !!!
+Q936         : Q936        , at =   187.78978358 +(0.65585000-0.32004)*0.5;
+IQ936        : marker       , at =   188.11770858;
+Q936        : Q936        , at =   188.44563358 -(0.65585000-0.32004)*0.5;
+VT936        : VT936       , at =   189.23075858  ;
+HT936A       : HT936A      , at =   189.73875858  ;
+BEAMSTOP1    : BEAMSTOP1   , at =   190.89270458  ;
+BEAMSTOP2    : BEAMSTOP2   , at =   193.27357458  ;
+!here starts Carol FF
+FCOL         : FCOL        , at =   194.78112308 ;
+MW936Tx           : MWTexas          , at =   195.32322308 ;
+FCOL         : FCOL        , at =   195.86532308 ;
+SHIELDW      : SHIELDW     ,  at =  196.414667+4.554803*0.5;
+!MW           : MW          , at =   201.60916608 ;
+HT936B       : HT936B      , at =   202.62445308 ;
+V936_in: marker, at = 203.607;
+V936         : V936        , at =   204.2166742;! ;204.82628856-1.21922870*0.5;!204.21666771 ;
+V936k :  vfake, at =   204.2166742+1.22*0.5;
+Q937         : Q937        , at =   205.51932234 ;
+IQ937          : iq937        , at =   205.71236234 ;
+Q937         : Q937        , at =   205.90540234 ;
+MW937Nu: MWNumi, at = 206.098442+0.6;
+Q938         : Q938        , at =   208.73142234 ;
+IQ938          : iq938      , at =   208.94892234 ;
+Q938         : Q938        , at =   209.16642234 ;
+Q939         : Q939        , at =   213.58502334 ;
+IQ939          : iq939        , at =   213.77806334 ;
+Q939         : Q939        , at =   213.97110334 ;
+!!MW939Nu: MWNumi, at = 215;!moved downstream to 222.4 m
+VT940        : VT940       , at =  215+ 0.7;
+Q940         : Q940        , at =   219.97242134 ;!strength is kq949 in Carol.def
+IQ940           : iq940          , at =   220.08672134 ;
+Q940         : Q940        , at =   220.20102134 ;
+MW940Nu: MWNumi, at = 220+0.7;!it was MW939Nu
+!HT940        : HT940       , at =   221.58240134 ;
+HT940        : HT940       , at =   223.30160134 ;
+!VT949        : VT949       , at =   223.30160134 ;
+!MW939Nu: MWNumi, at = 222+0.4;
+!VT940        : VT940       , at =   223.30160134 ;!move upstreams at 215.7 m
+Q941         : Q941        , at =   226.20233934 ;
+IQ941         : iq941         , at =   226.39537934 ;
+Q941         : Q941        , at =   226.58841934 ;
+!MW941Nu           : MWNumi         , at =   226.781459+0.6;
+MW941Nu           : MWNumi         , at =   230-0.6;
+!IC           : IC          , at =   229.41322034 ;do we need this?
+Q942         : Q942        , at =   231.00702034 ;
+IQ942          : iq942         , at =   231.22452034 ;
+Q942         : Q942        , at =   231.44202034 ;
+VT942        : VT942       , at =   232.96540034;
+Q943         : Q943        , at =   234.26804034 ;
+IQ943          : marker         , at =   234.46108034 ;
+Q943         : Q943        , at =   234.65412034 ;
+MW943aTx: MWTexas,  at  = 235.;
+V943         : V943        , at =   235.9567835 ;!236.56639782-1.21922870*0.5;
+TIEIN        : TIEIN       , at =   236.78558910 ;
+HT943        : HT943       , at =   237.67598960 ;
+MW943bTx: MWTexas,  at  = 238.5;
+PCOL         : PCOL        , at =   239.28558960 ;!
+TIEIN2       : TIEIN       , at =   240.03558910 ;
+IC943: IC      , at =   240.43882110 ;
+!!B_SWIC       : B_SWIC      , at =   240.43882110 ;
+M4END:  M4END, at =  244.78559;  
+ENDSEQUENCE;
+return;

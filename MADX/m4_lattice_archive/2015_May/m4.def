@@ -1,0 +1,297 @@
+!Original AC929A+B (3+3 m new type) temporarily replaced by 6 K04 (6*1.0414 m)
+!to get kickers in the ces0
+!
+!CDA correctors (with coils+connections) are 1.5875 m long
+!therefore one should keep free at least (1.5875-1.2192)/2 = 0.18415 at
+!each end. For this it would be good to shift PCOL by +0.1 or 0.2 m
+!Same for VDPA where the free spaces must be (1.0668-0.762)/2 = 0.1524 m
+!
+!VDPA have been suppressed!
+!Some Trim type changed according to Jim mail (May 13 2015)
+!Add collimator after Q907 (Eric mail from May 15 2015)
+MSTART        : MARKER , L=  0.00000000 ;
+!From Carol vert_Mu2e_02062015_newtypes.def
+kq901=-0.35574140;
+kq902= 0.19347540;
+kq903=-.40823224;
+kq904=0.29962471;
+kq905=0.13255192 ;
+kq906=-.20224869;
+kq907=0;
+kq908a=0.05826110;
+!g-2
+v901_angle=0.11341001;!g-2
+v906_angle=-.06637650;!g-2
+v907_angle= .06637650;!0.0664149;
+IC: instrument, L=0.15875;!6.25"
+ECMAG         : RBEND, L=  2.20000000, ANGLE=-.05720000, K1=  0.00000000, K2=  0.00000000, TILT=  1.58103264 ;
+HT900         : HKICKER, L=  0.30480000, KICK=0 ;
+Q901          : QUADRUPOLE, L=  0.22860000, K1:=kq901;!-.35574140 ;
+IQ901         : MARKER , L=  0.00000000 ;
+V901          : RBEND, L=  3.04800000, ANGLE:=v901_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+HT901         : HKICKER, L=  0.58420000, KICK=0 ;
+Q902          : QUADRUPOLE, L=  0.41402000, K1:=kq902;!0.19347540 ;
+IQ902         : MARKER , L=  0.00000000 ;
+Q903          : QUADRUPOLE, L=  0.41402000, K1:=kq903;!-.40823224 ;
+IQ903         : MARKER , L=  0.00000000 ;
+Q904          : QUADRUPOLE, L=  0.41402, K1:=kq904;! L=0.35052
+IQ904         : MARKER , L=  0.00000000 ;
+Q905          : QUADRUPOLE, L=  0.228600, K1:=kq905;!0.13255192 ;! L=0.41402000
+IQ905         : MARKER , L=  0.00000000 ;
+HT905         : HKICKER, L=  0.58420000, KICK=0 ;
+Q906          : QUADRUPOLE, L=  0.35052,  K1:=kq906;!Q906          : QUADRUPOLE, L=  0.22860000, K1:=kq906;!-.20224869 ;
+IQ906         : MARKER , L=  0.00000000 ;
+MV906         : MARKER , L=  0.00000000 ;
+V906          : RBEND, L=  1.52400000, ANGLE:=v906_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+!Q907          : QUADRUPOLE, L=  0.22860000, K1:=kq907;!0.00000000 ;
+IQ907         : MARKER , L=  0.00000000 ;
+HT906         : HKICKER, L=  0.58420000, KICK=0 ;
+!Q908a          : QUADRUPOLE, L=  0.41402000, K1:=kq908a;!0.05826110 ;
+!IQ908a         : MARKER , L=  0.00000000 ;
+!MV908         : MARKER , L=  0.00000000 ;
+Q907          : QUADRUPOLE, L=  0.41402000, K1:=kq907;!K1:=kq908a;!0.05826110 ;
+!MV908         : MARKER , L=  0.00000000 ;
+V907          : RBEND, L=  1.52400000, ANGLE:=v907_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+!!!!!!!!!!!!!
+MWTexas  : MONITOR, L= 0.23495; !9.25"
+MWNumi   : MONITOR, L= 0.4064 ; !16"
+CDRF_23A      : DRIFT  , L=  0.23850700 ;
+COL907A        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+COL907B        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+kq908=-.41054000;
+kq909=0.28769900 ;
+kq910=0.37034300;
+Q908          : QUADRUPOLE, L=  0.2286, K1:=kq908;!-.41054000 ;Q908          : QUADRUPOLE, L=  0.35052000, K1:=kq908;!-.41054000 ;
+IQ908         : MARKER , L=  0.00000000 ;
+SWIC          : MONITOR, L= 0.4064 ;! it was 0.38100000 in Carol files, but 12" is 0.4064 m...
+Q909          : QUADRUPOLE, L=  0.22860000, K1:=kq909;!=0.28769900 ;
+IQ909         : MARKER , L=  0.00000000 ;
+VT909_kick=0;
+HT909_kick=0;
+VT909         : VKICKER, L=  0.30480000, KICK:=VT909_kick ;!it was declared as a hkicker (by mistake?) in all files!
+!HT909         : HKICKER, L=  0.76200000, KICK:=HT909_kick ;
+HT909         : HKICKER, L=  0.3048, KICK:=HT909_kick ;
+Q910          : QUADRUPOLE, L=  0.35052000, K1:=kq910;
+IQ910         : MARKER , L=  0.00000000 ;
+!
+k11_18 = -2.574802E-01;  
+k12_17 =  2.597293E-01;  
+k13_16 =  4.465710E-01 ; 
+k14_15 = -3.908708E-01; 
+
+!2013 values
+!h910_angle=-0.10821071;
+!h911_angle=-0.10821071;
+!h912_angle=-0.13439065;
+!h916_angle=-0.13439065;
+!h917_angle=-0.10821071;
+!h918_angle=-0.10821071;
+!h_ratio=h910_angle/h912_angle;
+!from 2013
+h_ratio=0.8051952275;
+!value, h_ratio;
+!h910_angle=-0.10821071;!2013
+h910_angle=-0.109613;
+h912_angle:=h910_angle/h_ratio;
+h911_angle:=h910_angle;
+
+H910          : RBEND, L=  3.04800000, ANGLE:=h910_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+Q911          : QUADRUPOLE, L=  0.35052000, k1:=k11_18;
+IQ911         : MARKER , L=  0.00000000 ;
+H911          : RBEND, L=  3.04800000, ANGLE:=h911_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+VT911_kick=0;
+VT911         : VKICKER, L=  0.30480000, KICK:=VT911_kick ;!
+Q912          : QUADRUPOLE, L=  0.22860000, k1:=k12_17;
+IQ912         : MARKER , L=  0.00000000 ;
+H912          : RBEND, L=  3.04800000, ANGLE:=h912_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+Q913          : QUADRUPOLE, L=  0.41402000,  k1:=k13_16;
+IQ913         : MARKER , L=  0.00000000 ;
+Q914          : QUADRUPOLE, L=  0.41402000,  k1:=k14_15;
+IQ914         : MARKER , L=  0.00000000 ;
+MOM           : MARKER , L=  0.00000000 ;
+MW914M        : MARKER , L=  0.00000000 ;
+VT914_kick=0; 
+VT914         : VKICKER, L=  0.30480000, KICK:=VT914_kick;
+Q915          : QUADRUPOLE, L=  0.41402000,  k1:=k14_15;
+IQ915         : MARKER , L=  0.00000000 ;
+Q916          : QUADRUPOLE, L=  0.41402000,  k1:=k13_16;
+IQ916         : MARKER , L=  0.00000000 ;
+H916          : RBEND, L=  3.04800000, ANGLE:=h912_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+Q917          : QUADRUPOLE, L=  0.22860000,  k1:=k12_17;
+IQ917         : MARKER , L=  0.00000000 ;
+H917          : RBEND, L=  3.04800000, ANGLE:=h911_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+Q918          : QUADRUPOLE, L=  0.35052000,  k1:=k11_18;
+IQ918         : MARKER , L=  0.00000000 ;
+H918          : RBEND, L=  3.04800000, ANGLE:=h910_angle, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+!
+k_p1 =     0.31061213 ;
+k_m1 :=-k_p1;!    -0.31061213 ;
+!k_q924=-0.31061213;!add a ps !!!
+k_q925= -0.15175353 ;
+k_q926 =     0.02730368 ;
+k_q927 =     0.09648313 ;
+k_q928 =    -0.41687558 ;
+k_q929 =     0.20736466 ;
+Q919          : QUADRUPOLE, L=  0.22860000, K1:=k_p1;
+Q920          : QUADRUPOLE, L=  0.22860000, K1:=-k_p1;
+Q921          : QUADRUPOLE, L=  0.22860000, K1:=k_p1;
+Q922          : QUADRUPOLE, L=  0.22860000, K1:=-k_p1;
+Q923          : QUADRUPOLE, L=  0.22860000, K1:=k_p1;
+!add ps for Q924
+k_q924=-0.25348022;
+Q924          : QUADRUPOLE, L=  0.22860000, K1:=k_q924;
+!Q924          : QUADRUPOLE, L=  0.22860000, K1:=-k_p1;
+Q925          : QUADRUPOLE, L=  0.22860000, K1:=k_q925;
+Q926          : QUADRUPOLE, L=  0.2286, K1:=k_q926;
+Q927          : QUADRUPOLE, L=  0.22860000, K1:=k_q927;
+Q928          : QUADRUPOLE, L=  0.32004, K1:=k_q928;
+Q929          : QUADRUPOLE, L=  0.22860000, K1:=k_q929;
+HT919_kick=0;
+VT919_kick=0;
+!HT919         : HKICKER, L=  0.76200000, KICK:=HT919_kick ;
+HT919         : HKICKER, L=  0.30480000, KICK:=HT919_kick ;
+VT919         : VKICKER, L=  0.30480000, KICK:=VT919_kick ;
+COL923A        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+COL923B        : RCOLLIMATOR, L= 0.5334;!L=  0.50000000;
+COL924A        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+COL924B        : RCOLLIMATOR, L= 0.5334;! 0.50000000;
+ECOL           : RCOLLIMATOR, L=  1.0668;!The E_COL is 42 inches long
+COL931A       : RCOLLIMATOR, L= 0.5334;!L=  0.50000000;
+COL931B       : RCOLLIMATOR, L= 0.5334;!L=  0.50000000;
+VT921_kick=0 ;
+VT927_kick=0 ;
+HT927a_kick=0 ;
+VT927_kick=0 ;
+VT922_kick=0 ;
+HT922_kick=0 ;
+HT928_kick=0;
+VT923_kick=0.;
+VT921        : VKICKER, L=  0.30480000, KICK:=VT921_kick ;
+VT923        : VKICKER, L=  0.30480000, KICK:=VT923_kick ;
+HT927a  : HKICKER, L=  0.30480000, KICK:=HT927a_kick ;
+HT927b  : HKICKER, L=  0.30480000, KICK:=HT927b_kick ;
+VT927        : VKICKER, L=  0.30480000, KICK:=VT927_kick ;
+VT922         : VKICKER, L=  0.76200000, KICK:=VT922_kick ;
+HT922         : HKICKER, L=  0.30480000, KICK:=HT922_kick ;
+!HT928         : HKICKER, L=  0.30480000, KICK:=HT928_kick ;
+HT928         : HKICKER, L=  0.58420000, KICK:=HT928_kick ;!larger aperture
+!AC929A        : HKICKER, L=  3.00000000, KICK=0 ;
+!AC929B        : HKICKER, L=  3.00000000, KICK=0 ;
+!avoid using them as correctors
+!AC929A        : RBEND, L=  3.00000000, angle=0 ;
+!AC929B        : RBEND, L=  3.00000000, angle=0 ;
+!Replace them by existing kickers
+K104: HKICKER, L=1.0414, kick=0.;
+AC929          : K104;
+!AC929: HKICKER, L=1.0414, kick=0.;
+!K104H: HKICKER, L=0.5207, kick=0.;
+!
+k_q930 =     0.21739969 ;
+k_q931 =    -0.26442931 ;
+
+k_q932 =    -0.19337154 ;
+k_q933 =     0.39104659 ;
+
+k_q934 =    -0.25928317 ;
+k_q935 =     0.13158792 ;
+k_q936 =    -0.16696000 ;
+
+HT930_kick=0;
+VT930_kick=0;
+!HT930         : HKICKER, L=  0.30480000, KICK:=HT930_kick ;
+HT930         : HKICKER, L=  0.58420000, KICK:=HT930_kick ;
+!VT930         : VKICKER, L=  0.76200000, KICK:=VT930_kick ;
+VT930         : VKICKER, L=  0.58420000, KICK:=VT930_kick ;
+Q930          : QUADRUPOLE, L=  0.22860000, K1=0.21739970 ;
+Q931          : QUADRUPOLE, L=  0.22860000, K1=-.26442930 ;
+Q932          : QUADRUPOLE, L=  0.2286, k1:=k_q932;!K1=-.33699880 ;!Q932          : QUADRUPOLE, L=  0.32004000,
+Q933          : QUADRUPOLE, L=  0.32004000, k1:=k_q933;!K1=-.28552710 ;
+VT933_kick=0;
+VT933         : VKICKER, L=  0.30480000, KICK:=VT930_kick ;
+!hda1_angle=-0.0873;
+!hda1_l= hda1_angle*0.5*1.524/sin(hda1_angle*0.5);!=1.52448406
+!HDA1  : rbend, l=1.524, angle=-0.0873;
+!HDA1  : drift, l=1.524;
+HDA1  : rbend, l=1.524, angle=0;
+
+Q934          : QUADRUPOLE, L=  0.320040, K1:=k_q934;
+Q935          : QUADRUPOLE, L=  0.65585000, K1:=k_q935;
+
+
+!changed FF
+!values after doubling q951 and q952
+k_q937 =    -0.03158517 ;
+Q936          : QUADRUPOLE, L=  0.320040, K1:=k_q936;
+v936_angle=0.0241356;!<- option #1  0.024051234 ;!renamed
+V936          : RBEND, L=  1.21920000, ANGLE:=v936_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+VT936_kick=0;
+HT936A_kick=0;
+VT936         : VKICKER, L=  0.30480000, KICK:=VT936_kick ;
+HT936A        : HKICKER, L=  0.30480000, KICK:=HT936A_kick ;
+BEAMSTOP1     : RBEND, L=  1.88087000, ANGLE=0.00000000, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+BEAMSTOP2     : RBEND, L=  1.88087000, ANGLE=0.00000000, K1=  0.00000000, K2=  0.00000000, TILT=  0.00000000 ;
+shieldw  : drift, l=3.6576+1.0097037-0.1125007;!=4.554803
+HT936B_kick=0;
+!HT936B        : HKICKER, L=  0.76200000, KICK:=HT936B_kick ;
+HT936B        : HKICKER, L=  0.304800000, KICK:=HT936B_kick ;
+IQ937         : MARKER , L=  0.00000000 ;
+IQ938         : MARKER , L=  0.00000000 ;
+IQ939         : MARKER , L=  0.00000000 ;
+IQ940         : MARKER , L=  0.00000000 ;
+!IC            : INSTRUMENT, L=  0.38100000 ;
+IQ941         : MARKER , L=  0.00000000 ;
+IQ942         : MARKER , L=  0.00000000 ;
+VT942_kick=0;
+VT942         : VKICKER, L=  1.21920000, KICK:=VT942_kick ;
+V943          : RBEND, L=  1.21920000, ANGLE:=v936_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+HT943_kick=0;
+HT943         : HKICKER, L=  1.21920000, KICK:=HT943_kick ;
+
+qmid: marker;
+HT945A_kick=0 ;
+HT945A        : HKICKER, L=  0.30480000, KICK:=HT945A_kick ;
+MID          : marker ;
+FCOL          : RCOLLIMATOR, L=  0.50000000;
+HT945B_kick=0;
+HT945B        : HKICKER, L=  0.76200000, KICK:=HT945B_kick ;
+V936          : RBEND, L=  1.21920000, ANGLE:=v936_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+kff1=0.19750810 ;
+kff2=-.31475950 ;
+kff3=0.20383210 ;
+kq949=-.29202100 ;
+Q937          : QUADRUPOLE, L=  0.38608000, K1:=kff1;!0.19750810 ;
+Q938          : QUADRUPOLE, L=  0.43500000, K1:=kff2;!-.31475950 ;
+Q939          : QUADRUPOLE, L=  0.38608000, K1:=kff3;!0.20383210 ;
+Q940          : QUADRUPOLE, L=  0.22860000, K1:=kq940;!-.29202100 ;
+M0            : MARKER , L=  0.00000000 ;
+HT940_kick=0 ;
+VT940_kick=0 ;
+HT940         : HKICKER, L=  1.21920000, KICK:=HT940_kick ;
+!VT949         : VKICKER, L=  1.21920000, KICK:=VT949_kick;
+VT940         : VKICKER, L=  1.21920000, KICK:=VT940_kick;
+Q941          : QUADRUPOLE, L=  0.38608000, K1:=kff3;!0.20383210 ;
+Q942          : QUADRUPOLE, L=  0.43500000, K1:=kff2;!-.31475950 ;
+HT942_kick=0 ;
+HT942         : HKICKER, L=  1.21920000, KICK:=HT942_kick ;
+VT951         : VKICKER, L=  1.21920000, KICK:=VT951_kick;
+VT941         : VKICKER, L=  1.21920000, KICK:=VT941_kick;
+Q943          : QUADRUPOLE, L=  0.38608000, K1:=kff1;!0.19750810 ;
+V943          : RBEND, L=  1.21920000, ANGLE:=v936_angle, K1=  0.00000000, K2=  0.00000000, TILT=  1.57079633 ;
+TIEIN         : MARKER , L=  0.00000000 ;
+HT952_kick=0 ;
+HT952         : HKICKER, L=  1.21920000, KICK:=HT952_kick ;
+!PCOL          : RCOLLIMATOR, L=  1.00000000;
+PCOL          : RCOLLIMATOR, L= 1.0668; 
+B_SWIC        : MONITOR, L=  0.15875000 ;
+
+M4END: marker;
+
+!diagnostic line definitions
+QDA01         : QUADRUPOLE, L=  1.52400000, K1=0.04365608 ;
+QDA02         : QUADRUPOLE, L=  1.52400000, K1=-.05675290 ;
+absorber  : drift, l=3.3656206;
+
+!fake vertical corrector for using V901, V906 and V907 as correctors
+vfake: vkicker, l=0, kick=0;
+K104: HKICKER, L=1.0414, kick=0.;
+K104H: HKICKER, L=0.5207, kick=0.;
