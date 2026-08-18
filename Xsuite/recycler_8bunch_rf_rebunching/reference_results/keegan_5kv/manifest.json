@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "created_utc_date": "2026-08-15",
+  "study": {
+    "name": "5 kV RF-only particle-count and seed convergence matrix",
+    "run_count": 16,
+    "turns_per_run": 8083,
+    "profiles_per_run": 810,
+    "rf25_initial_v": 5000.0,
+    "particle_counts": [33600, 100800, 336000, 1075200],
+    "seed_screen_seeds": [202208, 202209, 202210, 202211, 202212],
+    "total_tracking_s": 5639.656556084985
+  },
+  "historical_input": {
+    "path": "1075200_init_dist.txt",
+    "rows": 1075200,
+    "sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1"
+  },
+  "provenance": {
+    "tracking_project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+    "post_tracking_analysis_source_sha256": "48f54ab7b4bdf770647630d39628ecef74fbb4dd56e5d3873904ef730be86c91",
+    "post_tracking_change": "The screening report name was changed from a hard-coded old particle count to the validated reference particle count; tracking was not changed.",
+    "all_runs_share_tracking_source_hash": true,
+    "all_runs_conserve_population": true,
+    "all_runs_survive_with_finite_final_coordinates": true
+  },
+  "commands": [
+    "./run_convergence_5kv.sh",
+    "./analyze_convergence_5kv.sh"
+  ],
+  "portable_artifacts_sha256_file": "reference_results/keegan_5kv/SHA256SUMS",
+  "omitted_hdf5": {
+    "total_size_bytes": 98947201,
+    "sha256": {
+      "outputs/convergence_5kv/generated_n100800_seed202208/rf_only_results.h5": "751abbaa892cb294fe9d1fd9eb18d5cbff6205bfd6b187a6941102b999d4139c",
+      "outputs/convergence_5kv/generated_n100800_seed202209/rf_only_results.h5": "c098f110ad5859a3a0369895a833dbf68e5867e492fdadca4f30d3c09c6c1e27",
+      "outputs/convergence_5kv/generated_n100800_seed202210/rf_only_results.h5": "7870a6baa03981265e52d5288cbdfcbb20035af39694a5cc5cf5b1326ed0b8f3",
+      "outputs/convergence_5kv/generated_n100800_seed202211/rf_only_results.h5": "9f217d4f7a10e6cdcb1bf3c55d05e406ecd956ade7d4df40bc219363fb4dba41",
+      "outputs/convergence_5kv/generated_n100800_seed202212/rf_only_results.h5": "bdb817459a89dddd788af816f194cd51bb37210023a13373b15fdcb6cd646a85",
+      "outputs/convergence_5kv/generated_n1075200_seed202208/rf_only_results.h5": "6e71a45810b504914e9e31cb99cf40cf49b1ed41c0ad474c109f0551283fa07a",
+      "outputs/convergence_5kv/generated_n336000_seed202208/rf_only_results.h5": "ddd199539545a250602c05539efe22c2a7be8f442cc90584bff1d0b169c069c6",
+      "outputs/convergence_5kv/generated_n33600_seed202208/rf_only_results.h5": "0dd9a9a3e87fca13825ce11296612e77c8d332fb4e549d1e7eb8e5e86e9c0c6a",
+      "outputs/convergence_5kv/historical_n100800_seed202208/rf_only_results.h5": "09094d7563e39a73b28923c634e5fc9c26a24c42cbda523f84fb1a019aba4374",
+      "outputs/convergence_5kv/historical_n100800_seed202209/rf_only_results.h5": "45902ef9e9b740827a7a73b54ecb243740aa0726c5dbe4f374e993970fa960dd",
+      "outputs/convergence_5kv/historical_n100800_seed202210/rf_only_results.h5": "75ad2c36a3b44924f9cd13b5600636922e48afd294b03794390ea68d35f99855",
+      "outputs/convergence_5kv/historical_n100800_seed202211/rf_only_results.h5": "011f0697c6f62c0844d2be999bc41adafdff9006c14ece4a55bf4d997cc9818e",
+      "outputs/convergence_5kv/historical_n100800_seed202212/rf_only_results.h5": "37ec8f871c91d7fc513f77827fcf28efb706731d177a11236c1e77bec8ed5e9d",
+      "outputs/convergence_5kv/historical_n1075200_seed202208/rf_only_results.h5": "b3ccc531b637de4264f3102a3e49898a836c959fd7eb15296aa3430994891b1f",
+      "outputs/convergence_5kv/historical_n336000_seed202208/rf_only_results.h5": "f66051082b51ebc05db73da44ef701f81ac2c17a5bec5ddaa0620daf8c9f5158",
+      "outputs/convergence_5kv/historical_n33600_seed202208/rf_only_results.h5": "71cda5811f7e46309558bf13dd21781e8507ecb29316dbbb9e1b0b4ece75a726"
+    }
+  },
+  "notes": [
+    "The HDF5 hashes identify the completed local intermediates; they are not expected to be byte-identical after runtime, dependency, path, or provenance changes.",
+    "The portable JSON and plots are fixed artifacts verified by SHA256SUMS.",
+    "The five-seed screen is a reduced RF-only calibration check, not proof of the exact historical generator or publication-level collective effects."
+  ]
+}

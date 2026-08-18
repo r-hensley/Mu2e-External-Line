@@ -1,0 +1,32 @@
+{
+  "all_snapshots_particlewise_energy_rms_difference_eV": 3848.2944224319867,
+  "all_snapshots_particlewise_time_rms_difference_ns": 0.012393658389488676,
+  "diagnostic_turn_grids_identical": true,
+  "flattop": {
+    "particlewise_energy_max_abs_difference_eV": 207436.0,
+    "particlewise_energy_rms_difference_eV": 3456.7164197999714,
+    "particlewise_time_max_abs_difference_ns": 0.5546584146080746,
+    "particlewise_time_rms_difference_ns": 0.008907244185450601,
+    "reference_sigma_energy_MeV": 10.154413052772664,
+    "reference_sigma_time_ns": 35.904459849689374,
+    "sigma_energy_relative_difference": 1.6778121260996315e-05,
+    "sigma_time_relative_difference": -1.4347618250809546e-05,
+    "turn": 8084,
+    "xsuite_sigma_energy_MeV": 10.154583424746196,
+    "xsuite_sigma_time_ns": 35.90394470620595
+  },
+  "last_extraction": {
+    "particlewise_energy_max_abs_difference_eV": 1047285.0,
+    "particlewise_energy_rms_difference_eV": 16172.531048964453,
+    "particlewise_time_max_abs_difference_ns": 1.6868172652549334,
+    "particlewise_time_rms_difference_ns": 0.031219649271065467,
+    "reference_sigma_energy_MeV": 10.666993187354494,
+    "reference_sigma_time_ns": 34.40204920934775,
+    "sigma_energy_relative_difference": -3.504224058004102e-05,
+    "sigma_time_relative_difference": 5.03959594007064e-05,
+    "turn": 38336,
+    "xsuite_sigma_energy_MeV": 10.666619392012958,
+    "xsuite_sigma_time_ns": 34.403782933623006
+  },
+  "snapshot_turn_grids_identical": true
+}

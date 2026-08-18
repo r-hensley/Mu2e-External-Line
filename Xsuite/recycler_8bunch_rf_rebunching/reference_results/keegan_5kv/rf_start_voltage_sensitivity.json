@@ -1,0 +1,64 @@
+{
+  "comparison": "same 1075200 historical particles tracked with 3 kV versus 5 kV h=28 starting voltage",
+  "coordinate": "absolute BLonD-convention final arrival time, without recentering",
+  "historical_input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+  "hdf5_inputs": {
+    "publication_3kv": {
+      "local_path": "outputs/final_dt_full_historical/rf_only_results.h5",
+      "sha256": "9601d0643d172ce718a4bc9b27b4ed83d454d0700d8bfd1d0e4ed915e2295052"
+    },
+    "keegan_5kv": {
+      "local_path": "outputs/convergence_5kv/historical_n1075200_seed202208/rf_only_results.h5",
+      "sha256": "b3ccc531b637de4264f3102a3e49898a836c959fd7eb15296aa3430994891b1f"
+    }
+  },
+  "configuration_check": {
+    "particles_each": 1075200,
+    "turns_each": 8083,
+    "same_machine_attributes": true,
+    "same_rf_attributes_except_rf25_initial_v": true,
+    "publication_rf25_initial_v": 3000.0,
+    "keegan_rf25_initial_v": 5000.0
+  },
+  "global_final_time_metrics": {
+    "empirical_wasserstein_1_ns": 5.028804154854086,
+    "histogram_wasserstein_1_ns": 5.009993303875284,
+    "histogram_bin_width_ns": 2.0,
+    "histogram_range_ns": [-1000.0, 3800.0],
+    "jensen_shannon_distance_base2": 0.22008968667643194,
+    "total_variation_distance": 0.1629425771182583,
+    "ks_distance": 0.005871465773809523,
+    "mean_time_difference_5kv_minus_3kv_ns": 0.06269493169043017,
+    "rms_width_difference_5kv_minus_3kv_ns": -0.24036768924406715
+  },
+  "per_initial_bunch_empirical_wasserstein_1_ns": [
+    12.233853484709098,
+    10.375736204770574,
+    12.149242109983218,
+    14.636822572050841,
+    10.435609240458206,
+    12.388328447418504,
+    10.264243423834206,
+    7.684361314971447
+  ],
+  "reference_bucket_outside": {
+    "publication_3kv": {"raw_count": 156191, "fraction": 0.14526692708333333},
+    "keegan_5kv": {"raw_count": 131845, "fraction": 0.12262369791666666},
+    "5kv_minus_3kv": {"raw_count": -24346, "fraction": -0.02264322916666667}
+  },
+  "unwrapped_reference_center_tails": {
+    "abs_dt_gt_80_ns": {
+      "publication_3kv_raw_count": 157907,
+      "keegan_5kv_raw_count": 134609
+    },
+    "abs_dt_gt_100_ns": {
+      "publication_3kv_raw_count": 156488,
+      "keegan_5kv_raw_count": 131906
+    },
+    "abs_dt_gt_120_ns": {
+      "publication_3kv_raw_count": 156203,
+      "keegan_5kv_raw_count": 131864
+    }
+  },
+  "interpretation": "The h=28 starting voltage materially changes the RF-only endpoint. This sensitivity comparison supports recording the source choice explicitly; it does not establish which voltage is physically authoritative. The tail and outside-bucket quantities measure unwrapped bucket migration, not Mu2e extinction."
+}

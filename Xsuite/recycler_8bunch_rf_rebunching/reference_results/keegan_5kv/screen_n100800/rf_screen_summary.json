@@ -1,0 +1,805 @@
+{
+  "assessment": {
+    "criteria": {
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "final_abs_time_gt_80ns_fraction_within_20_percent": true,
+      "final_rms_time_and_energy_within_5_percent": true,
+      "mean_absolute_final_centroid_difference_within_2x_resampling": true,
+      "population_conserved_in_all_runs": true,
+      "profile_distances_within_2x_historical_resampling": true
+    },
+    "name": "100,800-particle RF dynamic screen",
+    "passes_all_criteria": true,
+    "scope": "Passing means the compact input is within the declared tolerances relative to historical subsampling at this reduced RF-only screen. It is not proof of exact input provenance or publication-level ghost-bunch agreement.",
+    "tail_interpretation": "The >80 ns region has enough sampled particles for a coarse screen. The >100 ns and >120 ns regions remain count-limited and are reported but excluded from pass/fail."
+  },
+  "generated_pairs": [
+    {
+      "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202208/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.0001388888888888889,
+            "sample_equivalent_count": 14.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 2.9761904761904762e-05,
+            "sample_equivalent_count": 3.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.02126984126984127,
+            "sample_equivalent_count": 2144.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.7727195512496907,
+        "maximum_absolute_rms_energy_relative_difference": 0.00477891117773172,
+        "maximum_absolute_rms_time_relative_difference": 0.006614861610888911,
+        "mean_absolute_centroid_difference_ns": 0.35636085379118015,
+        "mean_absolute_rms_energy_relative_difference": 0.0031757607169380234,
+        "mean_absolute_rms_time_relative_difference": 0.0044922069956594615,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 1.5059071409309572,
+        "mean_jensen_shannon": 0.08172867958530189,
+        "mean_wasserstein_ns": 1.2337979686039173,
+        "median_jensen_shannon": 0.08093012922819384,
+        "median_wasserstein_ns": 1.3116582545747701,
+        "n_common_turns": 810
+      },
+      "ratios_to_historical_resampling_baseline": {
+        "maximum_absolute_centroid_difference": 0.9956729785126097,
+        "mean_absolute_centroid_difference": 0.9634941887330104,
+        "median_profile_jensen_shannon": 1.0441785726166564,
+        "median_profile_wasserstein": 0.8790411124426535
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "generated",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202209/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00016865079365079366,
+            "sample_equivalent_count": 17.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 3.968253968253968e-05,
+            "sample_equivalent_count": 4.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.021498015873015874,
+            "sample_equivalent_count": 2167.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 1.1284731648423092,
+        "maximum_absolute_rms_energy_relative_difference": 0.010015960218506795,
+        "maximum_absolute_rms_time_relative_difference": 0.014022422905619633,
+        "mean_absolute_centroid_difference_ns": 0.5623643913681518,
+        "mean_absolute_rms_energy_relative_difference": 0.004680177623953676,
+        "mean_absolute_rms_time_relative_difference": 0.005682618096034982,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 2.23778018277311,
+        "mean_jensen_shannon": 0.08235050577461403,
+        "mean_wasserstein_ns": 1.626776237318679,
+        "median_jensen_shannon": 0.08206329174629233,
+        "median_wasserstein_ns": 1.7715048007367982,
+        "n_common_turns": 810
+      },
+      "ratios_to_historical_resampling_baseline": {
+        "maximum_absolute_centroid_difference": 1.4540724838564683,
+        "mean_absolute_centroid_difference": 1.520466732721137,
+        "median_profile_jensen_shannon": 1.0587988880909405,
+        "median_profile_wasserstein": 1.1872189614222473
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "generated",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202210/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 7.936507936507937e-05,
+            "sample_equivalent_count": 8.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 1.984126984126984e-05,
+            "sample_equivalent_count": 2.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.02175595238095238,
+            "sample_equivalent_count": 2193.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.6167519122056946,
+        "maximum_absolute_rms_energy_relative_difference": 0.010141913793290443,
+        "maximum_absolute_rms_time_relative_difference": 0.01429188634141351,
+        "mean_absolute_centroid_difference_ns": 0.36035356834700993,
+        "mean_absolute_rms_energy_relative_difference": 0.004569856189516729,
+        "mean_absolute_rms_time_relative_difference": 0.005162349798801848,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 1.7839269194419942,
+        "mean_jensen_shannon": 0.08241840938729188,
+        "mean_wasserstein_ns": 1.352880441973442,
+        "median_jensen_shannon": 0.08152725356260622,
+        "median_wasserstein_ns": 1.4411411166982582,
+        "n_common_turns": 810
+      },
+      "ratios_to_historical_resampling_baseline": {
+        "maximum_absolute_centroid_difference": 0.7947038643399892,
+        "mean_absolute_centroid_difference": 0.974289306184564,
+        "median_profile_jensen_shannon": 1.0518828039224453,
+        "median_profile_wasserstein": 0.9658173430395398
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "generated",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202211/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 9.92063492063492e-05,
+            "sample_equivalent_count": 10.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 9.92063492063492e-06,
+            "sample_equivalent_count": 1.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.021200396825396827,
+            "sample_equivalent_count": 2137.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.46712974784875394,
+        "maximum_absolute_rms_energy_relative_difference": 0.010762312133208279,
+        "maximum_absolute_rms_time_relative_difference": 0.012107517154748428,
+        "mean_absolute_centroid_difference_ns": 0.24937227396127296,
+        "mean_absolute_rms_energy_relative_difference": 0.004615164972374451,
+        "mean_absolute_rms_time_relative_difference": 0.006579279692668329,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 1.3903371486397207,
+        "mean_jensen_shannon": 0.08191246462295428,
+        "mean_wasserstein_ns": 1.1553287116964475,
+        "median_jensen_shannon": 0.08196106210404275,
+        "median_wasserstein_ns": 1.2062818072755719,
+        "n_common_turns": 810
+      },
+      "ratios_to_historical_resampling_baseline": {
+        "maximum_absolute_centroid_difference": 0.6019110900458136,
+        "mean_absolute_centroid_difference": 0.6742287606416362,
+        "median_profile_jensen_shannon": 1.0574798984520843,
+        "median_profile_wasserstein": 0.8084204083559996
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "generated",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202212/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00010912698412698413,
+            "sample_equivalent_count": 11.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 1.984126984126984e-05,
+            "sample_equivalent_count": 2.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.02109126984126984,
+            "sample_equivalent_count": 2126.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 1.0698523601489651,
+        "maximum_absolute_rms_energy_relative_difference": 0.0071438224580014946,
+        "maximum_absolute_rms_time_relative_difference": 0.017570292752998665,
+        "mean_absolute_centroid_difference_ns": 0.3869279745501322,
+        "mean_absolute_rms_energy_relative_difference": 0.003666976687460427,
+        "mean_absolute_rms_time_relative_difference": 0.005197817056595114,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 1.91097799495815,
+        "mean_jensen_shannon": 0.0822419211321724,
+        "mean_wasserstein_ns": 1.5269452389886888,
+        "median_jensen_shannon": 0.08171147607979866,
+        "median_wasserstein_ns": 1.6792848525478796,
+        "n_common_turns": 810
+      },
+      "ratios_to_historical_resampling_baseline": {
+        "maximum_absolute_centroid_difference": 1.3785377686840194,
+        "mean_absolute_centroid_difference": 1.0461386287836796,
+        "median_profile_jensen_shannon": 1.0542596839160934,
+        "median_profile_wasserstein": 1.1254154195601398
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "generated",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    }
+  ],
+  "historical_control_pairs": [
+    {
+      "candidate_path": "outputs/convergence_5kv/historical_n100800_seed202209/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00015873015873015873,
+            "sample_equivalent_count": 16.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 2.9761904761904762e-05,
+            "sample_equivalent_count": 3.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.021626984126984126,
+            "sample_equivalent_count": 2180.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.7840892191221797,
+        "maximum_absolute_rms_energy_relative_difference": 0.010489641161109642,
+        "maximum_absolute_rms_time_relative_difference": 0.0069022496453620815,
+        "mean_absolute_centroid_difference_ns": 0.39186690492182397,
+        "mean_absolute_rms_energy_relative_difference": 0.00491285025907505,
+        "mean_absolute_rms_time_relative_difference": 0.0037515809566323376,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 1.807728173153238,
+        "mean_jensen_shannon": 0.07844617461967468,
+        "mean_wasserstein_ns": 1.3671396011816555,
+        "median_jensen_shannon": 0.07779405714579812,
+        "median_wasserstein_ns": 1.4675370487250627,
+        "n_common_turns": 810
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "file",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/convergence_5kv/historical_n100800_seed202210/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 6.944444444444444e-05,
+            "sample_equivalent_count": 7.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 9.92063492063492e-06,
+            "sample_equivalent_count": 1.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.02125,
+            "sample_equivalent_count": 2142.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.48795593406810467,
+        "maximum_absolute_rms_energy_relative_difference": 0.008341696590261507,
+        "maximum_absolute_rms_time_relative_difference": 0.008171217426130833,
+        "mean_absolute_centroid_difference_ns": 0.2627190230842126,
+        "mean_absolute_rms_energy_relative_difference": 0.005309329969548863,
+        "mean_absolute_rms_time_relative_difference": 0.005331066823335972,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 1.6828543945872083,
+        "mean_jensen_shannon": 0.07800510563583976,
+        "mean_wasserstein_ns": 1.3764509273809897,
+        "median_jensen_shannon": 0.07706562823015517,
+        "median_wasserstein_ns": 1.516756259081606,
+        "n_common_turns": 810
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "file",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/convergence_5kv/historical_n100800_seed202211/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.0001884920634920635,
+            "sample_equivalent_count": 19.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 6.944444444444444e-05,
+            "sample_equivalent_count": 7.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.021577380952380952,
+            "sample_equivalent_count": 2175.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.7680660927634981,
+        "maximum_absolute_rms_energy_relative_difference": 0.006638113163098003,
+        "maximum_absolute_rms_time_relative_difference": 0.008961185115165157,
+        "mean_absolute_centroid_difference_ns": 0.37318970675868357,
+        "mean_absolute_rms_energy_relative_difference": 0.004363685131189673,
+        "mean_absolute_rms_time_relative_difference": 0.004447195296783408,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 1.4597020900523718,
+        "mean_jensen_shannon": 0.07842182310462784,
+        "mean_wasserstein_ns": 1.1952705466806282,
+        "median_jensen_shannon": 0.07721799031536977,
+        "median_wasserstein_ns": 1.1920323035681735,
+        "n_common_turns": 810
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "file",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/convergence_5kv/historical_n100800_seed202212/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00012896825396825398,
+            "sample_equivalent_count": 13.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 2.9761904761904762e-05,
+            "sample_equivalent_count": 3.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.021041666666666667,
+            "sample_equivalent_count": 2121.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.8097229147064371,
+        "maximum_absolute_rms_energy_relative_difference": 0.007243353922789651,
+        "maximum_absolute_rms_time_relative_difference": 0.012872133534571702,
+        "mean_absolute_centroid_difference_ns": 0.3665362987708209,
+        "mean_absolute_rms_energy_relative_difference": 0.0036746254194600448,
+        "mean_absolute_rms_time_relative_difference": 0.004694645919469184,
+        "reference_population": {
+          "n_alive": 100800,
+          "n_alive_finite": 100800,
+          "n_total": 100800
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 12.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 4.96031746031746e-05,
+            "sample_equivalent_count": 5.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 100800,
+            "fraction": 0.020982142857142855,
+            "sample_equivalent_count": 2115.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 2.0369930282758677,
+        "mean_jensen_shannon": 0.0785802139352013,
+        "mean_wasserstein_ns": 1.5231828242101892,
+        "median_jensen_shannon": 0.07803768758045856,
+        "median_wasserstein_ns": 1.6828775390835313,
+        "n_common_turns": 810
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "file",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    }
+  ],
+  "historical_resampling_baseline": {
+    "median_maximum_absolute_centroid_difference_ns": 0.7760776559428388,
+    "median_mean_absolute_centroid_difference_ns": 0.36986300276475226,
+    "median_profile_jensen_shannon": 0.07750602373058395,
+    "median_profile_wasserstein_ns": 1.4921466539033343
+  },
+  "reference_path": "outputs/convergence_5kv/historical_n100800_seed202208/rf_only_results.h5",
+  "sample_design": "Equal tracked populations with 168-way historical stratification; generated samples have equal population in every microbunch."
+}

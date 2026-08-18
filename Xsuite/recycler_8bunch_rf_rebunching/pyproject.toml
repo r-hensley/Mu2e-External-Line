@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xsuite-recycler"
+version = "0.1.0"
+description = "RF-only Xsuite reconstruction of the Mu2e Recycler bunch-formation study"
+requires-python = ">=3.10"
+dependencies = [
+  "h5py>=3.8",
+  "matplotlib>=3.7",
+  "numpy>=1.24",
+  "xsuite>=0.50",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["xsuite_recycler*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

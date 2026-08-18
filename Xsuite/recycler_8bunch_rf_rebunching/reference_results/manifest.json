@@ -1,0 +1,203 @@
+{
+  "artifacts": [
+    {
+      "path": "reference_results/input_model/input_model_comparison.json",
+      "recipe": "input_model_full",
+      "sha256": "f901fdf19052c855f7cd82e34c576891f5596c75cdda8f57e30729423585b641",
+      "size_bytes": 9194,
+      "source_output_path": "outputs/input_model_default/input_model_comparison.json"
+    },
+    {
+      "path": "reference_results/input_model/input_model_diagnostics.png",
+      "recipe": "input_model_full",
+      "sha256": "89bfebe6093d66c4761480a9fec6620eff31b10254f8eae8ba045fed6c12af4e",
+      "size_bytes": 212158,
+      "source_output_path": "outputs/input_model_default/input_model_diagnostics.png"
+    },
+    {
+      "path": "reference_results/publication_3kv/standard_historical_100k/rf_voltage_program.png",
+      "recipe": "publication_3kv_standard_historical_100k",
+      "sha256": "f7e04bfd854d81057d026f3797a94ac7d11ddb00282d56405191e9e1a60e9dd0",
+      "size_bytes": 58760,
+      "source_output_path": "outputs/rf_only_100k/rf_voltage_program.png"
+    },
+    {
+      "path": "reference_results/publication_3kv/standard_historical_100k/final_phase_space.png",
+      "recipe": "publication_3kv_standard_historical_100k",
+      "sha256": "9c729778c90e5bfca3fc3d8361bf3b216f90900775f1b871b8ee980143b5f307",
+      "size_bytes": 287713,
+      "source_output_path": "outputs/rf_only_100k/final_phase_space.png"
+    },
+    {
+      "path": "reference_results/publication_3kv/standard_historical_100k/rebunching_waterfall.png",
+      "recipe": "publication_3kv_standard_historical_100k",
+      "sha256": "00f2884c6a37989780244342cf6d9d89e214f016c5fe19e6ad908fd92a2f1d99",
+      "size_bytes": 1777837,
+      "source_output_path": "outputs/rf_only_100k/rebunching_waterfall.png"
+    },
+    {
+      "path": "reference_results/publication_3kv/dynamic_33k6/rf_result_comparison_seed202208.json",
+      "recipe": "publication_3kv_dynamic_33k6_seed202208",
+      "sha256": "636abcd932689ca11eb66ae47b6a6fdfa22cfd7f557f0a910849ee117b064588",
+      "size_bytes": 113768,
+      "source_output_path": "outputs/rf_comparison_33k6_seed202208/rf_result_comparison.json"
+    },
+    {
+      "path": "reference_results/publication_3kv/dynamic_33k6/rf_result_comparison_seed202208.png",
+      "recipe": "publication_3kv_dynamic_33k6_seed202208",
+      "sha256": "47c7f84a12956e46bfa3e573f3631cec4b0c4c8ed2bd35a6b4b124b24e231309",
+      "size_bytes": 203755,
+      "source_output_path": "outputs/rf_comparison_33k6_seed202208/rf_result_comparison.png"
+    },
+    {
+      "path": "reference_results/publication_3kv/dynamic_33k6/rf_screen_summary.json",
+      "recipe": "publication_3kv_dynamic_33k6_screen",
+      "sha256": "eb0217ab0d924d2709989311a7f247f10c75649fb27279b9fdf62d905f997456",
+      "size_bytes": 16144,
+      "source_output_path": "outputs/rf_screen_33k6/rf_screen_summary.json"
+    },
+    {
+      "path": "reference_results/publication_3kv/final_time_full/final_dt_comparison_seed202208.json",
+      "recipe": "publication_3kv_final_time_full",
+      "sha256": "f59b75375abc3ebdf9363af9e40da8441c871de0fc13458934611bdcbdd64552",
+      "size_bytes": 168348,
+      "source_output_path": "outputs/final_dt_full_comparison_seed202208/final_dt_comparison.json"
+    },
+    {
+      "path": "reference_results/publication_3kv/final_time_full/final_dt_comparison_seed202208.png",
+      "recipe": "publication_3kv_final_time_full",
+      "sha256": "3356119874af7c48aff9b6dc889fa8ffb3556ad0be7be2e1bc0faf2ce49247e0",
+      "size_bytes": 405051,
+      "source_output_path": "outputs/final_dt_full_comparison_seed202208/final_dt_comparison.png"
+    },
+    {
+      "path": "reference_results/publication_3kv/gamma_transition_full/final_dt_comparison.json",
+      "recipe": "publication_3kv_gamma_transition_full",
+      "sha256": "d63622b5a8880665601f4bfbcfd6ee6b0b00915d6f37a85b0ddc9f0f482c052e",
+      "size_bytes": 188355,
+      "source_output_path": "outputs/gamma_transition_3kv/full_comparison/final_dt_comparison.json"
+    },
+    {
+      "path": "reference_results/publication_3kv/gamma_transition_full/final_dt_comparison.png",
+      "recipe": "publication_3kv_gamma_transition_full",
+      "sha256": "87696a01da539d6a9d3a0cc956936b55b294a5e3f5528676a2ad25be4716952b",
+      "size_bytes": 412190,
+      "source_output_path": "outputs/gamma_transition_3kv/full_comparison/final_dt_comparison.png"
+    }
+  ],
+  "created_utc_date": "2026-08-15",
+  "historical_input": {
+    "path": "1075200_init_dist.txt",
+    "rows": 1075200,
+    "sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1"
+  },
+  "notes": [
+    "No HDF5 file is copied into reference_results; the recipes regenerate intermediate HDF5 files under ignored outputs/ directories.",
+    "All RF-dependent artifacts in this manifest use the 3 kV h=28 publication/ESME default; the separate keegan_5kv bundle is the explicit legacy-code sensitivity.",
+    "Commands are fully specified workflow recipes reconstructed from stored run metadata and project records; they reproduce model settings and numerical analyses, but provenance, paths, elapsed time, and dependency changes can prevent byte-identical JSON or HDF5 output.",
+    "The archived_intermediate_hdf5_sha256 values identify the original omitted HDF5 files; newly regenerated HDF5 files are not expected to have those hashes after provenance-schema changes.",
+    "The nearest-h=28-bucket folded 125 ns metric is the Werkema-aligned Recycler-endpoint local-window proxy; the separate unwrapped lineage metric combines local tails with whole-bucket migration. Neither is a downstream extinction prediction."
+  ],
+  "recipes": {
+    "input_model_full": {
+      "commands": [
+        "python3 main.py compare-inputs --input 1075200_init_dist.txt --particles-per-microbunch 6400 --time-origin-ns -593.7974058027177 --spacing-ns 19.154736447320314 --sigma-time-ns 5.0249773002015825 --mean-dpop 8.20465626423e-08 --sigma-dpop 0.0001759398503806553 --correlation 0 --seed 202208 --output-dir outputs/input_model_default"
+      ],
+      "rf_dependent": false
+    },
+    "publication_3kv_dynamic_33k6_screen": {
+      "commands": [
+        "python3 main.py run --input 1075200_init_dist.txt --max-particles 33600 --sampling-strata 168 --seed 202208 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_compare_historical_33k6",
+        "python3 main.py run --particles-per-microbunch 200 --seed 202208 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_compare_generated_33k6_seed202208",
+        "python3 main.py run --particles-per-microbunch 200 --seed 202209 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_compare_generated_33k6_seed202209",
+        "python3 main.py run --particles-per-microbunch 200 --seed 202210 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_compare_generated_33k6_seed202210",
+        "python3 main.py run --input 1075200_init_dist.txt --max-particles 33600 --sampling-strata 168 --seed 202209 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_compare_historical_33k6_seed202209",
+        "python3 main.py run --input 1075200_init_dist.txt --max-particles 33600 --sampling-strata 168 --seed 202210 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_compare_historical_33k6_seed202210",
+        "python3 main.py summarize-screen --reference outputs/rf_compare_historical_33k6/rf_only_results.h5 --generated outputs/rf_compare_generated_33k6_seed202208/rf_only_results.h5 --generated outputs/rf_compare_generated_33k6_seed202209/rf_only_results.h5 --generated outputs/rf_compare_generated_33k6_seed202210/rf_only_results.h5 --control outputs/rf_compare_historical_33k6_seed202209/rf_only_results.h5 --control outputs/rf_compare_historical_33k6_seed202210/rf_only_results.h5 --output outputs/rf_screen_33k6/rf_screen_summary.json"
+      ],
+      "archived_intermediate_hdf5_sha256": {
+        "outputs/rf_compare_generated_33k6_seed202208/rf_only_results.h5": "f89e63a495f95ea3430b9a8c867cc0e84e0218a56b9b4059444c5a277a358780",
+        "outputs/rf_compare_generated_33k6_seed202209/rf_only_results.h5": "196524a8e13522614e7a4ea53fd1fbd1a35654c73811ef76972040aade2e497a",
+        "outputs/rf_compare_generated_33k6_seed202210/rf_only_results.h5": "2b47c5ec2927fb7b47c3bf0376ffcd8d6246890b625e6450b755e70b3de0280f",
+        "outputs/rf_compare_historical_33k6/rf_only_results.h5": "f51c7cc242031b72764df262fe8ba638b9337e20a49548aeb835fcd52266871e",
+        "outputs/rf_compare_historical_33k6_seed202209/rf_only_results.h5": "e9c83f71d68010fb089f556f9fae516c637d44f458859b2f6ac90f615f7128d4",
+        "outputs/rf_compare_historical_33k6_seed202210/rf_only_results.h5": "7eaee23de5624af9c77feb18d1e0f2f6f8bbfdff43232f27081707d9bd5521df"
+      },
+      "rf25_initial_kv": 3.0
+    },
+    "publication_3kv_dynamic_33k6_seed202208": {
+      "commands": [
+        "python3 main.py run --input 1075200_init_dist.txt --max-particles 33600 --sampling-strata 168 --seed 202208 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_compare_historical_33k6",
+        "python3 main.py run --particles-per-microbunch 200 --seed 202208 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_compare_generated_33k6_seed202208",
+        "python3 main.py compare-runs outputs/rf_compare_historical_33k6/rf_only_results.h5 outputs/rf_compare_generated_33k6_seed202208/rf_only_results.h5 --output-dir outputs/rf_comparison_33k6_seed202208"
+      ],
+      "archived_intermediate_hdf5_sha256": {
+        "outputs/rf_compare_generated_33k6_seed202208/rf_only_results.h5": "f89e63a495f95ea3430b9a8c867cc0e84e0218a56b9b4059444c5a277a358780",
+        "outputs/rf_compare_historical_33k6/rf_only_results.h5": "f51c7cc242031b72764df262fe8ba638b9337e20a49548aeb835fcd52266871e"
+      },
+      "rf25_initial_kv": 3.0
+    },
+    "publication_3kv_final_time_full": {
+      "commands": [
+        "python3 main.py run --input 1075200_init_dist.txt --max-particles 0 --sampling-strata 168 --seed 202208 --record-every 8083 --rf25-start-kv 3 --no-figures --output-dir outputs/final_dt_full_historical",
+        "python3 main.py run --particles-per-microbunch 6400 --seed 202208 --record-every 8083 --rf25-start-kv 3 --no-figures --output-dir outputs/final_dt_full_generated_seed202208",
+        "python3 main.py compare-final-time outputs/final_dt_full_historical/rf_only_results.h5 outputs/final_dt_full_generated_seed202208/rf_only_results.h5 --absolute-bins 2400 --absolute-min-ns -1000 --absolute-max-ns 3800 --bucket-relative-bins 400 --output-dir outputs/final_dt_full_comparison_seed202208"
+      ],
+      "archived_intermediate_hdf5_sha256": {
+        "outputs/final_dt_full_generated_seed202208/rf_only_results.h5": "b22e3e94de287bd2b1ff071aa16c86f60ca53203d06bc866314469b8555fddf0",
+        "outputs/final_dt_full_historical/rf_only_results.h5": "9601d0643d172ce718a4bc9b27b4ed83d454d0700d8bfd1d0e4ed915e2295052"
+      },
+      "comparison_diagnostics": [
+        "nearest_h28_bucket_folded_125ns_local_window",
+        "unwrapped_initial_lineage_125ns_window"
+      ],
+      "rf25_initial_kv": 3.0
+    },
+    "publication_3kv_gamma_transition_full": {
+      "commands": [
+        "python3 main.py run --input 1075200_init_dist.txt --max-particles 0 --sampling-strata 168 --seed 202208 --turns 8083 --record-every 8083 --rf25-start-kv 3 --gamma-transition 20.257643837730637 --no-figures --output-dir outputs/final_dt_full_historical",
+        "python3 main.py run --input 1075200_init_dist.txt --max-particles 0 --sampling-strata 168 --seed 202208 --turns 8083 --record-every 8083 --rf25-start-kv 3 --gamma-transition 21.6 --no-figures --output-dir outputs/gamma_transition_3kv/werkema_gt21p6_historical_full",
+        "python3 main.py compare-final-time outputs/final_dt_full_historical/rf_only_results.h5 outputs/gamma_transition_3kv/werkema_gt21p6_historical_full/rf_only_results.h5 --allow-gamma-transition-difference --absolute-bins 2400 --absolute-min-ns -1000 --absolute-max-ns 3800 --bucket-relative-bins 400 --output-dir outputs/gamma_transition_3kv/full_comparison"
+      ],
+      "archived_intermediate_hdf5_sha256": {
+        "outputs/final_dt_full_historical/rf_only_results.h5": "9601d0643d172ce718a4bc9b27b4ed83d454d0700d8bfd1d0e4ed915e2295052",
+        "outputs/gamma_transition_3kv/werkema_gt21p6_historical_full/rf_only_results.h5": "b97750b61ef57c6d40fc2b303730d32a7764c3f6c460ec8a6bb77890bf3ed5aa"
+      },
+      "archived_intermediate_hdf5_size_bytes": {
+        "outputs/final_dt_full_historical/rf_only_results.h5": 16108475,
+        "outputs/gamma_transition_3kv/werkema_gt21p6_historical_full/rf_only_results.h5": 16106793
+      },
+      "baseline_provenance_caveat": "The Keegan-gamma reference predates stored invocation, source-tree, and Git provenance fields. Its command is reconstructed from resolved HDF5 metadata and project records rather than copied from a stored shell transcript.",
+      "candidate_gamma_transition": 21.6,
+      "candidate_project_git_revision": "741d0e6e522525048b6e535f99a2df703fe53ce0",
+      "candidate_project_source_sha256": "f3703067ecef427d848e133b72c67923bccd1d8e5ed09cd2f782bbd4b44fae2d",
+      "command_provenance": {
+        "candidate_run": "exact invocation stored in the candidate HDF5",
+        "comparison": "explicit reproducible analysis command",
+        "reference_run": "reconstructed legacy command"
+      },
+      "controlled_machine_attribute_differences": [
+        "gamma_transition",
+        "momentum_compaction_factor",
+        "slip_factor"
+      ],
+      "reference_gamma_transition": 20.257643837730637,
+      "rf25_initial_kv": 3.0,
+      "window_diagnostics": {
+        "nearest_bucket_folded_half_width_ns": 125.0,
+        "unwrapped_lineage_half_width_ns": 125.0
+      }
+    },
+    "publication_3kv_standard_historical_100k": {
+      "commands": [
+        "python3 main.py run --input 1075200_init_dist.txt --max-particles 100000 --sampling-strata 8 --seed 202208 --record-every 10 --rf25-start-kv 3 --output-dir outputs/rf_only_100k"
+      ],
+      "archived_intermediate_hdf5_sha256": {
+        "outputs/rf_only_100k/rf_only_results.h5": "f2dd29245c914b04d27f73b43891a06cff62309af2686db9b53b0ae64b64ca6e"
+      },
+      "rf25_initial_kv": 3.0
+    }
+  },
+  "schema_version": 1,
+  "updated_utc_date": "2026-08-16"
+}

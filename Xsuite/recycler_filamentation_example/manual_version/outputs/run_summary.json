@@ -1,0 +1,61 @@
+{
+  "acceptance_checks": [
+    {
+      "check": "source bunch count",
+      "difference": 0.0,
+      "target": 21,
+      "value": 21
+    },
+    {
+      "check": "initial contour area [eV-s]",
+      "difference": -2.5396351688300456e-15,
+      "target": 0.12,
+      "value": 0.11999999999999746
+    },
+    {
+      "check": "one-turn det(J)",
+      "difference": 1.6780887790446286e-10,
+      "target": 1.0,
+      "value": 1.0000000001678089
+    },
+    {
+      "check": "tracked small-amplitude period [ms]",
+      "difference": 0.001287526565569408,
+      "target": 18.415472393042045,
+      "value": 18.416759919607614
+    },
+    {
+      "check": "all nominal coordinates finite",
+      "difference": 0.0,
+      "target": 1.0,
+      "value": 1.0
+    }
+  ],
+  "all_acceptance_checks_passed": true,
+  "analytical_period_ms": 18.415472393042045,
+  "bucket_half_height_MeV": 42.11581959215676,
+  "end_time_ms": 426.8590739287047,
+  "final_diagnostics": {
+    "central_95_time_width_s": 1.2727320517715269e-07,
+    "centroid_time_s": -2.1614750916900978e-10,
+    "covariance_emittance_eVs": 0.36681951305225863,
+    "outside_window_fraction": 0.0,
+    "sigma_energy_eV": 10666993.187354494,
+    "sigma_time_s": 3.440201047811021e-08
+  },
+  "harmonic_ratio": 21.0,
+  "helper_sha256": "cfb9490ee12f7470461fb22acd255e917767067a2f15abca3adf6683f61fbd17",
+  "helper_source": "manual_version/mu2e_longitudinal.py",
+  "initial_contour_area_eVs": 0.12,
+  "measured_period_ms": 18.416759919607614,
+  "model": "standalone NumPy drift-kick Recycler filamentation example",
+  "model_version": "2026.07.23",
+  "n_particles": 5376,
+  "n_turns": 38336,
+  "numpy_version": "2.2.6",
+  "one_turn_jacobian_determinant": 1.0000000001678089,
+  "particles_per_source": 256,
+  "result_sha256": "8ff4503e1493957fbe082ab4d70c2122b9a0c0b399b031034406f128720f34cf",
+  "source_bunch_count": 21,
+  "tracking_elapsed_s": 9.567037422995782
+}

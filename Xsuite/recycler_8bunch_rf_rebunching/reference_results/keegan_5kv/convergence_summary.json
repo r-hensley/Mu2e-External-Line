@@ -1,0 +1,581 @@
+{
+  "schema_version": 1,
+  "study": {
+    "name": "5 kV RF-only particle-count and seed convergence matrix",
+    "rf25_initial_v": 5000.0,
+    "particle_counts": [
+      33600,
+      100800,
+      336000,
+      1075200
+    ],
+    "seed_202208_matched_count_pairs": 4,
+    "seed_screen_particle_count": 100800,
+    "seed_screen_seeds": [
+      202208,
+      202209,
+      202210,
+      202211,
+      202212
+    ],
+    "expected_hdf5_run_count": 16
+  },
+  "matched_generated_to_historical": [
+    {
+      "particle_count": 33600,
+      "seed": 202208,
+      "final_report": "outputs/convergence_5kv/analysis/matched_n33600_seed202208/final_dt_comparison.json",
+      "profile_report": "outputs/convergence_5kv/analysis/matched_n33600_seed202208/rf_result_comparison.json",
+      "final": {
+        "absolute_empirical_wasserstein_1_ns": 2.1932870531161752,
+        "absolute_histogram_jensen_shannon_distance": 0.10442462583909899,
+        "absolute_histogram_total_variation_distance": 0.07943452380952382,
+        "bucket_relative_empirical_wasserstein_1_ns": 1.0131200678200938
+      },
+      "profiles": {
+        "median_wasserstein_ns": 2.336398809523809,
+        "median_jensen_shannon_distance": 0.1366905632813435,
+        "common_turns": 810
+      },
+      "outside_initial_reference_bucket": {
+        "historical_fraction": 0.12113095238095238,
+        "generated_fraction": 0.12053571428571429,
+        "generated_minus_historical_fraction": -0.0005952380952380931,
+        "absolute_fraction_difference": 0.0005952380952380931
+      }
+    },
+    {
+      "particle_count": 100800,
+      "seed": 202208,
+      "final_report": "outputs/convergence_5kv/analysis/matched_n100800_seed202208/final_dt_comparison.json",
+      "profile_report": "outputs/convergence_5kv/analysis/matched_n100800_seed202208/rf_result_comparison.json",
+      "final": {
+        "absolute_empirical_wasserstein_1_ns": 1.3273050787996814,
+        "absolute_histogram_jensen_shannon_distance": 0.06721563178813529,
+        "absolute_histogram_total_variation_distance": 0.04941987143753113,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.920215571215826
+      },
+      "profiles": {
+        "median_wasserstein_ns": 1.3116582545747701,
+        "median_jensen_shannon_distance": 0.08093012922819384,
+        "common_turns": 810
+      },
+      "outside_initial_reference_bucket": {
+        "historical_fraction": 0.12319444444444444,
+        "generated_fraction": 0.12235119047619047,
+        "generated_minus_historical_fraction": -0.0008432539682539653,
+        "absolute_fraction_difference": 0.0008432539682539653
+      }
+    },
+    {
+      "particle_count": 336000,
+      "seed": 202208,
+      "final_report": "outputs/convergence_5kv/analysis/matched_n336000_seed202208/final_dt_comparison.json",
+      "profile_report": "outputs/convergence_5kv/analysis/matched_n336000_seed202208/rf_result_comparison.json",
+      "final": {
+        "absolute_empirical_wasserstein_1_ns": 0.8840396301172573,
+        "absolute_histogram_jensen_shannon_distance": 0.03742180106839421,
+        "absolute_histogram_total_variation_distance": 0.027250081101437087,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.29394503693946716
+      },
+      "profiles": {
+        "median_wasserstein_ns": 0.8550607713095405,
+        "median_jensen_shannon_distance": 0.04632168402491672,
+        "common_turns": 810
+      },
+      "outside_initial_reference_bucket": {
+        "historical_fraction": 0.12298809523809524,
+        "generated_fraction": 0.12336607142857142,
+        "generated_minus_historical_fraction": 0.0003779761904761786,
+        "absolute_fraction_difference": 0.0003779761904761786
+      }
+    },
+    {
+      "particle_count": 1075200,
+      "seed": 202208,
+      "final_report": "outputs/convergence_5kv/analysis/matched_n1075200_seed202208/final_dt_comparison.json",
+      "profile_report": "outputs/convergence_5kv/analysis/matched_n1075200_seed202208/rf_result_comparison.json",
+      "final": {
+        "absolute_empirical_wasserstein_1_ns": 0.4369735983295153,
+        "absolute_histogram_jensen_shannon_distance": 0.020914866231582334,
+        "absolute_histogram_total_variation_distance": 0.014197852404652257,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.19863008801187643
+      },
+      "profiles": {
+        "median_wasserstein_ns": 0.4300174838043457,
+        "median_jensen_shannon_distance": 0.02668437132829682,
+        "common_turns": 810
+      },
+      "outside_initial_reference_bucket": {
+        "historical_fraction": 0.12262369791666666,
+        "generated_fraction": 0.12262276785714285,
+        "generated_minus_historical_fraction": -9.30059523812643e-07,
+        "absolute_fraction_difference": 9.30059523812643e-07
+      }
+    }
+  ],
+  "particle_count_convergence_to_full": {
+    "historical": [
+      {
+        "particle_count": 33600,
+        "full_particle_count": 1075200,
+        "seed": 202208,
+        "report": "outputs/convergence_5kv/analysis/convergence_to_full/historical_n33600_to_n1075200/final_dt_comparison.json",
+        "absolute_empirical_wasserstein_1_ns": 1.1286987470176315,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.7342608486920149
+      },
+      {
+        "particle_count": 100800,
+        "full_particle_count": 1075200,
+        "seed": 202208,
+        "report": "outputs/convergence_5kv/analysis/convergence_to_full/historical_n100800_to_n1075200/final_dt_comparison.json",
+        "absolute_empirical_wasserstein_1_ns": 1.0185567599861303,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.7528120897075676
+      },
+      {
+        "particle_count": 336000,
+        "full_particle_count": 1075200,
+        "seed": 202208,
+        "report": "outputs/convergence_5kv/analysis/convergence_to_full/historical_n336000_to_n1075200/final_dt_comparison.json",
+        "absolute_empirical_wasserstein_1_ns": 0.4365155480260454,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.29637274149399445
+      }
+    ],
+    "generated": [
+      {
+        "particle_count": 33600,
+        "full_particle_count": 1075200,
+        "seed": 202208,
+        "report": "outputs/convergence_5kv/analysis/convergence_to_full/generated_n33600_to_n1075200/final_dt_comparison.json",
+        "absolute_empirical_wasserstein_1_ns": 2.121323727337994,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.9800565070773246
+      },
+      {
+        "particle_count": 100800,
+        "full_particle_count": 1075200,
+        "seed": 202208,
+        "report": "outputs/convergence_5kv/analysis/convergence_to_full/generated_n100800_to_n1075200/final_dt_comparison.json",
+        "absolute_empirical_wasserstein_1_ns": 1.0320011250493781,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.263358184979827
+      },
+      {
+        "particle_count": 336000,
+        "full_particle_count": 1075200,
+        "seed": 202208,
+        "report": "outputs/convergence_5kv/analysis/convergence_to_full/generated_n336000_to_n1075200/final_dt_comparison.json",
+        "absolute_empirical_wasserstein_1_ns": 0.7750121591621,
+        "bucket_relative_empirical_wasserstein_1_ns": 0.395679519433978
+      }
+    ]
+  },
+  "seed_screen": {
+    "particle_count": 100800,
+    "historical_reference_seed": 202208,
+    "generated_seeds": [
+      202208,
+      202209,
+      202210,
+      202211,
+      202212
+    ],
+    "historical_control_seeds": [
+      202209,
+      202210,
+      202211,
+      202212
+    ],
+    "report": "outputs/convergence_5kv/analysis/screen_n100800_seeds202208_to_202212/rf_screen_summary.json",
+    "historical_resampling_baseline": {
+      "median_maximum_absolute_centroid_difference_ns": 0.7760776559428388,
+      "median_mean_absolute_centroid_difference_ns": 0.36986300276475226,
+      "median_profile_jensen_shannon": 0.07750602373058395,
+      "median_profile_wasserstein_ns": 1.4921466539033343
+    },
+    "generated_ratios_to_historical_resampling_baseline": [
+      {
+        "seed": 202208,
+        "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202208/rf_only_results.h5",
+        "ratios": {
+          "maximum_absolute_centroid_difference": 0.9956729785126097,
+          "mean_absolute_centroid_difference": 0.9634941887330104,
+          "median_profile_jensen_shannon": 1.0441785726166564,
+          "median_profile_wasserstein": 0.8790411124426535
+        }
+      },
+      {
+        "seed": 202209,
+        "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202209/rf_only_results.h5",
+        "ratios": {
+          "maximum_absolute_centroid_difference": 1.4540724838564683,
+          "mean_absolute_centroid_difference": 1.520466732721137,
+          "median_profile_jensen_shannon": 1.0587988880909405,
+          "median_profile_wasserstein": 1.1872189614222473
+        }
+      },
+      {
+        "seed": 202210,
+        "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202210/rf_only_results.h5",
+        "ratios": {
+          "maximum_absolute_centroid_difference": 0.7947038643399892,
+          "mean_absolute_centroid_difference": 0.974289306184564,
+          "median_profile_jensen_shannon": 1.0518828039224453,
+          "median_profile_wasserstein": 0.9658173430395398
+        }
+      },
+      {
+        "seed": 202211,
+        "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202211/rf_only_results.h5",
+        "ratios": {
+          "maximum_absolute_centroid_difference": 0.6019110900458136,
+          "mean_absolute_centroid_difference": 0.6742287606416362,
+          "median_profile_jensen_shannon": 1.0574798984520843,
+          "median_profile_wasserstein": 0.8084204083559996
+        }
+      },
+      {
+        "seed": 202212,
+        "candidate_path": "outputs/convergence_5kv/generated_n100800_seed202212/rf_only_results.h5",
+        "ratios": {
+          "maximum_absolute_centroid_difference": 1.3785377686840194,
+          "mean_absolute_centroid_difference": 1.0461386287836796,
+          "median_profile_jensen_shannon": 1.0542596839160934,
+          "median_profile_wasserstein": 1.1254154195601398
+        }
+      }
+    ],
+    "generated_ratio_ranges": {
+      "maximum_absolute_centroid_difference": {
+        "minimum": 0.6019110900458136,
+        "maximum": 1.4540724838564683
+      },
+      "mean_absolute_centroid_difference": {
+        "minimum": 0.6742287606416362,
+        "maximum": 1.520466732721137
+      },
+      "median_profile_jensen_shannon": {
+        "minimum": 1.0441785726166564,
+        "maximum": 1.0587988880909405
+      },
+      "median_profile_wasserstein": {
+        "minimum": 0.8084204083559996,
+        "maximum": 1.1872189614222473
+      }
+    },
+    "assessment": {
+      "criteria": {
+        "all_particles_survive_with_finite_final_coordinates": true,
+        "final_abs_time_gt_80ns_fraction_within_20_percent": true,
+        "final_rms_time_and_energy_within_5_percent": true,
+        "mean_absolute_final_centroid_difference_within_2x_resampling": true,
+        "population_conserved_in_all_runs": true,
+        "profile_distances_within_2x_historical_resampling": true
+      },
+      "name": "100,800-particle RF dynamic screen",
+      "passes_all_criteria": true,
+      "scope": "Passing means the compact input is within the declared tolerances relative to historical subsampling at this reduced RF-only screen. It is not proof of exact input provenance or publication-level ghost-bunch agreement.",
+      "tail_interpretation": "The >80 ns region has enough sampled particles for a coarse screen. The >100 ns and >120 ns regions remain count-limited and are reported but excluded from pass/fail."
+    }
+  },
+  "integrity": {
+    "all_16_runs_survive_with_finite_final_coordinates": true,
+    "all_16_runs_conserve_macro_equivalent_population": true,
+    "all_16_runs_share_project_source_sha256": true,
+    "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+    "historical_input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1"
+  },
+  "runtime": {
+    "run_count": 16,
+    "total_tracking_s": 5639.656556084985,
+    "minimum_tracking_s": 48.05870062499889,
+    "median_tracking_s": 139.89815342449583,
+    "maximum_tracking_s": 1634.4211757600133,
+    "by_source": {
+      "historical": {
+        "run_count": 8,
+        "total_tracking_s": 2785.3410951129918,
+        "median_tracking_s": 139.53599294950254,
+        "maximum_tracking_s": 1559.2198917019996
+      },
+      "generated": {
+        "run_count": 8,
+        "total_tracking_s": 2854.315460971993,
+        "median_tracking_s": 140.70050000298943,
+        "maximum_tracking_s": 1634.4211757600133
+      }
+    }
+  },
+  "runs": [
+    {
+      "source": "historical",
+      "input_source_kind": "file",
+      "particle_count": 33600,
+      "seed": 202208,
+      "path": "outputs/convergence_5kv/historical_n33600_seed202208/rf_only_results.h5",
+      "elapsed_tracking_s": 48.6353809129796,
+      "surviving_finite_particles": 33600,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+      "input_source_coordinate_sha256": "2197178b8d64b28b8ed60f5ab890e574881e03bdf57a6f62cbb8fa886b7968d1",
+      "input_tracking_coordinate_sha256": "413f36eab8da532c601b06ef4647145bc2e6191fee32adde12c0b75fbab2a7bf",
+      "invocation_command": "main.py run --input 1075200_init_dist.txt --max-particles 33600 --sampling-strata 168 --seed 202208 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/historical_n33600_seed202208"
+    },
+    {
+      "source": "generated",
+      "input_source_kind": "generated",
+      "particle_count": 33600,
+      "seed": 202208,
+      "path": "outputs/convergence_5kv/generated_n33600_seed202208/rf_only_results.h5",
+      "elapsed_tracking_s": 48.05870062499889,
+      "surviving_finite_particles": 33600,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "ea6dfa941b18b5998a1e5f3de47a2c9844f8cc654ea9bbb91b7363025d951deb",
+      "input_source_coordinate_sha256": "3a481f3508375bf0c28b27b962af24e88234d2eba59969a7be5b52f56475311f",
+      "input_tracking_coordinate_sha256": "023048d30d91c61971efbb20f24b43c58c53fc75e4db20d3aa023d33a587343a",
+      "invocation_command": "main.py run --particles-per-microbunch 200 --seed 202208 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/generated_n33600_seed202208"
+    },
+    {
+      "source": "historical",
+      "input_source_kind": "file",
+      "particle_count": 100800,
+      "seed": 202208,
+      "path": "outputs/convergence_5kv/historical_n100800_seed202208/rf_only_results.h5",
+      "elapsed_tracking_s": 139.61229076399468,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0029751460533589125,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+      "input_source_coordinate_sha256": "04822375adc3789165da63431c3ed9b1c6817dd601e1890b85d6962a0cd4a4b8",
+      "input_tracking_coordinate_sha256": "67942d66d76e14d3587ee58949e4d93a610d482421388fd2e6ee2171ee8dc2b6",
+      "invocation_command": "main.py run --input 1075200_init_dist.txt --max-particles 100800 --sampling-strata 168 --seed 202208 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/historical_n100800_seed202208"
+    },
+    {
+      "source": "generated",
+      "input_source_kind": "generated",
+      "particle_count": 100800,
+      "seed": 202208,
+      "path": "outputs/convergence_5kv/generated_n100800_seed202208/rf_only_results.h5",
+      "elapsed_tracking_s": 140.18401608499698,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0034551620483398438,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "efb9161c5520a5b3c6d572eb6793f58bbeaa2f588119ea8c99f17afcb68d3bf4",
+      "input_source_coordinate_sha256": "afe9f4f33b3724d1f3cba757d297dd206a7954bdc3721495bd912b1d421d64a9",
+      "input_tracking_coordinate_sha256": "896db4228ac8bb805e7b252d45aea3f263606dfa78e34d3281b5e07c5acefb67",
+      "invocation_command": "main.py run --particles-per-microbunch 600 --seed 202208 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/generated_n100800_seed202208"
+    },
+    {
+      "source": "historical",
+      "input_source_kind": "file",
+      "particle_count": 336000,
+      "seed": 202208,
+      "path": "outputs/convergence_5kv/historical_n336000_seed202208/rf_only_results.h5",
+      "elapsed_tracking_s": 488.72797308300505,
+      "surviving_finite_particles": 336000,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0024803162086755037,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+      "input_source_coordinate_sha256": "18d6e28fd22bd908612cbca4c4cdda29d262c6b4ee0772d9f1f26e167b4d15d9",
+      "input_tracking_coordinate_sha256": "1c562a15e6a5acf9fe94d4e4a64020ca828864c2352d98d3e53ae4689ea10a02",
+      "invocation_command": "main.py run --input 1075200_init_dist.txt --max-particles 336000 --sampling-strata 168 --seed 202208 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/historical_n336000_seed202208"
+    },
+    {
+      "source": "generated",
+      "input_source_kind": "generated",
+      "particle_count": 336000,
+      "seed": 202208,
+      "path": "outputs/convergence_5kv/generated_n336000_seed202208/rf_only_results.h5",
+      "elapsed_tracking_s": 484.83350240800064,
+      "surviving_finite_particles": 336000,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.003014039946720004,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "7f03f83ad6c6d5602a0650d23e1c5f250e38fa766c6d6de2d34b8f246fd1b3f2",
+      "input_source_coordinate_sha256": "bad4be0df0a93106a79d1db76643fc09a5f32eeffd15c87bfa7b8be22ac199bb",
+      "input_tracking_coordinate_sha256": "ab0009b3b7d33c82934a71228a5d0138898546fdeafe5e25502bb2c196a6c06a",
+      "invocation_command": "main.py run --particles-per-microbunch 2000 --seed 202208 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/generated_n336000_seed202208"
+    },
+    {
+      "source": "historical",
+      "input_source_kind": "file",
+      "particle_count": 1075200,
+      "seed": 202208,
+      "path": "outputs/convergence_5kv/historical_n1075200_seed202208/rf_only_results.h5",
+      "elapsed_tracking_s": 1559.2198917019996,
+      "surviving_finite_particles": 1075200,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+      "input_source_coordinate_sha256": "24ebd051d18d5aefc1019a3240cee70545a550c6171d5c2358d33a49885c0bac",
+      "input_tracking_coordinate_sha256": "1c7dde527b481e277dc1fac29c856ab5bb22f4b4bba09cad966e829651ce5768",
+      "invocation_command": "main.py run --input 1075200_init_dist.txt --max-particles 0 --sampling-strata 168 --seed 202208 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/historical_n1075200_seed202208"
+    },
+    {
+      "source": "generated",
+      "input_source_kind": "generated",
+      "particle_count": 1075200,
+      "seed": 202208,
+      "path": "outputs/convergence_5kv/generated_n1075200_seed202208/rf_only_results.h5",
+      "elapsed_tracking_s": 1634.4211757600133,
+      "surviving_finite_particles": 1075200,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "2351aa8746fa76d1e68f8db9cf276292bb353748096a3d0f10b97f9fbaf85a1d",
+      "input_source_coordinate_sha256": "b5b56a14bc3667088b7c7581958a8d631704781fc4bc2e47855e93fed2924fcc",
+      "input_tracking_coordinate_sha256": "435e19204495712a411746eeaff301b506200397133966272328f6ff23627326",
+      "invocation_command": "main.py run --particles-per-microbunch 6400 --seed 202208 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/generated_n1075200_seed202208"
+    },
+    {
+      "source": "historical",
+      "input_source_kind": "file",
+      "particle_count": 100800,
+      "seed": 202209,
+      "path": "outputs/convergence_5kv/historical_n100800_seed202209/rf_only_results.h5",
+      "elapsed_tracking_s": 133.2386766510026,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.002862612484022975,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+      "input_source_coordinate_sha256": "84544cb201e8d7a4a763a8621811c55890c502b3cd7ea38a43549db077ccb538",
+      "input_tracking_coordinate_sha256": "9b291eace4301c5394411bbc2c5e50583c2c732343d09363fe7708d418b90a68",
+      "invocation_command": "main.py run --input 1075200_init_dist.txt --max-particles 100800 --sampling-strata 168 --seed 202209 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/historical_n100800_seed202209"
+    },
+    {
+      "source": "generated",
+      "input_source_kind": "generated",
+      "particle_count": 100800,
+      "seed": 202209,
+      "path": "outputs/convergence_5kv/generated_n100800_seed202209/rf_only_results.h5",
+      "elapsed_tracking_s": 141.21698392098187,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0036754608154296875,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "569ddb0926163014c09060004ac3054784bb7b1fa003fc34dc9e622505f72fae",
+      "input_source_coordinate_sha256": "ce94c1763fa8599d8bf96f813615f9fa1c263d45c709adbc0a58bb9554f1091c",
+      "input_tracking_coordinate_sha256": "ac2a189db24e76cae2ce2d82e5312f68b626b14288c236fca5e6391a991159ae",
+      "invocation_command": "main.py run --particles-per-microbunch 600 --seed 202209 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/generated_n100800_seed202209"
+    },
+    {
+      "source": "historical",
+      "input_source_kind": "file",
+      "particle_count": 100800,
+      "seed": 202210,
+      "path": "outputs/convergence_5kv/historical_n100800_seed202210/rf_only_results.h5",
+      "elapsed_tracking_s": 139.4596951350104,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.00290457415394485,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+      "input_source_coordinate_sha256": "2e4b2d5ae26616317e46618806b0cdac93217191922322d06e14622970cec7bc",
+      "input_tracking_coordinate_sha256": "fe5e1b1bb2fc21f6e320d053510f8a5c955771719bd81954985cb06910970d89",
+      "invocation_command": "main.py run --input 1075200_init_dist.txt --max-particles 100800 --sampling-strata 168 --seed 202210 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/historical_n100800_seed202210"
+    },
+    {
+      "source": "generated",
+      "input_source_kind": "generated",
+      "particle_count": 100800,
+      "seed": 202210,
+      "path": "outputs/convergence_5kv/generated_n100800_seed202210/rf_only_results.h5",
+      "elapsed_tracking_s": 130.66344809302245,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0032504398841410875,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "5f1f7088418531758a755baa5e8137ae6fafb9488fc87fb0c01e5c657f097138",
+      "input_source_coordinate_sha256": "14be51f5b4d2bc04943cc1b20d9f86d7e0f45a62e6ead10d01c1d241efe84a38",
+      "input_tracking_coordinate_sha256": "386a45903ca587ab576ea868c0fed9af42d2adc4fe2faef08108564f2cdca017",
+      "invocation_command": "main.py run --particles-per-microbunch 600 --seed 202210 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/generated_n100800_seed202210"
+    },
+    {
+      "source": "historical",
+      "input_source_kind": "file",
+      "particle_count": 100800,
+      "seed": 202211,
+      "path": "outputs/convergence_5kv/historical_n100800_seed202211/rf_only_results.h5",
+      "elapsed_tracking_s": 143.00357311201515,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0028963088989257812,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+      "input_source_coordinate_sha256": "3aba75ace34e5d7f589778de3f5259a3f0449efe7a3101805686c422cc55da3b",
+      "input_tracking_coordinate_sha256": "276827b4a6b48336bb3087a835c0c7400afbd304429e56ac8a13712fbff5b597",
+      "invocation_command": "main.py run --input 1075200_init_dist.txt --max-particles 100800 --sampling-strata 168 --seed 202211 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/historical_n100800_seed202211"
+    },
+    {
+      "source": "generated",
+      "input_source_kind": "generated",
+      "particle_count": 100800,
+      "seed": 202211,
+      "path": "outputs/convergence_5kv/generated_n100800_seed202211/rf_only_results.h5",
+      "elapsed_tracking_s": 142.65235148198553,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0028928120154887438,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "b9d494393cb7b11d54c24c81d8431d4094acdcf640a4edaa3058ea56565d7e7b",
+      "input_source_coordinate_sha256": "fb125674274ec2e1e65e7af1cdb86d8dac82a167216facab9eca4969d380c390",
+      "input_tracking_coordinate_sha256": "672fbda086b5eec58e7f5e1be5a64fbeeff56ba60fdde83d929b8af412dfc5cf",
+      "invocation_command": "main.py run --particles-per-microbunch 600 --seed 202211 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/generated_n100800_seed202211"
+    },
+    {
+      "source": "historical",
+      "input_source_kind": "file",
+      "particle_count": 100800,
+      "seed": 202212,
+      "path": "outputs/convergence_5kv/historical_n100800_seed202212/rf_only_results.h5",
+      "elapsed_tracking_s": 133.44361375298467,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0031042098999023438,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "3b591b8381cb7cf57a88d7db08d535f2de182720d9fcb3c335800d7b3283e7e1",
+      "input_source_coordinate_sha256": "b82a1c0aa2e6a08946b312ab7101fcb798b1e85f8056e7bfc4d903bbf6b6def2",
+      "input_tracking_coordinate_sha256": "84b820f07800cdf3f7aa96c682f9e8d6a52c18683f72491580538defa43d3771",
+      "invocation_command": "main.py run --input 1075200_init_dist.txt --max-particles 100800 --sampling-strata 168 --seed 202212 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/historical_n100800_seed202212"
+    },
+    {
+      "source": "generated",
+      "input_source_kind": "generated",
+      "particle_count": 100800,
+      "seed": 202212,
+      "path": "outputs/convergence_5kv/generated_n100800_seed202212/rf_only_results.h5",
+      "elapsed_tracking_s": 132.2852825979935,
+      "surviving_finite_particles": 100800,
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "population_conserved": true,
+      "maximum_absolute_population_error": 0.0036191940307617188,
+      "project_source_sha256": "c3ad1372c76659bf6dc637c3150736883b378e65d0bff5991b1bef365b107d5f",
+      "input_sha256": "1c7a646d01eacb70f5325a1c1bdfaab7f1807899df34848d82009f5a5cbeb60c",
+      "input_source_coordinate_sha256": "66a21e67ab5889d44b29a632aa8298705f76cb6eda40e7bb0270369212d4a658",
+      "input_tracking_coordinate_sha256": "3e7546906eb2aff537800645c65c58775b9c727dd123f47e969d956e4abf974c",
+      "invocation_command": "main.py run --particles-per-microbunch 600 --seed 202212 --record-every 10 --rf25-start-kv 5 --no-figures --output-dir outputs/convergence_5kv/generated_n100800_seed202212"
+    }
+  ]
+}

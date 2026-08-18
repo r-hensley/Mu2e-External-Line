@@ -1,0 +1,101 @@
+{
+  "all_acceptance_checks_passed": true,
+  "all_coordinates_finite": true,
+  "all_particles_survived": true,
+  "comparison": {
+    "all_snapshots_particlewise_energy_rms_difference_eV": 3848.2944224319867,
+    "all_snapshots_particlewise_time_rms_difference_ns": 0.012393658389488676,
+    "diagnostic_turn_grids_identical": true,
+    "flattop": {
+      "particlewise_energy_max_abs_difference_eV": 207436.0,
+      "particlewise_energy_rms_difference_eV": 3456.7164197999714,
+      "particlewise_time_max_abs_difference_ns": 0.5546584146080746,
+      "particlewise_time_rms_difference_ns": 0.008907244185450601,
+      "reference_sigma_energy_MeV": 10.154413052772664,
+      "reference_sigma_time_ns": 35.904459849689374,
+      "sigma_energy_relative_difference": 1.6778121260996315e-05,
+      "sigma_time_relative_difference": -1.4347618250809546e-05,
+      "turn": 8084,
+      "xsuite_sigma_energy_MeV": 10.154583424746196,
+      "xsuite_sigma_time_ns": 35.90394470620595
+    },
+    "last_extraction": {
+      "particlewise_energy_max_abs_difference_eV": 1047285.0,
+      "particlewise_energy_rms_difference_eV": 16172.531048964453,
+      "particlewise_time_max_abs_difference_ns": 1.6868172652549334,
+      "particlewise_time_rms_difference_ns": 0.031219649271065467,
+      "reference_sigma_energy_MeV": 10.666993187354494,
+      "reference_sigma_time_ns": 34.40204920934775,
+      "sigma_energy_relative_difference": -3.504224058004102e-05,
+      "sigma_time_relative_difference": 5.03959594007064e-05,
+      "turn": 38336,
+      "xsuite_sigma_energy_MeV": 10.666619392012958,
+      "xsuite_sigma_time_ns": 34.403782933623006
+    },
+    "snapshot_turn_grids_identical": true
+  },
+  "initial_distribution_source": "manual_version/mu2e_longitudinal.py",
+  "inputs": {
+    "circumference_m": 3319.43,
+    "extraction_interval_s": 0.04812,
+    "harmonic_25": 28,
+    "harmonic_53": 588,
+    "in_time_half_window_s": 1.25e-07,
+    "n_extractions": 8,
+    "porch_turns": 1,
+    "ramp_25_s": 0.085,
+    "reference_energy_eV": 8884642000.0,
+    "source_bunch_count": 21,
+    "transition_gamma": 21.6,
+    "turnoff_53_s": 0.005,
+    "voltage_25_final_eV": 80000.0,
+    "voltage_25_initial_eV": 3000.0,
+    "voltage_53_eV": 80000.0
+  },
+  "line_element_order": [
+    "recycler_slip",
+    "rf53",
+    "rf2p5"
+  ],
+  "model": "Xsuite LineSegmentMap plus harmonic Cavity elements",
+  "n_particles": 5376,
+  "n_turns": 38336,
+  "one_turn_validation": {
+    "energy_error_eV": 0.0,
+    "theta_error_rad": 6.938893903907228e-16
+  },
+  "reference_result": "manual_version/outputs/nominal_result.npz",
+  "result_sha256": "b00d31e0fad0a97858732e0170bb3f47aaa54020fbc294fb965bab5eda8bb4f0",
+  "tracking_elapsed_s": 52.943216744984966,
+  "xpart_version": "0.23.10",
+  "xsuite_derived": {
+    "beta0": 0.9944080444437254,
+    "energy0_eV": 8884642000.0,
+    "extraction_times_s": [
+      0.09001113469134438,
+      0.1381311346913444,
+      0.18625113469134438,
+      0.2343711346913444,
+      0.2824911346913444,
+      0.3306111346913444,
+      0.3787311346913444,
+      0.4268511346913444
+    ],
+    "gamma0": 9.469153044319203,
+    "line_length_m": 3319.43,
+    "mass0_eV": 938272088.16,
+    "momentum_compaction_factor": 0.0021433470502725312,
+    "p0c_eV": 8834959476.80259,
+    "qs_80kv": 0.0006046375610622157,
+    "revolution_frequency_hz": 89809.40459619804,
+    "rf25_frequency_hz": 2514663.3286935454,
+    "rf53_frequency_hz": 52807929.90256445,
+    "slip_factor": -0.009009294095333444,
+    "synchrotron_period_80kv_s": 0.01841548071344648,
+    "t_rev0_s": 1.1134691344366551e-05,
+    "time_25_flat_s": 0.09001113469134438,
+    "time_53_off_s": 0.005011134691344367
+  },
+  "xsuite_version": "0.50.1",
+  "xtrack_version": "0.103.0"
+}

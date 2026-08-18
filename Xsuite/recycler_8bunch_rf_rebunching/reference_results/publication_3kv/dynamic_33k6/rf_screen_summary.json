@@ -1,0 +1,461 @@
+{
+  "assessment": {
+    "criteria": {
+      "all_particles_survive_with_finite_final_coordinates": true,
+      "final_abs_time_gt_80ns_fraction_within_20_percent": true,
+      "final_rms_time_and_energy_within_5_percent": true,
+      "mean_absolute_final_centroid_difference_within_2x_resampling": true,
+      "population_conserved_in_all_runs": true,
+      "profile_distances_within_2x_historical_resampling": true
+    },
+    "name": "33,600-particle RF dynamic screen",
+    "passes_all_criteria": true,
+    "scope": "Passing means the compact input is within the declared tolerances relative to historical subsampling at this reduced RF-only screen. It is not proof of exact input provenance or publication-level ghost-bunch agreement.",
+    "tail_interpretation": "The >80 ns region has enough sampled particles for a coarse screen. The >100 ns and >120 ns regions remain count-limited and are reported but excluded from pass/fail."
+  },
+  "generated_pairs": [
+    {
+      "candidate_path": "outputs/rf_compare_generated_33k6_seed202208/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0009523809523809524,
+            "sample_equivalent_count": 32.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 2.9761904761904762e-05,
+            "sample_equivalent_count": 1.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.005267857142857143,
+            "sample_equivalent_count": 177.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 1.7345583823503814,
+        "maximum_absolute_rms_energy_relative_difference": 0.022980704763522077,
+        "maximum_absolute_rms_time_relative_difference": 0.021949616991136265,
+        "mean_absolute_centroid_difference_ns": 0.7872350684542343,
+        "mean_absolute_rms_energy_relative_difference": 0.010408449432088457,
+        "mean_absolute_rms_time_relative_difference": 0.01062837185363552,
+        "reference_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0007738095238095238,
+            "sample_equivalent_count": 26.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0,
+            "sample_equivalent_count": 0.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.004970238095238095,
+            "sample_equivalent_count": 167.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 3.106071428571429,
+        "mean_jensen_shannon": 0.14229335769096552,
+        "mean_wasserstein_ns": 2.3964144189941967,
+        "median_jensen_shannon": 0.14293667250182926,
+        "median_wasserstein_ns": 2.570070784951084,
+        "n_common_turns": 810
+      },
+      "ratios_to_historical_resampling_baseline": {
+        "maximum_absolute_centroid_difference": 1.5692653401690588,
+        "mean_absolute_centroid_difference": 1.5090519579727715,
+        "median_profile_jensen_shannon": 1.0096463928035864,
+        "median_profile_wasserstein": 0.9955580637412947
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "generated",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/rf_compare_generated_33k6_seed202209/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0006845238095238096,
+            "sample_equivalent_count": 23.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 8.928571428571429e-05,
+            "sample_equivalent_count": 3.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.004851190476190476,
+            "sample_equivalent_count": 163.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 2.3239879305304827,
+        "maximum_absolute_rms_energy_relative_difference": 0.015163054666633015,
+        "maximum_absolute_rms_time_relative_difference": 0.017015261995651842,
+        "mean_absolute_centroid_difference_ns": 0.6831378720092424,
+        "mean_absolute_rms_energy_relative_difference": 0.009714366731837456,
+        "mean_absolute_rms_time_relative_difference": 0.009143253257786223,
+        "reference_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0007738095238095238,
+            "sample_equivalent_count": 26.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0,
+            "sample_equivalent_count": 0.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.004970238095238095,
+            "sample_equivalent_count": 167.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 2.7957142857142845,
+        "mean_jensen_shannon": 0.14209109974946332,
+        "mean_wasserstein_ns": 2.2071448098683404,
+        "median_jensen_shannon": 0.14356985679898077,
+        "median_wasserstein_ns": 2.311281095955252,
+        "n_common_turns": 810
+      },
+      "ratios_to_historical_resampling_baseline": {
+        "maximum_absolute_centroid_difference": 2.1025257768556442,
+        "mean_absolute_centroid_difference": 1.309507902569803,
+        "median_profile_jensen_shannon": 1.0141189485893711,
+        "median_profile_wasserstein": 0.8953117346512552
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "generated",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/rf_compare_generated_33k6_seed202210/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0005654761904761905,
+            "sample_equivalent_count": 19.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.00011904761904761905,
+            "sample_equivalent_count": 4.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.004434523809523809,
+            "sample_equivalent_count": 149.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.9497405780735028,
+        "maximum_absolute_rms_energy_relative_difference": 0.018316101994059076,
+        "maximum_absolute_rms_time_relative_difference": 0.018443552938340758,
+        "mean_absolute_centroid_difference_ns": 0.3426953444002304,
+        "mean_absolute_rms_energy_relative_difference": 0.009365202785609903,
+        "mean_absolute_rms_time_relative_difference": 0.009108870586825156,
+        "reference_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0007738095238095238,
+            "sample_equivalent_count": 26.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0,
+            "sample_equivalent_count": 0.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.004970238095238095,
+            "sample_equivalent_count": 167.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 3.000124867307559,
+        "mean_jensen_shannon": 0.14207829916392156,
+        "mean_wasserstein_ns": 2.335233797555004,
+        "median_jensen_shannon": 0.14348620577433122,
+        "median_wasserstein_ns": 2.568223307560174,
+        "n_common_turns": 810
+      },
+      "ratios_to_historical_resampling_baseline": {
+        "maximum_absolute_centroid_difference": 0.8592359798828688,
+        "mean_absolute_centroid_difference": 0.6569131650483442,
+        "median_profile_jensen_shannon": 1.01352807184785,
+        "median_profile_wasserstein": 0.9948424137969936
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "generated",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    }
+  ],
+  "historical_control_pairs": [
+    {
+      "candidate_path": "outputs/rf_compare_historical_33k6_seed202209/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.000625,
+            "sample_equivalent_count": 21.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 5.9523809523809524e-05,
+            "sample_equivalent_count": 2.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.005148809523809523,
+            "sample_equivalent_count": 173.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 1.4039110079421984,
+        "maximum_absolute_rms_energy_relative_difference": 0.02219555118068515,
+        "maximum_absolute_rms_time_relative_difference": 0.02188024299668166,
+        "mean_absolute_centroid_difference_ns": 0.6950932326387201,
+        "mean_absolute_rms_energy_relative_difference": 0.009985640655630531,
+        "mean_absolute_rms_time_relative_difference": 0.007189477165548717,
+        "reference_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0007738095238095238,
+            "sample_equivalent_count": 26.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0,
+            "sample_equivalent_count": 0.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.004970238095238095,
+            "sample_equivalent_count": 167.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 3.2109547939361303,
+        "mean_jensen_shannon": 0.1398247429450978,
+        "mean_wasserstein_ns": 2.487317120251846,
+        "median_jensen_shannon": 0.14131535454009708,
+        "median_wasserstein_ns": 2.696528003669534,
+        "n_common_turns": 810
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "file",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    },
+    {
+      "candidate_path": "outputs/rf_compare_historical_33k6_seed202210/rf_only_results.h5",
+      "conservation": {
+        "candidate": true,
+        "reference": true
+      },
+      "final_particles": {
+        "available": true,
+        "candidate_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "candidate_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0007142857142857143,
+            "sample_equivalent_count": 24.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 5.9523809523809524e-05,
+            "sample_equivalent_count": 2.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0047321428571428575,
+            "sample_equivalent_count": 159.0
+          }
+        },
+        "common_bunch_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "maximum_absolute_centroid_difference_ns": 0.8067519538275624,
+        "maximum_absolute_rms_energy_relative_difference": 0.02559717729606419,
+        "maximum_absolute_rms_time_relative_difference": 0.012882658398614012,
+        "mean_absolute_centroid_difference_ns": 0.34825728196090877,
+        "mean_absolute_rms_energy_relative_difference": 0.010587670520050487,
+        "mean_absolute_rms_time_relative_difference": 0.00783122607611048,
+        "reference_population": {
+          "n_alive": 33600,
+          "n_alive_finite": 33600,
+          "n_total": 33600
+        },
+        "reference_tails": {
+          "100": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0007738095238095238,
+            "sample_equivalent_count": 26.0
+          },
+          "120": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.0,
+            "sample_equivalent_count": 0.0
+          },
+          "80": {
+            "alive_finite_sample_particles": 33600,
+            "fraction": 0.004970238095238095,
+            "sample_equivalent_count": 167.0
+          }
+        }
+      },
+      "profile": {
+        "maximum_wasserstein_ns": 3.218511904761909,
+        "mean_jensen_shannon": 0.13989451074877968,
+        "mean_wasserstein_ns": 2.39489976484421,
+        "median_jensen_shannon": 0.14182669107237258,
+        "median_wasserstein_ns": 2.4665476190476188,
+        "n_common_turns": 810
+      },
+      "run_metadata": {
+        "candidate_input_source_kind": "file",
+        "reference_input_source_kind": "file",
+        "strict_matching_run_required": true
+      }
+    }
+  ],
+  "historical_resampling_baseline": {
+    "median_maximum_absolute_centroid_difference_ns": 1.1053314808848804,
+    "median_mean_absolute_centroid_difference_ns": 0.5216752572998145,
+    "median_profile_jensen_shannon": 0.14157102280623485,
+    "median_profile_wasserstein_ns": 2.5815378113585763
+  },
+  "reference_path": "outputs/rf_compare_historical_33k6/rf_only_results.h5",
+  "sample_design": "Equal tracked populations with 168-way historical stratification; generated samples have equal population in every microbunch."
+}
