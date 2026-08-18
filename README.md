@@ -98,3 +98,13 @@ and simulation requirements are updated.
 
 Contributions and updates to the models should be documented through Git commits
 and version tags to preserve the development history.
+
+## Additions in This Fork
+
+Compared with the upstream [`Mu2e/Mu2e-External-Line`](https://github.com/Mu2e/Mu2e-External-Line)
+repository, this fork adds:
+
+- Two documented Recycler longitudinal-dynamics studies under [`Xsuite/`](Xsuite/).
+- A dated, checksum-inventoried [archive of historical M4 MAD-X lattices](MADX/m4_lattice_archive/README.md).
+- A provenance-preserving [archive of Eric Prebys's G4Beamline studies](G4beamline/eric_g4beamline_study/README.md), including a verified large-data downloader.
+- A public [M4 model provenance and chronology guide](madx_file_provenance.md).
