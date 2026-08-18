@@ -4,3 +4,6 @@
 !/data/large_inputs/README.md
 /reference_results/large_outputs/*
 !/reference_results/large_outputs/README.md
+
+# Jupyter's transient notebook autosave directories are local-only.
+.ipynb_checkpoints/
