@@ -79,6 +79,135 @@ interchangeable file-for-file translations:
   version 03 deck and uses BDSIM-specific bend, roll, aperture, and unit
   conventions.
 
+### AC-dipole modeling status
+
+The three published implementations represent AC929 differently:
+
+- The August 2018 MAD-X model places six `K104` kicker cells with zero kick.
+- G4Beamline v02 added low- and high-frequency sine formulas in June 2019, and
+  the present v03 file retains them. The formulas use one scalar `time`
+  parameter to calculate six constant fields before tracking, so one run is a
+  selected waveform time slice rather than a particle-by-particle time-varying
+  field.
+- The BDSIM model places six `hkicker` cells controlled by `deltaTheta`, which
+  is zero by default. It does not contain the G4Beamline sine formulas.
+
+These are properties of the published decks, not fundamental code limits.
+G4Beamline supports time-dependent `fieldexpr` fields evaluated from tracked
+particle time, and BDSIM supports particle-time field modulators. MAD-X supports
+static kicks and turn-based sinusoidal kickers; for the single-pass M4 line, a
+waveform can be studied as repeated static arrival-time slices, but that is not
+the same as a Geant4 field evaluated separately for every particle. The earlier
+Prebys scan decks likewise set a constant `deltaTheta` per run rather than a
+particle-time waveform. That does not mean the Prebys study omitted the full
+waveform: its G4Beamline transmission table was convolved with the simulated
+Delivery Ring time distribution and harmonic waveform. The archived May 2016
+time-grid product belongs to that workflow. Eric Prebys's
+[2017 summary](https://prebys.physics.ucdavis.edu/talks/prebys_APS_20170803.pdf)
+reports a `2.1e-5` out-of-window Delivery Ring fraction, line extinction below
+`5e-8`, 99.5% in-time transmission, and `1.1e-12` total extinction, compared
+with the `1e-10` requirement. It is therefore accurate to call this a full
+system-level waveform result, but not a single-run particle-time field model.
+No implementation should be called as-operated until its amplitudes,
+frequencies, phase, and timing are checked against an approved operating
+configuration.
+
+#### Comparison with the 2019 Stratakis-mentored analysis
+
+Xu Yan's 2019 study, mentored by Diktys Stratakis,
+[*AC Dipole Requirements for Beam Extinction for the Fermilab Mu2e
+Experiment*](https://lss.fnal.gov/archive/2019/conf/fermilab-conf-19-379-ad.pdf),
+uses the same broad time-slice/response method as the earlier Prebys work but
+updates important model details. It starts particles directly in front of the
+AC system, assigns the three low-frequency cells and three high-frequency cells
+separately, approximates traversal timing within each group, scans the ratio of
+the two peak fields, and tests collimator-gap and input-emittance sensitivity.
+It reports `3.2e-5` beam outside the time window, `5e-8` external extinction,
+99.66% transmission, and `1.6e-12` total extinction. These are consistent with
+Prebys's later `2.1e-5`, below-`5e-8`, 99.5%, and `1.1e-12` values.
+
+The studies are complementary rather than fully independent. The 2019 paper
+credits its system, model, and beam-distribution figures to Eric Prebys's
+September 2016 presentation, while adding a newer lattice/AC implementation and
+new tolerance studies. Neither directly tracks enough particles to measure a
+`1e-12` fraction; both combine a Delivery Ring time distribution with a
+G4Beamline external-system response.
+
+A preserved Prebys job log identifies G4Beamline 2.16 (2014-01-10) with
+Geant4 9.6.p02, and the archived grid instructions explicitly select G4Beamline
+`v2_16`. This establishes the historical software release more precisely, but
+not a byte-identical executable or complete frozen runtime.
+
+The 2026 repository commit must also not be conflated with a new 2026 analysis.
+The deposited v03 file dates its AC changes to June 2019 and trims to February
+2022. Its active source has 10,000 particles, the paper's scan and outputs are
+not included, and its hard-coded low/high peak-field ratio is approximately 8
+(`122.9839/15.3730`) rather than the paper's selected ratio 9. It is a useful
+later reference deck, but not a frozen, out-of-the-box reproduction of the
+published `1.6e-12` result.
+
+Its `RunAll=1` switch also places only the upstream section through Q929; the
+AC cells and downstream-to-target section are in the alternative branch.
+Selecting that alternative does not restore the paper setup because the active
+input is the M4-entrance distribution and the paper's AC-front input is absent.
+An end-to-end smoke test therefore needs a clearly documented temporary control-
+flow repair, while a paper reproduction needs the missing AC-front distribution
+or a newly validated replacement.
+
+#### Dependence on protons per microbunch
+
+At fixed beam energy, incoming phase space, AC waveform and phase, orbit, and
+collimator settings, these G4Beamline studies are linear single-particle
+transport models. Reducing the number of protons therefore reduces absolute
+counts but leaves the normalized M4 transmission-versus-time response unchanged
+by construction.
+
+The `Num_Events`/`nparticles` setting in these decks is only the number of
+independent Monte Carlo histories; changing it is not a physical change in
+protons per microbunch. G4Beamline supports collective `spacecharge` methods,
+but neither Mu2e deck uses them. A physical intensity study would require a new
+macro-particle charge model and a measured longitudinal bunch distribution;
+the preserved input sources set their initial particle times to zero.
+
+The end-to-end extinction profile is not guaranteed to scale identically. The
+profile entering M4 can depend on intensity through Recycler rebunching and
+Delivery Ring extraction. The 2026
+[*Diagnosing Ghost Bunches with the Upstream Extinction Monitor*](https://doi.org/10.18429/JACoW-IPAC2026-MOP6370)
+paper identifies space charge, machine impedance, and RF-frequency mismatch as
+possible contributors to adjacent-bucket leakage. A separate open-access
+[slow-extraction simulation](https://doi.org/10.1016/j.net.2025.104097) finds
+that design-intensity space-charge tune shifts affect spill rate and losses.
+Thus reduced-intensity operation can test the external M4 transfer, but it does
+not by itself establish nominal-intensity extinction. An intensity scan should
+compare normalized profiles upstream and downstream of the AC system while
+holding machine settings fixed; backgrounds and limited out-of-time statistics
+must also be controlled at low intensity.
+
+#### Related simulations already available
+
+The existing Recycler simulations can supply part of the missing upstream
+study, but none is presently an end-to-end reduced-power extinction model. The
+tested [Xsuite RF-rebunching model](Xsuite/recycler_8bunch_rf_rebunching/README.md)
+provides the historical 1,075,200-particle input, programmed RF evolution, and
+neighboring-bucket diagnostics. It deliberately omits impedance and space
+charge; its physical intensity is only an output weight and does not affect
+particle trajectories. The separate
+[filamentation example](Xsuite/recycler_filamentation_example/README.md) also
+omits collective effects.
+
+A preserved historical Recycler BLonD driver is closer to the needed physics:
+it gives the beam a physical intensity and applies longitudinal resonator
+impedance. It is not a validated direct-run solution, however. The committed
+map appears to apply time- and frequency-domain versions of the same resonator
+kick sequentially, its resistance scaling is unresolved among factors of four,
+six, and nine in the surviving sources, and no active Mu2e space-charge term or
+complete prescription survives. A defensible first test would repair or port
+that model, use one validated wake representation and documented impedance
+normalization, then compare identical macro-particle ensembles at low and
+nominal physical intensity. The result would constrain Recycler impedance
+sensitivity; it would still omit Delivery Ring extraction and could not by
+itself be called the final extinction profile.
+
 ### Earlier Prebys G4Beamline studies
 
 Eric Prebys's [DocDB 4054 v4](https://mu2e-docdb.fnal.gov/cgi-bin/sso/ShowDocument?docid=4054),
@@ -89,6 +218,17 @@ conversion used a Perl script written and run by Jean-Francois Ostiguy. This is
 historical study evidence, not the generating chain for the repository's
 August 2018-based G4Beamline model.
 
+The 2014 note explicitly says a detailed extracted-beam simulation was not
+yet available. Its conservative transverse core model cites V. Nagaslaev,
+private communication: uniform horizontal phase space with 30 pi-mm-mrad
+full normalized emittance and a vertical Gaussian with 15 pi-mm-mrad 95%
+normalized emittance. The subsequent Prebys/Werkema
+[IPAC2015 paper, THPF121](https://proceedings.jacow.org/IPAC2015/papers/thpf121.pdf)
+uses that idealized core for downstream transmission and separately studies
+upstream halo with a MARS extraction/scattering distribution, citing
+[Nagaslaev et al., THPF125](https://proceedings.jacow.org/IPAC2015/papers/thpf125.pdf).
+These are distinct input populations and simulation stages.
+
 Prebys's later [G4Beamline study notes](https://prebys.physics.ucdavis.edu/misc/AAAreadme/AAA_g4beamline_study.html)
 document a different workflow. His Python `mad2g4bl.py` translated Eliana
 Gianfelice-Wendt's MAD-X optics table into G4Beamline fragments. A separate
@@ -98,6 +238,14 @@ space to Eliana's optics. The Y-only operation applies to the input-particle
 distribution, not to the lattice geometry. Prebys has confirmed the notes as
 his documentation and authorized incorporation of relevant information into
 this repository.
+
+The preserved full/upstream scan branch selects
+`exttracks_rot_e30_e40_1800000.root`, a rematched, smeared sample restricted
+to particles above normalized X/Y amplitude thresholds of 30/40 mm-mrad in
+at least one plane. The downstream branch instead selects
+`mu2e_downstream.root`, an idealized uniform-X/Gaussian-Y core matched at the
+AC-dipole entrance. The selected halo input must not be interpreted as the
+complete incoming beam population when quoting a transmission fraction.
 
 A curated copy is now preserved under
 [`G4beamline/eric_g4beamline_study/`](G4beamline/eric_g4beamline_study/README.md).
@@ -223,3 +371,14 @@ is not currently part of the published model package:
 The October 2024 production study contains no QDA01/QDA02 or absorber branch.
 The virtual scoring planes named `VD_Diagnostic_*` in G4Beamline and BDSIM are
 not implementations of this diagnostic-absorber line.
+
+For operational context, the public
+[IPAC 2026 slow-extraction commissioning paper](https://indico.jacow.org/event/95/contributions/13534/attachments/2442/8802/THP4310_edited_version.pdf)
+reports slow-extracted 8 GeV beam delivered to the diagnostic absorber during
+the 2025 and early-2026 campaigns. It distinguishes the 8 kW design from the
+then-current 13 W safety limit: commissioning at that limit used only a few
+individual spills per minute with intensity reduced fivefold. Separately, the
+paper says unresolved losses would limit available beam power to the production
+target to about 5 kW. These administrative, technical, and design powers should
+not be treated as interchangeable, and the paper does not define a standard
+30 W Mu2e operating mode.
