@@ -1,0 +1,2 @@
+# Use Linux line endings for archive text files; leave binary files unchanged.
+MADX/m4_lattice_archive/** text=auto eol=lf

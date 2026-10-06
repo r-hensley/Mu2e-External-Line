@@ -1,0 +1,149 @@
+{
+  "assembled_date": "2026-10-05",
+  "version_label": "2026.09.29",
+  "supplied_files": [
+    {
+      "path": "mu2e-dr-lattice-v2026.09.29.madx",
+      "bytes": 194228,
+      "sha256": "03730fc4b7c8b980ba6cdba4d4ba7bd367fb4018f0d8f34704d36cc1f0de9f05",
+      "original_bytes": 199469,
+      "original_sha256": "da204bcf3f585fddb37e67a288a4fd022b2220a9f2d6c289dc6baa95c04b0660"
+    },
+    {
+      "path": "mu2e-dr-twiss-v2026.09.29-madx.tfs",
+      "bytes": 843674,
+      "sha256": "cc9f093d5c0f01805a8702c18060e081ac0d00b9a81ca27b5dc1323aa0acd6f5",
+      "original_bytes": 845723,
+      "original_sha256": "774a6f3db5ca966c24c35f06ee5aa788b771015de44b6f3f087ea350338a82b0"
+    },
+    {
+      "path": "mu2e-dr-plots-v2026.09.29-madx.pdf",
+      "bytes": 75022,
+      "sha256": "993c83f1224731cca4a4d41a592092bdd38f23a5d58f7b314e1864231df8a4e3",
+      "original_bytes": 75022,
+      "original_sha256": "993c83f1224731cca4a4d41a592092bdd38f23a5d58f7b314e1864231df8a4e3"
+    },
+    {
+      "path": "mu2e-dabs-lattice-v2026.09.29.madx",
+      "bytes": 55492,
+      "sha256": "18379bcb907ace0ee76aa30016686f5df73288b2e1fe6253e74c81cd41c79f7a",
+      "original_bytes": 57186,
+      "original_sha256": "72580ce8acb8b68005422be30b0b496201ed075419ef7ea5313ca49b8bd72bf5"
+    },
+    {
+      "path": "mu2e-dabs-twiss-v2026.09.29-madx.tfs",
+      "bytes": 209674,
+      "sha256": "fa97913fa1afaf74904a6bc34331daf8bcea81cb85b1d985951f9b808a726064",
+      "original_bytes": 210217,
+      "original_sha256": "4abccf13e30c483d39bcbe84d92a8c234c381014e7ca3d9a35bbe723018ad1f8"
+    },
+    {
+      "path": "mu2e-dabs-plots-v2026.09.29-madx.pdf",
+      "bytes": 27848,
+      "sha256": "b0ddb30303adc050cca69e207a706f69add14a72099a8476a53477e735bc1748",
+      "original_bytes": 27848,
+      "original_sha256": "b0ddb30303adc050cca69e207a706f69add14a72099a8476a53477e735bc1748"
+    }
+  ],
+  "reference_tables": [
+    {
+      "path": "audit/reference_tables/2018_m4_twiss.tfs",
+      "bytes": 110411,
+      "sha256": "e4ca8f15a6683db4afd9779760d84f2a2656661f8185f864c7568816b589c780",
+      "original_bytes": 110411,
+      "original_sha256": "e4ca8f15a6683db4afd9779760d84f2a2656661f8185f864c7568816b589c780"
+    },
+    {
+      "path": "audit/reference_tables/2024_m4_twiss.tfs",
+      "bytes": 117471,
+      "sha256": "8d383bc91235e3e2f85382b7df2328937068cfa63f96f610f7647d01cab50fec",
+      "original_bytes": 117471,
+      "original_sha256": "8d383bc91235e3e2f85382b7df2328937068cfa63f96f610f7647d01cab50fec"
+    }
+  ],
+  "provenance_basis": "Author-provided facts paraphrased in audit/AUDIT.md; supplied file contents and saved validation runs.",
+  "historical_delivery": {
+    "archive_sha256": "484e421050aa5428f9d016f6bc8289c7d9337338e1fb289d17e32afedeb1491e",
+    "archive_bytes": 321617,
+    "member_timestamps_without_timezone": {
+      "mu2e-dr-lattice-v2026.09.29.madx": [
+        2026,
+        10,
+        5,
+        14,
+        16,
+        22
+      ],
+      "mu2e-dr-twiss-v2026.09.29-madx.tfs": [
+        2026,
+        10,
+        5,
+        14,
+        16,
+        22
+      ],
+      "mu2e-dr-plots-v2026.09.29-madx.pdf": [
+        2026,
+        10,
+        5,
+        14,
+        16,
+        22
+      ],
+      "mu2e-dabs-lattice-v2026.09.29.madx": [
+        2026,
+        10,
+        5,
+        14,
+        16,
+        24
+      ],
+      "mu2e-dabs-twiss-v2026.09.29-madx.tfs": [
+        2026,
+        10,
+        5,
+        14,
+        16,
+        24
+      ],
+      "mu2e-dabs-plots-v2026.09.29-madx.pdf": [
+        2026,
+        10,
+        5,
+        14,
+        16,
+        24
+      ]
+    },
+    "disposition": "both_zip_copies_removed_after_byte_for_byte_verification",
+    "verified_date": "2026-10-05",
+    "verification": [
+      {
+        "path": "/home/rhensley/ryan/beam_simulations/Mu2e-External-Line/MADX/reupdatedmu2emadxlatticefiles.zip",
+        "bytes": 321617,
+        "sha256": "484e421050aa5428f9d016f6bc8289c7d9337338e1fb289d17e32afedeb1491e",
+        "crc_pass": true,
+        "all_six_extracted_files_equal": true,
+        "disposition": "removed_after_verification"
+      },
+      {
+        "path": "/home/rhensley/ryan/beam_simulations/Mu2e-External-Line/MADX/m4_lattice_archive/2026_09_29_Deinlein_DR_M4/received/reupdatedmu2emadxlatticefiles.zip",
+        "bytes": 321617,
+        "sha256": "484e421050aa5428f9d016f6bc8289c7d9337338e1fb289d17e32afedeb1491e",
+        "crc_pass": true,
+        "all_six_extracted_files_equal": true,
+        "disposition": "removed_after_verification"
+      }
+    ],
+    "authorization": "User requested ZIP deletion if everything had been extracted; both copies verified against all six supplied files.",
+    "timestamp_interpretation": "Packaging metadata only; not a lattice design date.",
+    "removed_date": "2026-10-05"
+  },
+  "line_ending_normalization": {
+    "date": "2026-10-06",
+    "authorization": "User requested Linux-style LF line endings.",
+    "transformation": "UTF-8 text copies replace CRLF with LF; no other source or saved-run content changes. Binary files are unchanged.",
+    "identity_fields": "bytes/sha256 identify current files; original_bytes/original_sha256 identify the received or reference copies before normalization.",
+    "archive_record": "../manifests/line_ending_normalization.tsv"
+  }
+}

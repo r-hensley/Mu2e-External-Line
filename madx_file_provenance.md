@@ -352,18 +352,21 @@ version in the other implementations.
 Additional development history is preserved in source comments and the Git
 commit history.
 
+Lattice-archive text files use Linux (LF) line endings. Converting line
+terminators does not change lattice statements or optics values.
+
 ## Diagnostic-Absorber Material
 
-The published models in this repository do not contain a complete runnable
-diagnostic-absorber branch. The August 2018 MAD-X driver contains only a
-commented call to a missing `diag.seq`, together with supporting element
-definitions.
+The August 2018 production-target reference does not contain a complete
+runnable diagnostic-absorber branch. Its MAD-X driver contains only a commented
+call to a missing `diag.seq`, together with supporting element definitions.
 
-Separate provenance work identified the following comparison material, which
-is not currently part of the published model package:
+The following comparison material documents related diagnostic models; it
+does not replace the published August 2018 production-target reference:
 
 | Material | Finding |
 |---|---|
+| [September 2026 Delivery Ring and extraction source models](MADX/m4_lattice_archive/2026_09_29_Deinlein_DR_M4/README.md) | Self-contained models dated September 29, with supplied MAD-X 5.09.01 Twiss outputs. The standalone ring and extraction jobs share a Q303 starting point and upstream quadrupole settings; the extraction job uses hard-coded starting optics approximating the ring periodic solution, without automatic cross-file optics or particle transfer. The extraction route begins at Q303 and ends at the diagnostic absorber; it supplies the common M4 trunk through Q933 but no production-target continuation. Both sources run under MAD-X 5.08.00 with zero warnings and reproduce every printed numeric field in their 1,997-row ring and 491-row extraction tables; some header coupling diagnostics differ between versions. The extraction study uses revised quadrupole strengths and length conventions plus 2024-style left-bend values. Q909 is approximately 0.305 m farther downstream than in the older models after origin alignment; the other 32 common quadrupole centers agree within 0.150 mm. A production model requires a checked splice before the diagnostic bend. Reproducibility does not establish operational approval of the proposed corrected extraction settings. |
 | Historical 2016 `diag.seq` files | Preserve complete source-level diagnostic placements, but use older upstream settings and do not reproduce the later output |
 | November 2022 diagnostic Twiss table | Matches the August 2018 M4 trunk through Q933, then follows HDA1, QDA01, QDA02, and the absorber. Its generating source job remains missing, but a separately archived local reconstruction using the 2018 inputs reproduces all 331 rows' identities, coordinates, lengths, angles, and strengths at printed precision, with optics differences below `1e-7 m`; that reconstruction is not a recovered or authoritative source file. |
 | Modified mACE optics table | Closely matches the 2022 diagnostic geometry after its coordinate offset, but represents substantially different tight-focus optics. It contains no explicit magnet strengths or source date; the best working date estimate is circa 2025 because its inferred H910/H912 bend ratio closely matches the October 2024 study rather than August 2018. A separately archived 692-map MAD-X reconstruction reproduces all 693 table samples at six-decimal precision, but is a first-order transport equivalent rather than a recovered or unique physical magnet lattice. |
