@@ -65,7 +65,12 @@ validation records, and integration questions are in [audit/AUDIT.md](audit/AUDI
 | [audit/AUDIT.md](audit/AUDIT.md) | Detailed provenance, DR–M4 connection, simulation scope, comparisons, validation, and unresolved questions |
 | `audit/` | Receipts, comparison tables, run logs, generated outputs, and the audit helper |
 | [provenance/file_manifest.json](provenance/file_manifest.json) | Supplied-file sizes, hashes, and provenance record |
-| [SHA256SUMS](SHA256SUMS) | Checksums of the collected files |
+| [Archive-wide inventories](../manifests/README.txt) | Canonical checksums and TSV inventory covering this folder and the other archive contents |
+| [SHA256SUMS](SHA256SUMS) | Optional portable checksum subset, generated from the same archive inventory process |
+
+Use the [archive-level verification commands](../README.md) for routine checks.
+The folder-level `SHA256SUMS` can verify a standalone copy; regenerate it with
+the archive-wide refresh helper rather than editing it separately.
 
 The broader model history is in
 [madx_file_provenance.md](../../../madx_file_provenance.md).

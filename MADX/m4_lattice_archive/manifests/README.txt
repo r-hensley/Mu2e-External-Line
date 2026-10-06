@@ -1,22 +1,52 @@
-ARCHIVE INVENTORIES
+CURRENT ARCHIVE INVENTORY
 
 m4_lattice_archive.sha256
 m4_lattice_archive.tsv
-    Current inventories of every regular file outside manifests/, including
-    the dated lattice folders, September 2026 collection, saved audit evidence,
-    and guides. The manifests/ directory is excluded to avoid self-reference.
+    Maintained inventories of every regular file outside manifests/, including
+    all dated folders, supplied files, generated audit outputs, and guides.
+    The manifests/ control directory is excluded to avoid self-reference.
     SHA-256 paths are relative to the archive root. TSV columns record path,
     size in bytes, modification time in UTC with nanosecond precision, file
-    mode, provenance, and SHA-256. File times are not lattice configuration dates.
+    mode, provenance, and SHA-256. Modification times are file metadata, not
+    lattice configuration dates. Existing provenance labels are retained.
 
-From the archive root, verify the listed contents:
+From the archive root, check listed file contents:
 
     sha256sum -c manifests/m4_lattice_archive.sha256
 
+For content checks plus complete path coverage and SHA-256/TSV agreement:
+
+    python3 manifests/archive_inventory.py check
+
+The second command fails for changed, missing, or unlisted files and for
+inconsistent checksum/TSV records. Recorded timestamps and modes are metadata;
+the check does not require checkout timestamps or permissions to be identical.
+
+REFRESHING AFTER INTENDED ADDITIONS OR EDITS
+
+    python3 manifests/archive_inventory.py refresh
+
+Refresh validates supplied/reference-file identities from file_manifest.json,
+preserves existing provenance labels, regenerates any existing folder-level
+SHA256SUMS subsets, and writes both current archive inventories. It refuses
+missing listed files and changes to listed contents unless explicitly accepted.
+For an intentional archive-guide edit, for example:
+
+    python3 manifests/archive_inventory.py refresh --accept-change README.md
+
+Repeat --accept-change for each reviewed change, using archive-relative paths.
+Changes to supplied/reference files still fail their provenance identity check.
+Review removals explicitly rather than silently dropping missing listed files.
+The helper uses only Python's standard library and does not execute MAD-X.
+
+OPTIONAL PORTABLE SUBSETS
+
 2026_09_29_Deinlein_DR_M4/SHA256SUMS
-    Portable checksum list for this collection, excluding the list itself.
-    Its provenance/file_manifest.json records the fixed supplied-file and
-    comparison-table identities. The archive-wide list includes this subset.
+    Generated subset for verifying a standalone copy of this folder. The
+    archive-wide inventory includes this subset file itself. Regenerate it
+    with the archive refresh command, never as a separately maintained list.
+    The folder's provenance/file_manifest.json records the fixed identities
+    of its supplied files and comparison references, along with provenance.
 
 Overview: 2026_09_29_Deinlein_DR_M4/README.md
 Full audit: 2026_09_29_Deinlein_DR_M4/audit/AUDIT.md
@@ -32,9 +62,11 @@ eliana_files_premerge.tsv
     Preserved snapshot of the former eliana_files/ tree before the merge.
     The TSV maps each original path to its retained merged-archive path.
 
-These four historical records are not refreshed with the current inventories.
-Their SHA paths are relative to the former source roots; the Eliana TSV provides
-its merged-path mapping. All checksum lists use sha256sum's "hash  path" format.
+These four records are historical provenance evidence and are not refreshed
+by the current inventory helper. Their SHA paths are relative to the former
+source roots; the Eliana TSV supplies the merged-path mapping.
+
+All checksum lists use the standard "hash  path" format accepted by sha256sum.
 
 LINE ENDINGS
 

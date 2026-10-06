@@ -247,9 +247,16 @@ public-facing provenance companion are updated for these new findings.
 From the parent collection folder, run:
 
 ```bash
-sha256sum -c SHA256SUMS
+(cd .. && sha256sum -c manifests/m4_lattice_archive.sha256)
+(cd .. && python3 manifests/archive_inventory.py check)
 python3 audit/inspect_files.py
 ```
+
+The archive-wide SHA-256 and TSV inventories are the canonical current lists.
+The inventory helper also checks for missing or unlisted paths. This folder's
+`SHA256SUMS` is an optional portable subset, generated during the same refresh;
+it is not maintained separately. See [the manifest guide](../../manifests/README.txt)
+for refresh instructions. Historical pre-merge records remain unchanged.
 
 The script verifies the supplied-file and comparison-table hashes against
 `provenance/file_manifest.json`, then compares the saved validation outputs
